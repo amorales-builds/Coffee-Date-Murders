@@ -1,0 +1,47 @@
+#label day1 :
+
+#label day2 :
+
+#label day3 :
+
+#label day_date :
+
+#label day_contest :
+
+
+
+label em:
+
+    label em_day1 :
+
+    label em_day2 :
+
+    label em_day3 :
+
+    label em_day_date :
+
+    label em_day_contest :
+
+label bb:
+
+    label bb_day1 :
+
+    label bb_day2 :
+
+    label bb_day3 :
+
+    label bb_day_date :
+
+    label bb_day_contest :
+
+label gg:
+
+    label gg_day1 :
+
+    label gg_day2 :
+
+    label gg_day3 :
+
+    label gg_day_date :
+
+    label gg_day_contest :

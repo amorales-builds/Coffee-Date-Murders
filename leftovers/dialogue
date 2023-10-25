@@ -1,0 +1,385 @@
+sidemc "Saturday..."
+
+    sidemc "A rest day for many professions, {w}but never for writers like me."
+
+    sidemc "Freelancing for online articles for these last three years has paid my bills, {w}{b}{k=+2}but no more{b}{/k}."
+
+    sidemc "My dream has always been to write {w}sappy, {w}gooey, {p}{b}{size=+10}romance novels!{/size}{/b}"
+
+    ##################
+
+    show player
+
+    mc "I like my coffee black, with extra milk."
+
+    hide player
+    with moveoutleft
+
+    show detective
+    with moveinright
+
+    d "Im not supposed to be this ugly."
+
+    hide detective
+    with moveoutleft
+
+    show badboy
+    with moveinright
+
+    bb "Ugh, what do you want?"
+
+    hide badboy
+    with moveoutleft
+
+    show gentlegiant
+    with moveinright
+
+    g "..."
+
+    hide gentlegiant
+    with moveoutleft
+
+    show cutecook
+    with moveinright
+    cc "Im hungry."
+
+    hide cutecook
+    with moveoutleft
+
+    show player
+    with moveinright
+
+    mc "Round and around we go."
+
+    hide player
+
+    menu:
+
+        "Test 1":
+        
+            jump choice1_yes
+
+        "Test 2":
+        
+            jump choice1_no
+
+    label choice1_yes:
+
+        $ a_flag = False
+    
+        show player
+
+        mc "..."
+
+        jump choice1_done 
+    
+    label choice1_no:
+    
+        $ a_flag = True
+
+        show player
+
+        mc "ok..."
+    
+        jump choice1_done
+
+    label choice1_done:
+
+    ##
+
+    smcs ""
+
+    smcs "{cps=20}...{w}{/cps}{cps=80}why did I let my editor convince of me this?{/cps}"
+
+    smcs "A diner in the middle of nowhere, {w}without any kind of reception..."
+
+    smc ""
+
+    smcs "She really wants to squeeze another prize-winning story out of me before I drop."
+
+    smcs "Rather I took this trip to escape from her," 
+    
+    smcs "but if she wasn't 8 months pregnant she would've {b}definitely{/b} followed me..."
+
+    
+    sidemc "somewhat of a working button"
+
+    sidemc "so they were the killer all along!"
+
+    sidemc "...the more you know."
+
+    #############
+
+
+     smcs "Great.{w} Now I'll use divisions for different sections...{p=2.0}Oh{w}, I'll write myself as a character too!"
+
+    #############
+
+     if novel_ending and novel_what and novel_like == True:
+
+                $ d_attraction_points += 2
+            
+                d "Say, you seem very interested in this book, could it be..."
+
+                smc "He can't possibly guess I'm the author, right?"
+
+                d "{p}You're also a fan?"
+
+                smc "Phew!"
+
+                menu:
+                    
+                    "I just wanted to know what you were reading":
+
+                        $ d_attraction_points += 1
+
+                        jump novel_reading
+
+                    "I just wanted to get to know you.":
+
+                        $ d_attraction_points += 1
+
+                        jump novel_knowing
+
+                    "I just wanted to be friendly.":
+
+                        $ d_attraction_points -= 1
+
+                        jump novel_friendly
+
+            else:
+
+                d "Say, could it be... {p}You're interested in giving it a read?"
+
+                smc "I've read it way too many times while editing, not to mention I wrote it..."
+
+                menu:
+                    
+                    "I just wanted to know what you were reading":
+
+                        $ d_attraction_points += 1
+
+                        jump novel_reading
+
+                    "I just wanted to get to know you.":
+
+                        $ d_attraction_points += 1
+
+                        jump novel_knowing
+
+                    "I just wanted to be friendly.":
+
+                        $ d_attraction_points -= 1
+
+                        jump novel_friendly
+
+    ######################
+
+    d "I didn't really expect it, {w}but all the clues where there.{p}The author could become a detective if they wanted to."
+
+            smcs "...she."
+
+            if d_attraction_points >= 1:
+
+                d "Sorry, what?"
+            
+            else:
+
+                d "Pardon?"
+
+            smcs "The author is a she."
+
+            d "I see!{w} Should've looked her up on the web before coming here.{p}The novel only says written by -L. Roberts-."
+
+            smc "{cps=90}\"Lucky\", {w=0.2}it's my middle name.{/cps} {w}[name] L. Roberts.{p}{b}I hate it,{/b} but I feel it suits me."
+
+            #d "Oh!{p}The novel only says written by -L. Roberts-.{w} I'd assumed it was a man."
+
+            d "She's my favorite author now.{p}I'm really looking forward to her next work."
+
+            smc "{cps=40}...{w}we all are.{/cps}"
+
+    ############################
+
+    if where_bb == True and unusual_bb == False:
+
+        menu:
+            "Did you see anything out of the usual?":
+                    jump unusual_bb
+
+            "Nevermind.":
+                jump interrogation_bb_screen
+
+    elif where_bb and unusual_bb == True :
+        menu:
+            "Nevermind.":
+                jump interrogation_bb_screen
+
+    else:
+
+        menu:
+
+            "Where were you when the incident happened?":
+                jump where_bb
+                
+            "What's up your butt?":
+                jump butt_bb
+
+            #"I want to get to know you better.":
+            #    jump know_bb  
+
+            "Nevermind.":
+                jump interrogation_bb_screen
+
+    jump interrogation_bb
+
+    label where_bb:
+
+        $ where_bb = True
+
+        bb "Didn't you see me?{w} {cps=150}I was sitting right in this booth.{/cps}"
+
+        if butt_bb == True:
+            menu:
+
+                "Did you see anything out of the usual?":
+                    jump unusual_bb
+
+                "Nevermind.":
+                    jump interrogation_bb_screen
+
+        else:
+            menu:
+
+                "Did you see anything out of the usual?":
+                    jump unusual_bb
+                    
+                "What's up your butt?":
+                    jump butt_bb
+
+                "Nevermind.":
+                    jump interrogation_bb_screen
+
+    label unusual_bb:
+
+        $ unusual_bb = True
+
+        if bm_meeting_info:
+            bb "{cps=120}Aside from you asking everyone for a seat?{/cps}{p}No.{w=0.4} {cps=60}I wasn't really paying attention.{/cps}"
+        else:
+            bb "Not really.{w} {cps=150}Wasn't really paying attention.{/cps}"
+
+        if butt_bb == True:
+            menu:
+
+                "Nevermind.":
+                    jump interrogation_bb_screen
+        else:
+            menu:
+                    
+                "What's up your butt?":
+                    jump butt_bb
+
+                "Nevermind.":
+                    jump interrogation_bb_screen
+
+    label butt_bb: 
+
+        $ butt_bb = True
+
+        $ bb_attraction_points -= 1
+
+        bb "Nothing, what's up yours?"
+
+        smc "It's like talking to a child..."
+
+        smcs "{cps=150}...forget it.{/cps}"
+
+        if where_bb ==  True and unusual_bb ==  False:
+            menu:
+
+                "Did you see anything out of the usual?":
+                    jump unusual_bb
+
+                "I want to get to know you better.":
+                    jump know_bb  
+
+                "Nevermind.":
+                    jump interrogation_bb_screen        
+
+        elif where_bb and unusual_bb ==  True:
+            menu:
+
+                "Nevermind.":
+                    jump interrogation_bb_screen
+                    
+        else:
+            menu:
+
+                "Where were you when the incident happened?":
+                    jump where_bb
+
+                "Nevermind.":
+                    jump interrogation_bb_screen
+
+    ##
+
+    ############
+
+    ################################### T variables #####
+
+    ### info variables ###
+    $ cc_dream_info = True
+
+    ### name variable ###
+    $ cc_name = True
+    $ bb_name = True
+    $ gg_name = True
+    $ pg_name = True
+    $ bl_name = True
+    $ dd_name = True
+    $ bm1_name = True
+    $ bm2_name = True
+    $ lbguy_name = True
+    $ lbgirl_name = True
+
+    ### age variable ###
+    $ cc_age = True
+    $ bb_age = True
+    $ gg_age = True
+    $ pg_age = True
+    $ bl_age = True
+    $ dd_age = True
+    $ bm1_age = True
+    $ bm2_age = True
+    $ lbguy_age = True
+    $ lbgirl_age = True
+
+ ################################### F variables #####
+
+    ### info variables ###
+    $ cc_dream_info = False
+
+    ### name variable ###
+    $ cc_name = False
+    $ bb_name = False
+    $ gg_name = False
+    $ pg_name = False
+    $ bl_name = False
+    $ dd_name = False
+    $ bm1_name = False
+    $ bm2_name = False
+    $ lbguy_name = False
+    $ lbgirl_name = False
+
+    ### age variable ###
+    $ cc_age = False
+    $ bb_age = False
+    $ gg_age = False
+    $ pg_age = False
+    $ bl_age = False
+    $ dd_age = False
+    $ bm1_age = False
+    $ bm2_age = False
+    $ lbguy_age = False
+    $ lbgirl_age = False
