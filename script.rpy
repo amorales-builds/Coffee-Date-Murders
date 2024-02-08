@@ -58,7 +58,7 @@ define smc = Character(image = "mc", what_italic = True, what_kerning = 3)
 define smcs = Character(image = "mc", window_background = "testbox")
 define bb = Character("Bad Boy")
 define sbb = Character(image = "bb")
-define d = Character("Detective")
+define d = Character("Doctor")
 define sd = Character(image = "d")
 define gg = Character("Gentle Giant")
 define sgg= Character(image = "gg")
@@ -520,7 +520,7 @@ screen diner_back:
         auto "gui/arrow_down_%s.png"
         action Play("sound", "audio/boing.wav"), Jump("outside_intro")  
 
-screen leave_detective:
+screen leave_doctor:
     imagebutton:
         xanchor -0.5
         yanchor 0.5
@@ -529,7 +529,7 @@ screen leave_detective:
         auto "gui/arrow_right_%s.png"
         action Play("sound", "audio/boing.wav"), Jump("idcards_take")
 
-screen leave_detective_2:
+screen leave_doctor_2:
     imagebutton:
         xanchor -0.5
         yanchor 0.5
@@ -538,7 +538,7 @@ screen leave_detective_2:
         auto "gui/arrow_right_%s.png"
         action Play("sound", "audio/boing.wav"), Jump("identify_body_2")
 
-screen leave_detective_3:
+screen leave_doctor_3:
     imagebutton:
         xanchor -0.5
         yanchor 0.5
@@ -547,7 +547,7 @@ screen leave_detective_3:
         auto "gui/arrow_right_%s.png"
         action Play("sound", "audio/boing.wav"), Jump("investigation_starts")
 
-screen go_detective:
+screen go_doctor:
     imagebutton:
         xanchor -0.5
         yanchor 0.5
@@ -994,7 +994,7 @@ screen notebook_people:
                 action [Show("notebook_people_mc"), Hide ("notebook_people_bb"), Hide ("notebook_people_bl"), Hide ("notebook_people_d")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif dd_name == True:
-                textbutton "Detective":
+                textbutton "Doctor":
                     action [Show("notebook_people_d"), Hide ("notebook_people_bb"), Hide ("notebook_people_bl"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
@@ -1104,8 +1104,8 @@ screen notebook_people_d:
         vbox:
             xalign 0.48
             yalign 0.07
-            text "Detective"
-        image "images/detective.png":
+            text "Doctor"
+        image "images/doctor.png":
             yalign 0.0
             xpos 0.55
             xzoom 1.5
@@ -1227,96 +1227,96 @@ screen notebook_info:
             yoffset 20
             spacing 20
             textbutton "another hit novel":
-                action [Show("notebook_info_hitnovel"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adetectivestrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
+                action [Show("notebook_info_hitnovel"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
             showif cc_dream_info == True:
                 vbox:
                     textbutton "cafe dream":
-                        action [Show("notebook_info_cafedream"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adetectivestrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_cafedream"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
                         #action [Show("notebook_info_cafedream")], Play ("sound", "audio/notebook_sounds_button.wav")
             showif bm_meeting_info == True:
                 vbox:
                     textbutton "business meeting":
-                        action [Show("notebook_info_businessmeeting"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_adetectivestrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_businessmeeting"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif pg_dress == True:
                 vbox:
                     textbutton "an expensive dress":
-                        action [Show("notebook_info_expensivedress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_expensivedress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif d_fear == True:
                 vbox:
-                    textbutton "a detective's trauma":
-                        action [Show("notebook_info_adetectivestrauma"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                    textbutton "a doctor's trauma":
+                        action [Show("notebook_info_adoctorstrauma"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif pg_restroom == True:
                 vbox:
                     textbutton "restroom breaks":
-                        action [Show("notebook_info_restroombreaks"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_restroombreaks"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif bb_badbreakup == True:
                 vbox:
                     textbutton "nice boy, bad breakup":
-                        action [Show("notebook_info_badbreakup"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_badbreakup"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif albino_undead == True:
                 vbox:
                     textbutton "fear of the undead":
-                        action [Show("notebook_info_undead"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_undead"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif braids_goryart == True:
                 vbox:
                     textbutton "gory art":
-                        action [Show("notebook_info_goryart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_goryart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif gg_gentlegarden == True:
                 vbox:
                     textbutton "gentle garden":
-                        action [Show("notebook_info_gentlegarden"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_gentlegarden"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif lbguy_datingsmart == True:
                 vbox:
                     textbutton "dating the smart girl":
-                        action [Show("notebook_info_datingsmart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_datingsmart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif lbgirl_distress == True:
                 vbox:
                     textbutton "damsel causes distress":
-                        action [Show("notebook_info_distress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_distress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif pg_wealthyfamily == True:
                 vbox:
                     textbutton "wealthy family":
-                        action [Show("notebook_info_wealthyfamily"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_wealthyfamily"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif pg_obsessions == True:
                 vbox:
                     textbutton "obsessions":
-                        action [Show("notebook_info_obsessions"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_obsessions"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif pg_poison == True:
                 vbox:
                     textbutton "powder":
-                        action [Show("notebook_info_poison"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_poison"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif pg_inheritance == True:
                 vbox:
                     textbutton "inheritance":
-                        action [Show("notebook_info_inheritance"), Hide ("notebook_info_hitnovel"), Hide("notebook_info_poison"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [Show("notebook_info_inheritance"), Hide ("notebook_info_hitnovel"), Hide("notebook_info_poison"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
         hbox:
@@ -1325,7 +1325,7 @@ screen notebook_info:
                 yoffset 20
                 textbutton "return":
                     text_size 40
-                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adetectivestrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_info_hitnovel:
     fixed:
@@ -1446,14 +1446,14 @@ screen notebook_info_businessmeeting:
                     text "Two men having a private business meeting in a Cafe in the middle of nowhere."
                     text "They either don't have an office or the coffee here is expectacular."
 
-screen notebook_info_adetectivestrauma:
+screen notebook_info_adoctorstrauma:
     fixed:
         vbox:
             xalign 0.48
             yalign 0.07
-            text "A detective's trauma"
+            text "A doctor's trauma"
         hbox:
-            image "images/detective.png":
+            image "images/doctor.png":
                 yalign 0.0
                 xpos 1.45
                 xzoom 1.5
@@ -1890,7 +1890,7 @@ screen interrogation:
             action Show("specials")
     hbox:
         xalign 0.5
-        image "images/detective.png":
+        image "images/doctor.png":
             xzoom 1.2
             yzoom 1.2
     frame:
@@ -1900,7 +1900,7 @@ screen interrogation:
         vbox:
             textbutton "leave":
                 text_size 39
-                action [Hide("interrogation"), Jump("detective_after")]         
+                action [Hide("interrogation"), Jump("doctor_after")]         
 
 screen people:
     modal True
@@ -1954,7 +1954,7 @@ screen questions:
     image "images/colors_dark.png"
     hbox:
         xalign 0.5
-        image "images/detective.png":
+        image "images/doctor.png":
             xzoom 1.2
             yzoom 1.2
     vbox:
@@ -2003,7 +2003,7 @@ screen d_answers:
     image "images/colors_dark.png"
     hbox:
         xalign 0.5
-        image "images/detective.png":
+        image "images/doctor.png":
             xzoom 1.2
             yzoom 1.2
 
@@ -2415,31 +2415,31 @@ screen d_description:
             xalign 0.5
             yalign 0.7
 
-screen detective_sitting:
+screen doctor_sitting:
     #image top_text = ParameterizedText (xalign=0.5, yalign=0.5)
     if ask_flag == True:
         imagebutton:
             yanchor -0.935
-            auto "detective_sitting_small_%s.png"
+            auto "doctor_sitting_small_%s.png"
             hovered Show ("d_description")
             unhovered Hide ("d_description")
             #Show (top_text "hello tere obi wan")
-            action Jump("detective_intro")
+            action Jump("doctor_intro")
 
     else:
         imagebutton:
             yanchor -0.935
-            auto "detective_sitting_small_%s.png"
+            auto "doctor_sitting_small_%s.png"
             hovered Show ("d_description")
             unhovered Hide ("d_description")
             #Show (top_text "hello tere obi wan")
             action NullAction()
 
-screen detective_sat:
+screen doctor_sat:
     imagebutton:
         xpos 0.2
         ypos 0.0
-        idle "detective.png"
+        idle "doctor.png"
         action NullAction()
 
 screen prettygirl_sitting:
@@ -2944,11 +2944,11 @@ label entrance:
         pass
 
     if asked_flag == True:
-        hide screen detective_sitting
+        hide screen doctor_sitting
 
         hide screen prettygirl_sitting
 
-        hide screen detective_sat
+        hide screen doctor_sat
 
         hide screen gg_sitting
 
@@ -2958,11 +2958,11 @@ label entrance:
 
     else:
    
-        hide screen detective_sitting
+        hide screen doctor_sitting
 
         hide screen prettygirl_sitting
 
-        hide screen detective_sat
+        hide screen doctor_sat
 
         hide screen gg_sitting
 
@@ -3263,7 +3263,7 @@ label exit:
         scene exit_bg
         with fade 
 
-    show screen detective_sitting
+    show screen doctor_sitting
 
     show screen prettygirl_sitting
 
@@ -3324,16 +3324,16 @@ label exit:
 
         jump exit
 
-label detective_intro: 
+label doctor_intro: 
 
     $ click_flag += 1
     #$ click_flag = True
 
-    hide screen detective_sitting
+    hide screen doctor_sitting
 
     hide screen prettygirl_sitting
 
-    hide screen detective_sat
+    hide screen doctor_sat
 
     hide screen brokenstool
 
@@ -3347,9 +3347,9 @@ label detective_intro:
 
     #show screen interrogation_button
 
-    scene detective_seat
+    scene doctor_seat
 
-    show detective at sitting
+    show doctor at sitting
     
     with fade
 
@@ -3367,7 +3367,7 @@ label detective_intro:
 
             d "It is, make yourself comfortable."
 
-    label detective_done:
+    label doctor_done:
         
         #show screen interrogation_button
 
@@ -3475,7 +3475,7 @@ label detective_intro:
 
                 smc "{cps=40}...{w}we all are.{/cps}"
 
-                d "I guess she must be a cop by now or maybe a full fledged detective."
+                d "I guess she must be a cop by now or maybe a full fledged doctor."
 
                 smcs "She isn't."
 
@@ -3563,14 +3563,14 @@ label detective_intro:
 
 #label novel:
 
-label detective_after:
+label doctor_after:
     
-    scene detective_seat
+    scene doctor_seat
 
     show screen notebook_button  
     #show screen test 
 
-    show detective at sitting
+    show doctor at sitting
 
 
     d "That was wild."
@@ -3594,13 +3594,13 @@ label interrogation:
         hide screen interrogation_return
         show screen interrogation_leave
 
-        show detective at sitting
+        show doctor at sitting
 
         #hide screen test
      
         with dissolve
 
-        show detective at center with move:
+        show doctor at center with move:
             xzoom 1.2
             yzoom 1.2
 
@@ -3614,7 +3614,7 @@ label interrogation:
 
         scene diner_lowangle_bg
 
-        hide screen detective_sat
+        hide screen doctor_sat
 
     else:
 
@@ -3623,7 +3623,7 @@ label interrogation:
         hide screen interrogation_return
         show screen interrogation_leave
 
-        show detective at center:
+        show doctor at center:
             xzoom 1.2
             yzoom 1.2
 
@@ -3633,7 +3633,7 @@ label interrogation:
 
         scene diner_lowangle_bg
 
-        hide screen detective_sat
+        hide screen doctor_sat
 
 label people:
     label people_mc:
@@ -3643,7 +3643,7 @@ label people:
         hide screen notebook_button  
         #hide screen test 
         
-        show detective at center:
+        show doctor at center:
             xzoom 1.2
             yzoom 1.2
         
@@ -3671,7 +3671,7 @@ label objects:
         hide screen notebook_button  
         #hide screen test 
     
-        show detective at center:
+        show doctor at center:
             xzoom 1.2
             yzoom 1.2
 
@@ -3691,7 +3691,7 @@ label d_questions:
 
     #scene colors_dark
     
-    #show detective at center:
+    #show doctor at center:
     #    xzoom 1.2
     #    yzoom 1.2
 
@@ -3712,7 +3712,7 @@ label d_questions:
         hide screen notebook_button  
         #hide screen test 
     
-        show detective at center:
+        show doctor at center:
             xzoom 1.2
             yzoom 1.2
 
@@ -3737,7 +3737,7 @@ label d_questions:
 
         scene colors_dark
     
-        show detective at center:
+        show doctor at center:
             xzoom 1.2
             yzoom 1.2
     
@@ -3797,13 +3797,13 @@ label gg_special:
     with vpunch
     #with flash
 
-    show detective at tremblecenter:
+    show doctor at tremblecenter:
         xzoom 1.0
         yzoom 1.0
 
     d "..."
 
-    #show detective at center:
+    #show doctor at center:
     #    xzoom 1.2
     #    yzoom 1.2
 
@@ -3819,7 +3819,7 @@ label storm:
 
     scene blackout
 
-    hide detective at sitting
+    hide doctor at sitting
 
     with flash     
 
@@ -3878,9 +3878,9 @@ label murder1:
 
     scene exit_bg
 
-    hide detective
+    hide doctor
 
-    show detective
+    show doctor
 
     with fade
 
@@ -3889,7 +3889,7 @@ label murder1:
     $ dd_name = True
     $ d_fear = False #take out later
 
-    d "I'm detective Jay Wallace from the FBI.{p}Everyone here is under investigation from this moment on."
+    d "I'm doctor Jay Wallace from the FBI.{p}Everyone here is under investigation from this moment on."
 
     # show cop id
     
@@ -3951,7 +3951,7 @@ label murder1:
     mc "...{w}{cps=50}I don't know what to say.{/cps}"
 
     show player at completeleft with ease
-    show detective 
+    show doctor 
 
     d "Everyone place their ids and car keys on the table.{p}No one will leave any time soon."
 
@@ -3971,12 +3971,12 @@ label ids:
 
     scene entrance_bg with fade
 
-    #animate detective taking mc's id
+    #animate doctor taking mc's id
 
     sd "..."
 
     scene exit_bg
-    show detective
+    show doctor
     with fade
 
     d "May I talk to you for a moment?"
@@ -3995,9 +3995,9 @@ label ids:
 
 label author:
 
-    scene detective_seat
+    scene doctor_seat
 
-    show detective at sitting
+    show doctor at sitting
     
     with fade
 
@@ -4052,7 +4052,7 @@ label businesscard:
 
     d "I-"
 
-    show detective at sitting with flash
+    show doctor at sitting with flash
 
     # animation of him scared
 
@@ -4069,10 +4069,10 @@ label fears:
         "What does that have to do with me?":
             $ d_attraction_points -= 3
             d "{cps=10}...{w=0.5}{cps=100}they do say never to meet your heroes..{/cps}."
-            jump detective
+            jump doctor
         
         "What can I do to help?":
-            jump detective
+            jump doctor
                 
         "May I ask, how that happened?" if fear_how:
 
@@ -4088,7 +4088,7 @@ label fears:
                 d "It's of no importance at the moment."
                 jump fears
     
-    label detective:
+    label doctor:
 
         d "I need you to investigate this case in my place."
 
@@ -4112,7 +4112,7 @@ label fears:
 
                 d "Please take a look at the id cards on the table to help identify everyone."
 
-                call screen leave_detective
+                call screen leave_doctor
 
         d "We were both seated the farthest from where the incident took place, time-wise it would have taken you a longer time to stand up,"
         
@@ -4140,12 +4140,12 @@ label fears:
 
                 d "Please take a look at the id cards on the table to help identify everyone."
 
-                call screen leave_detective
+                call screen leave_doctor
 
 label idcards_take:
 
     scene entrance_bg
-    hide detective
+    hide doctor
     with fade
 
     smc "Idcards..."
@@ -4173,15 +4173,15 @@ label idcards_taken:
     $ lbgirl_age = True
 
     smc "Alright let me write those down{cps=10}...{/cps}"
-    smc "{cps=30}Hmm,{w} {cps=150}I'm missing {b}one{/b} person{w}:{/cps}{/cps} the victim.{p}I should discuss this with detective Wallace." 
+    smc "{cps=30}Hmm,{w} {cps=150}I'm missing {b}one{/b} person{w}:{/cps}{/cps} the victim.{p}I should discuss this with doctor Wallace." 
 
-    call screen go_detective with flash
+    call screen go_doctor with flash
 
 label identify_body: 
 
-    scene detective_seat
+    scene doctor_seat
 
-    show detective at sitting
+    show doctor at sitting
         
     with fade
 
@@ -4203,16 +4203,16 @@ label identify_body:
 
             $ d_attraction_points += 2
 
-            call screen leave_detective_2
+            call screen leave_doctor_2
 
         "Got it.":
 
-            call screen leave_detective_2
+            call screen leave_doctor_2
         
 label identify_body_2:
 
     scene entrance_bg
-    hide detective
+    hide doctor
     with fade
 
     smcs "I'm so not ready for this."
@@ -4260,7 +4260,7 @@ label deadbody_hands:
 label deadbody_purse:
 
     scene entrance_bg
-    hide detective
+    hide doctor
     with fade
 
     smc "{cps=100}Wonderful!{w}{/cps} I had always wanted to search through a dead person's belongings{cps=8}...{/cps}"
@@ -4314,9 +4314,9 @@ label deadbody_id:
     call screen middle1
 
 label deadbody_3:
-    scene detective_seat
+    scene doctor_seat
 
-    show detective at sitting
+    show doctor at sitting
         
     with fade
 
@@ -4328,7 +4328,7 @@ label deadbody_3:
             d "You'll have to investigate by yourself.{p=0}I can't help you anynmore."
             d "Ask questions.{w} Look for evidence.{p}You have all the authority now."
             #d "You have all the authority now."
-            call screen leave_detective_3
+            call screen leave_doctor_3
 
         "I'll leave.":
             jump investigation_starts
@@ -4336,7 +4336,7 @@ label deadbody_3:
 label investigation_starts:
 
     scene entrance_bg
-    hide detective
+    hide doctor
     with fade
 
     $ interrogation_start = True
@@ -4467,7 +4467,7 @@ label investigation_middle:
     call screen middle2
 
 label interrogation_gg:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4495,7 +4495,7 @@ label interrogation_gg:
     jump investigation_middle
 
 label interrogation_bb:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4632,7 +4632,7 @@ label interrogation_bb_ask:
                 bb "Many composers were the punks of their time,{w} the same could be said for Shakespeare, Dostoevsky and other authors."
 
                 smcs "So you also like literature?"
-
+ 
                 bb "Yes!{w} Once you read a good book, it stays with you forever." 
 
                 smcs "I agree!"
@@ -4669,7 +4669,7 @@ label bb_objects:
     #jump interrogation_bb_screen
 
 label interrogation_cc:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4698,7 +4698,7 @@ label interrogation_cc:
     jump investigation_bar
 
 label interrogation_albino:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4732,7 +4732,7 @@ label interrogation_cc_ask:
     ""
 
 label interrogation_braids:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4760,7 +4760,7 @@ label interrogation_braids:
     jump investigation_middle
 
 label interrogation_bl:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4789,7 +4789,7 @@ label interrogation_bl:
     jump investigation_bar
 
 label interrogation_lbguy:
-    scene detective_seat
+    scene doctor_seat
 
     hide screen interrogation_gg
     hide screen interrogation_bb
@@ -4819,7 +4819,7 @@ label interrogation_lbguy:
     jump investigation_middle
 
 label interrogation_lbgirl:
-    scene detective_seat 
+    scene doctor_seat 
 
     hide screen interrogation_gg
     hide screen interrogation_bb

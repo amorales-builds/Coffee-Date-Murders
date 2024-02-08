@@ -15,12 +15,12 @@ sidemc "Saturday..."
     hide player
     with moveoutleft
 
-    show detective
+    show doctor
     with moveinright
 
     d "Im not supposed to be this ugly."
 
-    hide detective
+    hide doctor
     with moveoutleft
 
     show badboy
@@ -175,7 +175,7 @@ sidemc "Saturday..."
 
     ######################
 
-    d "I didn't really expect it, {w}but all the clues where there.{p}The author could become a detective if they wanted to."
+    d "I didn't really expect it, {w}but all the clues where there.{p}The author could become a doctor if they wanted to."
 
             smcs "...she."
 

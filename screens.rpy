@@ -1037,9 +1037,9 @@ screen endings():
         vbox:
             imagebutton:
                 idle "images/side/side d.png"
-                action ShowMenu("detective_endings")
-            textbutton "Detective Endings":
-                action ShowMenu("detective_endings")
+                action ShowMenu("doctor_endings")
+            textbutton "doctor Endings":
+                action ShowMenu("doctor_endings")
         vbox:
             imagebutton:
                 idle "images/side/side bb.png"
@@ -1104,7 +1104,7 @@ screen neutral_endings:
         auto "buttons/menu_icon_selected_%s.png"
         action Hide("neutral_endings")
 
-screen detective_endings:
+screen doctor_endings:
     image "images/menus/wallpaper_pinkmarble.png"
     image "images/side/side d.png":
         xalign 0.5
@@ -1124,7 +1124,7 @@ screen detective_endings:
         yanchor 0.0
         xoffset 20
         auto "buttons/menu_icon_selected_%s.png"
-        action Hide("detective_endings")
+        action Hide("doctor_endings")
 
 screen badboy_endings:
     image "images/menus/wallpaper_pinkmarble.png"
