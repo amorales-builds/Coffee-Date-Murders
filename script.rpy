@@ -2547,8 +2547,27 @@ screen interrogation_lbgirl:
         idle "lovebirdgirl.png"
         action Jump ("interrogation_lbgirl")
 
-        
+# ## python functions
 
+init python: 
+    def  hidePeopleInterrogation():                 
+        renpy.hide_screen("interrogation_gg")
+        renpy.hide_screen("interrogation_bb")
+        renpy.hide_screen("interrogation_cc")
+        renpy.hide_screen("interrogation_albino")
+        renpy.hide_screen("interrogation_braids")
+        renpy.hide_screen("interrogation_bl")
+        renpy.hide_screen("interrogation_lbguy")
+        renpy.hide_screen("interrogation_lbgirl")
+        ## add doctor later
+
+init python:
+    def hidePeopleEating():
+        renpy.hide_screen("doctor_sitting")
+        renpy.hide_screen("prettygirl_sitting")
+        renpy.hide_screen("doctor_sat")
+        renpy.hide_screen("gg_sitting")
+        renpy.hide_screen("brokenstool")
 
 ##################################################################3
 
@@ -2599,8 +2618,8 @@ label start:
     $ gg_closed = False
     $ albino_closed = False
     $ braids_closed = False
-    $ lbguy_closed = False
     $ bl_closed = False
+    $ lbguy_closed = False    
     $ lbgirl_closed = False
 
     ### interrogation variables ###
@@ -2935,39 +2954,18 @@ label entrance:
     $ sitting_dialogue = False
 
 
-    if entrance_scene == False:
-        pass
     if entrance_scene == True and entrance_scene_dialogue == False:
         smc "Round and round we go."
         $ entrance_scene_dialogue = True
     else:
         pass
 
+    $ hidePeopleEating()
+
     if asked_flag == True:
-        hide screen doctor_sitting
-
-        hide screen prettygirl_sitting
-
-        hide screen doctor_sat
-
-        hide screen gg_sitting
-
-        hide screen brokenstool
-
         scene entrance_bg
 
     else:
-   
-        hide screen doctor_sitting
-
-        hide screen prettygirl_sitting
-
-        hide screen doctor_sat
-
-        hide screen gg_sitting
-
-        hide screen brokenstool
-
         scene entrance_bg
         with fade
 
@@ -3329,15 +3327,7 @@ label doctor_intro:
     $ click_flag += 1
     #$ click_flag = True
 
-    hide screen doctor_sitting
-
-    hide screen prettygirl_sitting
-
-    hide screen doctor_sat
-
-    hide screen brokenstool
-
-    hide screen gg_sitting   
+    $ hidePeopleEating()  
 
     hide screen interrogation_leave
 
@@ -4469,14 +4459,7 @@ label investigation_middle:
 label interrogation_gg:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     show gentlegiant
     
@@ -4497,14 +4480,7 @@ label interrogation_gg:
 label interrogation_bb:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
     
     show bb_neutral #at bbcenter
 
@@ -4671,14 +4647,7 @@ label bb_objects:
 label interrogation_cc:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     show cutecook_closeup
 
@@ -4700,14 +4669,7 @@ label interrogation_cc:
 label interrogation_albino:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     show businessman2
 
@@ -4734,14 +4696,7 @@ label interrogation_cc_ask:
 label interrogation_braids:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     show businessman1 at newcenter
 
@@ -4762,14 +4717,7 @@ label interrogation_braids:
 label interrogation_bl:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     with fade
 
@@ -4791,23 +4739,16 @@ label interrogation_bl:
 label interrogation_lbguy:
     scene doctor_seat
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     show lovebirdguy at slightleft
     show lovebirdgirl at slightright
 
     with fade
 
-    if lbgirl_closed or lbguy_closed = True:
+    if lbgirl_closed or lbguy_closed == True:
         
-        lbgirl "Leave us alone."
+        lbguy "Leave us alone."
         jump investigation_middle
 
     else:
@@ -4821,14 +4762,7 @@ label interrogation_lbguy:
 label interrogation_lbgirl:
     scene doctor_seat 
 
-    hide screen interrogation_gg
-    hide screen interrogation_bb
-    hide screen interrogation_cc
-    hide screen interrogation_albino
-    hide screen interrogation_braids
-    hide screen interrogation_bl
-    hide screen interrogation_lbguy
-    hide screen interrogation_lbgirl
+    $ hidePeopleInterrogation()
 
     show lovebirdguy at slightleft
     show lovebirdgirl at slightright
@@ -4890,7 +4824,6 @@ label rude_ending:
         call screen rude_ending
 
     else:
-
         pass
 
     
