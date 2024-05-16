@@ -2141,27 +2141,27 @@ screen people_interrogation:
                 imagebutton:
                     idle "images/side/side bl.png"
                     hover "images/side/side bl h.png" 
-                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_bl", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif lbgirl_interrogation == False:
                 imagebutton:
                     idle "images/side/side lbgirl.png"
                     hover "images/side/side lbgirl h.png" 
-                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_lbgirl", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif lbguy_interrogation == False:
                 imagebutton:
                     idle "images/side/side lbguy.png"
                     hover "images/side/side lbguy h.png" 
-                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_lbguy", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif albino_interrogation == False:
                 imagebutton:
                     idle "images/side/side bm1.png"
                     hover "images/side/side bm1 h.png" 
-                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_albino", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif braids_interrogation == False:
                 imagebutton:
                     idle "images/side/side bm2.png"
                     hover "images/side/side bm2 h.png" 
-                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_braids", True), Hide("people_interrogation"), Jump("people_interrogation")]
     frame:
         xalign 0.97
         yalign 0.0
@@ -2174,11 +2174,14 @@ screen people_interrogation:
 screen objects_interrogation:
     modal True
     frame:
-        grid 3 3:
+        #background Solid("#0000ff00")
+        align (0.5, 0.2)
+        hbox:
             xalign 0.5
-            yalign 0.5
-            spacing 190
-            showif object1 == True:
+            ypos 0.55
+            yanchor 0.5
+            spacing 50
+            box_wrap True
                 vbox:
                     textbutton "object1":
                         action [SetVariable ("objects_object1", True), Hide ("objects_interrogation"), Jump ("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
@@ -2595,7 +2598,6 @@ label start:
     #$ broken_flag = False
     $ interrogation_flag = False 
     $ interrogation_start = False 
-    #$ b_dialogue = 0
     $ b_dialogue = False
     $ sitting_dialogue = False
     $ interrogation_continue = 0
@@ -2605,7 +2607,6 @@ label start:
     $ novel_like = False
 
     ### map variables ###
-    #$ entrance_scene = 0
     $ entrance_scene = False
     $ entrance_scene_dialogue = False
     $ click_flag = 0
@@ -2754,7 +2755,6 @@ label start:
 
     ### ending variables ###
     $ persistent.rudeending = False
-    #$ old_lady_flag = False
     
     
     scene diner_lowangle_bg
