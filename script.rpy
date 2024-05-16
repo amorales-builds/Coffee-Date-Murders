@@ -2112,22 +2112,22 @@ screen people_interrogation:
             imagebutton:
                 idle "images/side/side mc.png"
                 hover "images/side/side mc h.png" 
-                action [SetVariable ("bb_people_mc", True), Hide("people_interrogation"), Jump("people_interrogation")]
+                action [SetVariable ("people_mc", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif bb_interrogation == False:
                 imagebutton:
                     idle "images/side/side bb.png"
                     hover "images/side/side bb h.png" 
-                    action [SetVariable ("bb_people_d", True), Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_bb", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif dd_interrogation == False:
                 imagebutton:
                     idle "images/side/side d.png"
                     hover "images/side/side d h.png" 
-                    action [SetVariable ("bb_people_d", True), Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_dd", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif gg_interrogation == False:
                 imagebutton:
                     idle "images/side/side gg.png"
                     hover "images/side/side gg h.png" 
-                    action [SetVariable ("bb_people_gg", True), Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_gg", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif cc_interrogation == False:
                 imagebutton:
                     idle "images/side/side cc.png"
@@ -2171,7 +2171,7 @@ screen people_interrogation:
                 text_size 39
                 action [Hide("people_interrogation"), Jump ("interrogation_bb_screen")]
 
-screen bb_objects:
+screen objects_interrogation:
     modal True
     frame:
         grid 3 3:
@@ -2181,7 +2181,7 @@ screen bb_objects:
             showif object1 == True:
                 vbox:
                     textbutton "object1":
-                        action [SetVariable ("bb_objects_object1", True), Hide ("bb_objects"), Jump ("bb_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [SetVariable ("objects_object1", True), Hide ("bb_objects"), Jump ("bb_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif businesscard == False:
@@ -2587,18 +2587,6 @@ init python:
         renpy.hide_screen("gg_sitting")
         renpy.hide_screen("brokenstool")
 
-init python:
-    def notinterrogating():
-        dd_interrogation = False
-        bb_interrogation = False
-        cc_interrogation = False
-        gg_interrogation = False
-        albino_interrogation = False
-        braids_interrogation = False
-        bl_interrogation = False
-        lbguy_interrogation = False
-        lbgirl_interrogation = False
-
 ##################################################################3
 
 label start:
@@ -2663,6 +2651,20 @@ label start:
     $ bl_interrogation = False
     $ lbguy_interrogation = False
     $ lbgirl_interrogation = False
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_cc = False
+    $ people_gg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
 
     ### interrogation variables ###
     $ where_bb = True
@@ -4455,13 +4457,31 @@ label poison_bottle:
 
     jump investigation_restroom
 
+############################################################ investigation starts ###
+
 label investigation_kitchen:
 
-    $ notinterrogating()
+    $ dd_interrogation = False
+    $ bb_interrogation = False
+    $ cc_interrogation = False
+    $ gg_interrogation = False
+    $ albino_interrogation = False
+    $ braids_interrogation = False
+    $ bl_interrogation = False
+    $ lbguy_interrogation = False
+    $ lbgirl_interrogation = False
 
 label investigation_bar:
 
-    $ notinterrogating()
+    $ dd_interrogation = False
+    $ bb_interrogation = False
+    $ cc_interrogation = False
+    $ gg_interrogation = False
+    $ albino_interrogation = False
+    $ braids_interrogation = False
+    $ bl_interrogation = False
+    $ lbguy_interrogation = False
+    $ lbgirl_interrogation = False
 
     scene coffee_bar
     
@@ -4476,7 +4496,15 @@ label investigation_middle:
 
     play music "audio/restingsuspicion.wav" 
 
-    $ notinterrogating()
+    $ dd_interrogation = False
+    $ bb_interrogation = False
+    $ cc_interrogation = False
+    $ gg_interrogation = False
+    $ albino_interrogation = False
+    $ braids_interrogation = False
+    $ bl_interrogation = False
+    $ lbguy_interrogation = False
+    $ lbgirl_interrogation = False
 
     scene entrance_middle_bg
 
@@ -4559,11 +4587,20 @@ label interrogation_bb_start:
 
 label interrogation_bb_screen:
 
-    $ bb_people_mc = False
-    $ bb_people_d = False
-    $ bb_people_gg = False
-    $ bb_objects_object1= False
-    $ object1 = True
+            $ people_mc = False
+        $ people_dd = False
+        $ people_bb = False
+        $ people_cc = False
+        $ people_gg = False
+        $ people_albino = False
+        $ people_braids = False
+        $ people_bl = False
+        $ people_lbguy = False
+        $ people_lbgirl = False
+
+        $ objects_object1= False
+        $ object1 = True
+
     $ done = False
 
     call screen interrogation_options
@@ -4677,17 +4714,6 @@ label interrogation_questions:
                 jump interrogation_questions
 
     #jump interrogation_bb_screen  
-
-label bb_objects: 
-
-    if bb_objects_object1:
-        bb "ss"
-
-    $ bb_objects_object1 = False
-
-    call screen bb_objects 
-
-    #jump interrogation_bb_screen
 
 label interrogation_cc:
 
@@ -4845,6 +4871,20 @@ label interrogation_lbgirl:
 
     jump investigation_middle
 
+## interrogation stuff ##
+
+label objects_interrogation: 
+
+    if bb_interrogation == True:
+
+        if objects_object1:
+            bb "ss"
+
+        $ objects_object1 = False
+
+    call screen objects_interrogation 
+    
+
 label people_interrogation:
 
     if bb_interrogation == True:
@@ -4853,22 +4893,23 @@ label people_interrogation:
         $ dd_opinion = ["He arrived a bit earlier than you did,{p}a bit before the rain got worse."], ["act2."], ["act3."]
         $ gg_opinion = ["He's been at his seat for a while."], ["act2."], ["act3."]
 
-        if bb_people_mc:
-            if done == False:
-                bb "[mc_opinion[0][0]]"
-                $ done = True
-            else:
-                bb "[mc_opinion[0][1]]"
+        if act == 1:
+            if people_mc:
+                if done == False:
+                    bb "[mc_opinion[0][0]]"
+                    $ done = True
+                else:
+                    bb "[mc_opinion[0][1]]"
 
-        if bb_people_d:
-            bb "[dd_opinion[0][0]]"
+            if people_d:
+                bb "[dd_opinion[0][0]]"
 
-        if bb_people_gg:
-            bb "[gg_opinion[0][0]]"
+            if people_gg:
+                bb "[gg_opinion[0][0]]"
 
-        $ bb_people_mc = False
-        $ bb_people_d = False
-        $ bb_people_gg = False
+    $ people_mc = False
+    $ people_dd = False
+    $ people_gg = False
     
     call screen people_interrogation
 
