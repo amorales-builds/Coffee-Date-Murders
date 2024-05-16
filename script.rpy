@@ -2070,7 +2070,7 @@ screen leave_interrogation:
                 text_size 39
                 action Jump("investigation_middle")
 
-screen bb_interrogation:
+screen interrogation_options:
     hbox:
         xalign 0.5
         #yalign 0.04
@@ -2078,10 +2078,10 @@ screen bb_interrogation:
         spacing 270
         frame:
             textbutton "interrogate":
-                action Jump ("interrogation_bb_ask")
+                action Jump ("interrogation_questions")
         frame:
             textbutton "people":
-                action Show("bb_people")
+                action Show("people_interrogation")
         frame:
             textbutton "objects":
                 action Show("bb_objects")
@@ -2096,54 +2096,72 @@ screen bb_interrogation:
                 text_size 39
                 action Jump("investigation_middle")        
 
-screen bb_people:
+screen people_interrogation:
     modal True
     #image "images/colors_dark.png"
-    grid 5 2:
+    #grid 5 2:
+    frame:
+        background Solid("#0000ff00")
+        align (0.5, 0.2)
+        hbox:
             xalign 0.5
             ypos 0.55
             yanchor 0.5
-            spacing 30
+            spacing 50
+            box_wrap True
             imagebutton:
                 idle "images/side/side mc.png"
                 hover "images/side/side mc h.png" 
-                action [SetVariable ("bb_people_mc", True), Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side d.png"
-                hover "images/side/side d h.png" 
-                action [SetVariable ("bb_people_d", True), Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side gg.png"
-                hover "images/side/side gg h.png" 
-                action [SetVariable ("bb_people_gg", True), Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side cc.png"
-                hover "images/side/side cc h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
+                action [SetVariable ("bb_people_mc", True), Hide("people_interrogation"), Jump("people_interrogation")]
+            showif bb_interrogation == False:
+                imagebutton:
+                    idle "images/side/side bb.png"
+                    hover "images/side/side bb h.png" 
+                    action [SetVariable ("bb_people_d", True), Hide("people_interrogation"), Jump("people_interrogation")]
+            showif dd_interrogation == False:
+                imagebutton:
+                    idle "images/side/side d.png"
+                    hover "images/side/side d h.png" 
+                    action [SetVariable ("bb_people_d", True), Hide("people_interrogation"), Jump("people_interrogation")]
+            showif gg_interrogation == False:
+                imagebutton:
+                    idle "images/side/side gg.png"
+                    hover "images/side/side gg h.png" 
+                    action [SetVariable ("bb_people_gg", True), Hide("people_interrogation"), Jump("people_interrogation")]
+            showif cc_interrogation == False:
+                imagebutton:
+                    idle "images/side/side cc.png"
+                    hover "images/side/side cc h.png" 
+                    action [Hide("people_interrogation"), Jump("people_interrogation")]
             imagebutton:
                 idle "images/side/side pg.png"
                 hover "images/side/side pg h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side bl.png"
-                hover "images/side/side bl h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side lbgirl.png"
-                hover "images/side/side lbgirl h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side lbguy.png"
-                hover "images/side/side lbguy h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side bm1.png"
-                hover "images/side/side bm1 h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
-            imagebutton:
-                idle "images/side/side bm2.png"
-                hover "images/side/side bm2 h.png" 
-                action [Hide("bb_people"), Jump("bb_people")]
+                action [Hide("people_interrogation"), Jump("people_interrogation")]
+            showif bl_interrogation == False:
+                imagebutton:
+                    idle "images/side/side bl.png"
+                    hover "images/side/side bl h.png" 
+                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+            showif lbgirl_interrogation == False:
+                imagebutton:
+                    idle "images/side/side lbgirl.png"
+                    hover "images/side/side lbgirl h.png" 
+                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+            showif lbguy_interrogation == False:
+                imagebutton:
+                    idle "images/side/side lbguy.png"
+                    hover "images/side/side lbguy h.png" 
+                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+            showif albino_interrogation == False:
+                imagebutton:
+                    idle "images/side/side bm1.png"
+                    hover "images/side/side bm1 h.png" 
+                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+            showif braids_interrogation == False:
+                imagebutton:
+                    idle "images/side/side bm2.png"
+                    hover "images/side/side bm2 h.png" 
+                    action [Hide("people_interrogation"), Jump("people_interrogation")]
     frame:
         xalign 0.97
         yalign 0.0
@@ -2151,7 +2169,7 @@ screen bb_people:
         vbox:
             textbutton "return":
                 text_size 39
-                action [Hide("bb_people"), Jump ("interrogation_bb_screen")]
+                action [Hide("people_interrogation"), Jump ("interrogation_bb_screen")]
 
 screen bb_objects:
     modal True
@@ -2233,10 +2251,10 @@ screen cc_interrogation:
                 action Jump ("interrogation_cc_ask")
         frame:
             textbutton "people":
-                action NullAction() #Jump ("interrogation_bb_ask")
+                action NullAction() #Jump ("interrogation_questions")
         frame:
             textbutton "objects":
-                action NullAction() #Jump ("interrogation_bb_ask")
+                action NullAction() #Jump ("interrogation_questions")
 
     frame:
         #xalign 0.5
@@ -2569,6 +2587,18 @@ init python:
         renpy.hide_screen("gg_sitting")
         renpy.hide_screen("brokenstool")
 
+init python:
+    def notinterrogating():
+        dd_interrogation = False
+        bb_interrogation = False
+        cc_interrogation = False
+        gg_interrogation = False
+        albino_interrogation = False
+        braids_interrogation = False
+        bl_interrogation = False
+        lbguy_interrogation = False
+        lbgirl_interrogation = False
+
 ##################################################################3
 
 label start:
@@ -2611,7 +2641,9 @@ label start:
     $ lbgirl_affection_points = 0
     $ lb_affection_points = 0
 
-    ### story variables ###
+    ### story variables ###    
+    $ act = 1
+
     $ dd_closed = False
     $ bb_closed = False
     $ cc_closed = False
@@ -2621,6 +2653,16 @@ label start:
     $ bl_closed = False
     $ lbguy_closed = False    
     $ lbgirl_closed = False
+
+    $ dd_interrogation = False
+    $ bb_interrogation = False
+    $ cc_interrogation = False
+    $ gg_interrogation = False
+    $ albino_interrogation = False
+    $ braids_interrogation = False
+    $ bl_interrogation = False
+    $ lbguy_interrogation = False
+    $ lbgirl_interrogation = False
 
     ### interrogation variables ###
     $ where_bb = True
@@ -4415,7 +4457,11 @@ label poison_bottle:
 
 label investigation_kitchen:
 
+    $ notinterrogating()
+
 label investigation_bar:
+
+    $ notinterrogating()
 
     scene coffee_bar
     
@@ -4430,6 +4476,8 @@ label investigation_middle:
 
     play music "audio/restingsuspicion.wav" 
 
+    $ notinterrogating()
+
     scene entrance_middle_bg
 
     show screen notebook_button
@@ -4443,6 +4491,7 @@ label investigation_middle:
 
     with fade
 
+    ###############################
     $ gg_attraction_points = 0
     $ bb_attraction_points = 0
     $ cc_attraction_points = 0
@@ -4452,11 +4501,14 @@ label investigation_middle:
     $ lbgirl_affection_points = 0
 
     $ dd_closed = False
-    ## delete all later ##
+    ## delete all later ###########
 
     call screen middle2
 
 label interrogation_gg:
+
+    $ gg_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4478,6 +4530,10 @@ label interrogation_gg:
     jump investigation_middle
 
 label interrogation_bb:
+
+    
+    $ bb_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4508,36 +4564,39 @@ label interrogation_bb_screen:
     $ bb_people_gg = False
     $ bb_objects_object1= False
     $ object1 = True
+    $ done = False
 
-    call screen bb_interrogation
+    call screen interrogation_options
 
-label interrogation_bb_ask:
+label interrogation_questions:
 
-    menu:
+    if bb_interrogation == True:
 
-        "Where were you when the incident happened?" if where_bb:
-            $ where_bb = False
-            $ unusual_bb = True
-            jump where_bb
+        menu:
 
-        "Did you see anything out of the usual?" if unusual_bb:
-            $ unusual_bb = False
-            jump unusual_bb
-                
-        "What's up your butt?" if butt_bb == True and understanding_bb == False :
-            $ butt_bb = False
-            jump butt_bb
+            "Where were you when the incident happened?" if where_bb:
+                $ where_bb = False
+                $ unusual_bb = True
+                jump where_bb
 
-        "I want to get to know you better." if know_bb:
-            $ know_bb = False
-            jump know_bb  
+            "Did you see anything out of the usual?" if unusual_bb:
+                $ unusual_bb = False
+                jump unusual_bb
+                    
+            "What's up your butt?" if butt_bb == True and understanding_bb == False :
+                $ butt_bb = False
+                jump butt_bb
 
-        "Nevermind." if understanding_bb == False:
-            jump interrogation_bb_screen
+            "I want to get to know you better." if know_bb:
+                $ know_bb = False
+                jump know_bb  
 
-        "Thank you for your cooperation." if understanding_bb:
-            bb "Well, it was alright."
-            jump interrogation_bb_screen
+            "Nevermind." if understanding_bb == False:
+                jump interrogation_bb_screen
+
+            "Thank you for your cooperation." if understanding_bb:
+                bb "Well, it was alright."
+                jump interrogation_bb_screen
 
     #jump interrogation_bb
 
@@ -4545,7 +4604,7 @@ label interrogation_bb_ask:
 
         bb "Didn't you see me?{w} {cps=150}I was sitting right in this booth.{/cps}"
 
-        jump interrogation_bb_ask
+        jump interrogation_questions
 
     label unusual_bb:
 
@@ -4556,7 +4615,7 @@ label interrogation_bb_ask:
         else:
             bb "Not really.{w} {cps=150}Wasn't really paying attention.{/cps}"
 
-        jump interrogation_bb_ask
+        jump interrogation_questions
 
     label butt_bb: 
 
@@ -4568,7 +4627,7 @@ label interrogation_bb_ask:
 
         smcs "{cps=150}...forget it.{/cps}"
 
-        jump interrogation_bb_ask
+        jump interrogation_questions
 
     ### use later in the game ###
     label know_bb:
@@ -4615,23 +4674,9 @@ label interrogation_bb_ask:
 
                 $ bb_interests = True
 
-                jump interrogation_bb_ask
+                jump interrogation_questions
 
     #jump interrogation_bb_screen  
-label bb_people:
-
-    if bb_people_mc:
-        bb "You're asking me about yourself?{p}Well, yeah I saw you come into the cafe."
-    if bb_people_d:
-        bb "nn"
-    if bb_people_gg:
-        bb ""
-
-    $ bb_people_mc = False
-    $ bb_people_d = False
-    $ bb_people_gg = False
-    
-    call screen bb_people
 
 label bb_objects: 
 
@@ -4645,6 +4690,9 @@ label bb_objects:
     #jump interrogation_bb_screen
 
 label interrogation_cc:
+
+    $ cc_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4667,6 +4715,9 @@ label interrogation_cc:
     jump investigation_bar
 
 label interrogation_albino:
+
+    $ albino_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4694,6 +4745,9 @@ label interrogation_cc_ask:
     ""
 
 label interrogation_braids:
+
+    $ braids_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4715,6 +4769,9 @@ label interrogation_braids:
     jump investigation_middle
 
 label interrogation_bl:
+
+    $ bl_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4737,6 +4794,9 @@ label interrogation_bl:
     jump investigation_bar
 
 label interrogation_lbguy:
+
+    $ lbguy_interrogation = True
+
     scene doctor_seat
 
     $ hidePeopleInterrogation()
@@ -4760,6 +4820,9 @@ label interrogation_lbguy:
     jump investigation_middle
 
 label interrogation_lbgirl:
+
+    $ lbgirl_interrogation = True
+
     scene doctor_seat 
 
     $ hidePeopleInterrogation()
@@ -4781,6 +4844,33 @@ label interrogation_lbgirl:
     $ lbguy_closed = False
 
     jump investigation_middle
+
+label people_interrogation:
+
+    if bb_interrogation == True:
+            
+        $ mc_opinion = ["You're asking me about yourself?{p}Well, yeah I saw you come into the cafe.", "I don't know anything else about you."], ["act2."], ["act3."]
+        $ dd_opinion = ["He arrived a bit earlier than you did,{p}a bit before the rain got worse."], ["act2."], ["act3."]
+        $ gg_opinion = ["He's been at his seat for a while."], ["act2."], ["act3."]
+
+        if bb_people_mc:
+            if done == False:
+                bb "[mc_opinion[0][0]]"
+                $ done = True
+            else:
+                bb "[mc_opinion[0][1]]"
+
+        if bb_people_d:
+            bb "[dd_opinion[0][0]]"
+
+        if bb_people_gg:
+            bb "[gg_opinion[0][0]]"
+
+        $ bb_people_mc = False
+        $ bb_people_d = False
+        $ bb_people_gg = False
+    
+    call screen people_interrogation
 
 #label investigation_restroom
 
