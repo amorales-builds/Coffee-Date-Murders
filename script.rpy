@@ -2084,7 +2084,7 @@ screen interrogation_options:
                 action Show("people_interrogation")
         frame:
             textbutton "objects":
-                action Show("bb_objects")
+                action Show("objects_interrogation")
 
     frame:
         #xalign 0.5
@@ -2132,11 +2132,11 @@ screen people_interrogation:
                 imagebutton:
                     idle "images/side/side cc.png"
                     hover "images/side/side cc h.png" 
-                    action [Hide("people_interrogation"), Jump("people_interrogation")]
+                    action [SetVariable ("people_cc", True), Hide("people_interrogation"), Jump("people_interrogation")]
             imagebutton:
                 idle "images/side/side pg.png"
                 hover "images/side/side pg h.png" 
-                action [Hide("people_interrogation"), Jump("people_interrogation")]
+                action [SetVariable ("people_pg", True), Hide("people_interrogation"), Jump("people_interrogation")]
             showif bl_interrogation == False:
                 imagebutton:
                     idle "images/side/side bl.png"
@@ -2181,7 +2181,7 @@ screen objects_interrogation:
             showif object1 == True:
                 vbox:
                     textbutton "object1":
-                        action [SetVariable ("objects_object1", True), Hide ("bb_objects"), Jump ("bb_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action [SetVariable ("objects_object1", True), Hide ("objects_interrogation"), Jump ("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 pass
             showif businesscard == False:
@@ -2238,7 +2238,7 @@ screen objects_interrogation:
                 yoffset 20
                 textbutton "return":
                     text_size 40
-                    action [Hide("bb_objects"), Play ("sound", "audio/notebook_sounds_onepage.wav"), Jump ("interrogation_bb_screen")]
+                    action [Hide("objects_interrogation"), Play ("sound", "audio/notebook_sounds_onepage.wav"), Jump ("interrogation_bb_screen")]
 
 screen cc_interrogation:
     hbox:
@@ -2644,8 +2644,8 @@ label start:
 
     $ dd_interrogation = False
     $ bb_interrogation = False
-    $ cc_interrogation = False
     $ gg_interrogation = False
+    $ cc_interrogation = False
     $ albino_interrogation = False
     $ braids_interrogation = False
     $ bl_interrogation = False
@@ -2654,9 +2654,10 @@ label start:
 
     $ people_mc = False
     $ people_dd = False
-    $ people_bb = False
-    $ people_cc = False
+    $ people_bb = False    
     $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
     $ people_albino = False
     $ people_braids = False
     $ people_bl = False
@@ -2730,6 +2731,8 @@ label start:
     $ lbgirl_age = False
 
     #### object variables ###
+    
+    $ object1 = True #### temporary ####
     $ pamphlet = True
     $ clover = True
     $ shovel = False
@@ -4555,7 +4558,24 @@ label interrogation_gg:
 
     $ gg_closed = False
 
-    jump investigation_middle
+label interrogation_gg_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    #$ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
 
 label interrogation_bb:
 
@@ -4587,21 +4607,20 @@ label interrogation_bb_start:
 
 label interrogation_bb_screen:
 
-            $ people_mc = False
-        $ people_dd = False
-        $ people_bb = False
-        $ people_cc = False
-        $ people_gg = False
-        $ people_albino = False
-        $ people_braids = False
-        $ people_bl = False
-        $ people_lbguy = False
-        $ people_lbgirl = False
+    $ people_mc = False
+    $ people_dd = False
+    #$ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
 
-        $ objects_object1= False
-        $ object1 = True
-
-    $ done = False
+    $ objects_object1= False
+    $ object1 = True
 
     call screen interrogation_options
 
@@ -4713,8 +4732,6 @@ label interrogation_questions:
 
                 jump interrogation_questions
 
-    #jump interrogation_bb_screen  
-
 label interrogation_cc:
 
     $ cc_interrogation = True
@@ -4738,7 +4755,28 @@ label interrogation_cc:
     
     $ cc_closed = False
 
-    jump investigation_bar
+label interrogation_cc_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    #$ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
+
+label interrogation_cc_ask:
+
+    ""
 
 label interrogation_albino:
 
@@ -4754,21 +4792,31 @@ label interrogation_albino:
 
     if albino_closed:
         bm2 "I'll sue you when I get out of here."
+        jump investigation_middle
     
     else:
         bm2 "The moment I get out of here I'm suing all of you."
     
     $ albino_closed = False
 
-    #jump investigation_middle
+label interrogation_albino_screen:
 
-label interrogation_cc_screen:
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    #$ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
 
-    call screen cc_interrogation
+    $ objects_object1= False
+    $ object1 = True
 
-label interrogation_cc_ask:
-
-    ""
+    call screen interrogation_options
 
 label interrogation_braids:
 
@@ -4792,7 +4840,24 @@ label interrogation_braids:
 
     $ braids_closed = False
 
-    jump investigation_middle
+label interrogation_braids_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    #$ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
 
 label interrogation_bl:
 
@@ -4817,7 +4882,24 @@ label interrogation_bl:
 
     $ bl_closed = False
 
-    jump investigation_bar
+label interrogation_bl_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    #$ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
 
 label interrogation_lbguy:
 
@@ -4843,7 +4925,24 @@ label interrogation_lbguy:
     $ lbgirl_closed = False
     $ lbguy_closed = False
 
-    jump investigation_middle
+label interrogation_lbguy_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    #$ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
 
 label interrogation_lbgirl:
 
@@ -4869,7 +4968,25 @@ label interrogation_lbgirl:
     $ lbgirl_closed = False
     $ lbguy_closed = False
 
-    jump investigation_middle
+label interrogation_lbgirl_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    #$ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
+
 
 ## interrogation stuff ##
 
@@ -4878,7 +4995,7 @@ label objects_interrogation:
     if bb_interrogation == True:
 
         if objects_object1:
-            bb "ss"
+            bb "an object"
 
         $ objects_object1 = False
 
@@ -4887,29 +5004,1065 @@ label objects_interrogation:
 
 label people_interrogation:
 
-    if bb_interrogation == True:
-            
-        $ mc_opinion = ["You're asking me about yourself?{p}Well, yeah I saw you come into the cafe.", "I don't know anything else about you."], ["act2."], ["act3."]
+    ## bb
+
+    if bb_interrogation:
+
+        $ mc_opinion = ["You're asking me about yourself?{p}Well, yeah I saw you come into the cafe."], ["act2."], ["act3."]
+        #$ bb_opinion = ["act 1."], ["act2."], ["act3."]
         $ dd_opinion = ["He arrived a bit earlier than you did,{p}a bit before the rain got worse."], ["act2."], ["act3."]
         $ gg_opinion = ["He's been at his seat for a while."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
 
         if act == 1:
             if people_mc:
-                if done == False:
-                    bb "[mc_opinion[0][0]]"
-                    $ done = True
-                else:
-                    bb "[mc_opinion[0][1]]"
+                bb "[mc_opinion[0][0]]"
 
-            if people_d:
+            #if people_bb:
+            #    dd "[bb_opinion[0][0]]"
+
+            if people_dd:
                 bb "[dd_opinion[0][0]]"
 
             if people_gg:
                 bb "[gg_opinion[0][0]]"
 
+            if people_cc:
+                bb "[cc_opinion[0][0]]"
+
+            if people_pg:
+                bb "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                bb "[albino_opinion[0][0]]"
+
+            if people_braids:
+                bb "[braids_opinion[0][0]]"
+
+            if people_bl:
+                bb "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                bb "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                bb "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                bb "[mc_opinion[1][0]]"
+
+            #if people_bb:
+            #    dd "[bb_opinion[1][0]]"
+
+            if people_dd:
+                bb "[dd_opinion[1][0]]"
+
+            if people_gg:
+                bb "[gg_opinion[1][0]]"
+
+            if people_cc:
+                bb "[cc_opinion[1][0]]"
+
+            if people_pg:
+                bb "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                bb "[albino_opinion[1][0]]"
+
+            if people_braids:
+                bb "[braids_opinion[1][0]]"
+
+            if people_bl:
+                bb "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                bb "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                bb "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                bb "[mc_opinion[2][0]]"
+
+            #if people_bb:
+            #    dd "[bb_opinion[2][0]]"
+
+            if people_dd:
+                bb "[dd_opinion[2][0]]"
+
+            if people_gg:
+                bb "[gg_opinion[2][0]]"
+
+            if people_cc:
+                bb "[cc_opinion[2][0]]"
+
+            if people_pg:
+                bb "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                bb "[albino_opinion[2][0]]"
+
+            if people_braids:
+                bb "[braids_opinion[2][0]]"
+
+            if people_bl:
+                bb "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                bb "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                bb "[lbgirl_opinion[2][0]]"
+
+    ## dd
+
+    elif dd_interrogation:
+        
+        $ mc_opinion = ["act 1. dd"], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        #$ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                dd "[mc_opinion[0][0]]"
+
+            if people_bb:
+                dd "[bb_opinion[0][0]]"
+
+            #if people_dd:
+            #    dd "[dd_opinion[0][0]]"
+
+            if people_gg:
+                dd "[gg_opinion[0][0]]"
+
+            if people_cc:
+                dd "[cc_opinion[0][0]]"
+
+            if people_pg:
+                dd "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                dd "[albino_opinion[0][0]]"
+
+            if people_braids:
+                dd "[braids_opinion[0][0]]"
+
+            if people_bl:
+                dd "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                dd "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                dd "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                dd "[mc_opinion[1][0]]"
+
+            if people_bb:
+                dd "[bb_opinion[1][0]]"
+
+            #if people_dd:
+            #    dd "[dd_opinion[1][0]]"
+
+            if people_gg:
+                dd "[gg_opinion[1][0]]"
+
+            if people_cc:
+                dd "[cc_opinion[1][0]]"
+
+            if people_pg:
+                dd "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                dd "[albino_opinion[1][0]]"
+
+            if people_braids:
+                dd "[braids_opinion[1][0]]"
+
+            if people_bl:
+                dd "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                dd "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                dd "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                dd "[mc_opinion[2][0]]"
+
+            if people_bb:
+                dd "[bb_opinion[2][0]]"
+
+            #if people_dd:
+            #    dd "[dd_opinion[2][0]]"
+
+            if people_gg:
+                dd "[gg_opinion[2][0]]"
+
+            if people_cc:
+                dd "[cc_opinion[2][0]]"
+
+            if people_pg:
+                dd "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                dd "[albino_opinion[2][0]]"
+
+            if people_braids:
+                dd "[braids_opinion[2][0]]"
+
+            if people_bl:
+                dd "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                dd "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                dd "[lbgirl_opinion[2][0]]"
+
+    elif cc_interrogation:
+
+        $ mc_opinion = ["act 1 cc."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        #$ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                cc "[mc_opinion[0][0]]"
+
+            if people_bb:
+                cc "[bb_opinion[0][0]]"
+
+            if people_dd:
+                cc "[dd_opinion[0][0]]"
+
+            if people_gg:
+                cc "[gg_opinion[0][0]]"
+
+            #if people_cc:
+            #    dd "[cc_opinion[0][0]]"
+
+            if people_pg:
+                cc "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                cc "[albino_opinion[0][0]]"
+
+            if people_braids:
+                cc "[braids_opinion[0][0]]"
+
+            if people_bl:
+                cc "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                cc "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                cc "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                cc "[mc_opinion[1][0]]"
+
+            if people_bb:
+                cc "[bb_opinion[1][0]]"
+
+            if people_dd:
+                cc "[dd_opinion[1][0]]"
+
+            if people_gg:
+                cc "[gg_opinion[1][0]]"
+
+            #if people_cc:
+            #    dd "[cc_opinion[0][0]]"
+
+            if people_pg:
+                cc "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                cc "[albino_opinion[1][0]]"
+
+            if people_braids:
+                cc "[braids_opinion[1][0]]"
+
+            if people_bl:
+                cc "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                cc "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                cc "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                cc "[mc_opinion[2][0]]"
+
+            if people_bb:
+                cc "[bb_opinion[2][0]]"
+
+            if people_dd:
+                cc "[dd_opinion[2][0]]"
+
+            if people_gg:
+                cc "[gg_opinion[2][0]]"
+
+            #if people_cc:
+            #    dd "[cc_opinion[0][0]]"
+
+            if people_pg:
+                cc "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                cc "[albino_opinion[2][0]]"
+
+            if people_braids:
+                cc "[braids_opinion[2][0]]"
+
+            if people_bl:
+                cc "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                cc "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                cc "[lbgirl_opinion[2][0]]"   
+
+    elif gg_interrogation:
+
+        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        #$ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                gg "[mc_opinion[0][0]]"
+
+            if people_bb:
+                gg "[bb_opinion[0][0]]"
+
+            if people_dd:
+                gg "[dd_opinion[0][0]]"
+
+            #if people_gg:
+            #    gg "[gg_opinion[0][0]]"
+
+            if people_cc:
+                gg "[cc_opinion[0][0]]"
+
+            if people_pg:
+                gg "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                gg "[albino_opinion[0][0]]"
+
+            if people_braids:
+                gg "[braids_opinion[0][0]]"
+
+            if people_bl:
+                gg "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                gg "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                gg "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                gg "[mc_opinion[1][0]]"
+
+            if people_bb:
+                gg "[bb_opinion[1][0]]"
+
+            if people_dd:
+                gg "[dd_opinion[1][0]]"
+
+            #if people_gg:
+            #    gg "[gg_opinion[1][0]]"
+
+            if people_cc:
+                gg "[cc_opinion[1][0]]"
+
+            if people_pg:
+                gg "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                gg "[albino_opinion[1][0]]"
+
+            if people_braids:
+                gg "[braids_opinion[1][0]]"
+
+            if people_bl:
+                gg "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                gg "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                gg "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                gg "[mc_opinion[2][0]]"
+
+            if people_bb:
+                gg "[bb_opinion[2][0]]"
+
+            if people_dd:
+                gg "[dd_opinion[2][0]]"
+
+            #if people_gg:
+            #    gg "[gg_opinion[2][0]]"
+
+            if people_cc:
+                gg "[cc_opinion[2][0]]"
+
+            if people_pg:
+                gg "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                gg "[albino_opinion[2][0]]"
+
+            if people_braids:
+                gg "[braids_opinion[2][0]]"
+
+            if people_bl:
+                gg "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                gg "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                gg "[lbgirl_opinion[2][0]]"    
+
+    elif albino_interrogation:
+
+        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        #$ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                bm2 "[mc_opinion[0][0]]"
+
+            if people_bb:
+                bm2 "[bb_opinion[0][0]]"
+
+            if people_dd:
+                bm2 "[dd_opinion[0][0]]"
+
+            #if people_gg:
+                bm2 "[gg_opinion[0][0]]"
+
+            if people_cc:
+                bm2 "[cc_opinion[0][0]]"
+
+            if people_pg:
+                bm2 "[pg_opinion[0][0]]"
+            
+            #if people_albino:
+            #    bm2 "[albino_opinion[0][0]]"
+
+            if people_braids:
+                bm2 "[braids_opinion[0][0]]"
+
+            if people_bl:
+                bm2 "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                bm2 "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                bm2 "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                bm2 "[mc_opinion[1][0]]"
+
+            if people_bb:
+                bm2 "[bb_opinion[1][0]]"
+
+            if people_dd:
+                bm2 "[dd_opinion[1][0]]"
+
+            if people_gg:
+                bm2 "[gg_opinion[1][0]]"
+
+            if people_cc:
+                bm2 "[cc_opinion[1][0]]"
+
+            if people_pg:
+                bm2 "[pg_opinion[1][0]]"
+            
+            #if people_albino:
+            #    gg "[albino_opinion[1][0]]"
+
+            if people_braids:
+                bm2 "[braids_opinion[1][0]]"
+
+            if people_bl:
+                bm2 "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                bm2 "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                bm2 "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                bm2 "[mc_opinion[2][0]]"
+
+            if people_bb:
+                bm2 "[bb_opinion[2][0]]"
+
+            if people_dd:
+                bm2 "[dd_opinion[2][0]]"
+
+            if people_gg:
+                bm2 "[gg_opinion[2][0]]"
+
+            if people_cc:
+                bm2 "[cc_opinion[2][0]]"
+
+            if people_pg:
+                bm2 "[pg_opinion[2][0]]"
+            
+            #if people_albino:
+            #    bm2 "[albino_opinion[2][0]]"
+
+            if people_braids:
+                bm2 "[braids_opinion[2][0]]"
+
+            if people_bl:
+                bm2 "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                bm2 "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                bm2 "[lbgirl_opinion[2][0]]"  
+
+    elif braids_interrogation:
+
+        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        #$ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                bm1 "[mc_opinion[0][0]]"
+
+            if people_bb:
+                bm1 "[bb_opinion[0][0]]"
+
+            if people_dd:
+                bm1 "[dd_opinion[0][0]]"
+
+            #if people_gg:
+                bm1 "[gg_opinion[0][0]]"
+
+            if people_cc:
+                bm1 "[cc_opinion[0][0]]"
+
+            if people_pg:
+                bm1 "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                bm1 "[albino_opinion[0][0]]"
+
+            #if people_braids:
+            #    bm2 "[braids_opinion[0][0]]"
+
+            if people_bl:
+                bm1 "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                bm1 "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                bm1 "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                bm1 "[mc_opinion[1][0]]"
+
+            if people_bb:
+                bm1 "[bb_opinion[1][0]]"
+
+            if people_dd:
+                bm1 "[dd_opinion[1][0]]"
+
+            if people_gg:
+                bm1 "[gg_opinion[1][0]]"
+
+            if people_cc:
+                bm1 "[cc_opinion[1][0]]"
+
+            if people_pg:
+                bm1 "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                bm1 "[albino_opinion[1][0]]"
+
+            #if people_braids:
+            #    bm2 "[braids_opinion[1][0]]"
+
+            if people_bl:
+                bm1 "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                bm1 "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                bm1 "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                bm1 "[mc_opinion[2][0]]"
+
+            if people_bb:
+                bm1 "[bb_opinion[2][0]]"
+
+            if people_dd:
+                bm1 "[dd_opinion[2][0]]"
+
+            if people_gg:
+                bm1 "[gg_opinion[2][0]]"
+
+            if people_cc:
+                bm1 "[cc_opinion[2][0]]"
+
+            if people_pg:
+                bm1 "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                bm1 "[albino_opinion[2][0]]"
+
+            #if people_braids:
+            #    bm2 "[braids_opinion[2][0]]"
+
+            if people_bl:
+                bm1 "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                bm1 "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                bm1 "[lbgirl_opinion[2][0]]" 
+
+    elif bl_interrogation:
+
+        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        #$ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                bl "[mc_opinion[0][0]]"
+
+            if people_bb:
+                bl "[bb_opinion[0][0]]"
+
+            if people_dd:
+                bl "[dd_opinion[0][0]]"
+
+            if people_gg:
+                bl "[gg_opinion[0][0]]"
+
+            if people_cc:
+                bl "[cc_opinion[0][0]]"
+
+            if people_pg:
+                bl "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                bl "[albino_opinion[0][0]]"
+
+            if people_braids:
+                bl "[braids_opinion[0][0]]"
+
+            #if people_bl:
+            #    gg "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                bl "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                bl "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                bl "[mc_opinion[1][0]]"
+
+            if people_bb:
+                bl "[bb_opinion[1][0]]"
+
+            if people_dd:
+                bl "[dd_opinion[1][0]]"
+
+            if people_gg:
+                bl "[gg_opinion[1][0]]"
+
+            if people_cc:
+                bl "[cc_opinion[1][0]]"
+
+            if people_pg:
+                bl "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                bl "[albino_opinion[1][0]]"
+
+            if people_braids:
+                bl "[braids_opinion[1][0]]"
+
+            if people_bl:
+                bl "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                bl "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                bl "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                bl "[mc_opinion[2][0]]"
+
+            if people_bb:
+                bl "[bb_opinion[2][0]]"
+
+            if people_dd:
+                bl "[dd_opinion[2][0]]"
+
+            if people_gg:
+                bl "[gg_opinion[2][0]]"
+
+            if people_cc:
+                bl "[cc_opinion[2][0]]"
+
+            if people_pg:
+                bl "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                bl "[albino_opinion[2][0]]"
+
+            if people_braids:
+                bl "[braids_opinion[2][0]]"
+
+            #if people_bl:
+            #    bl "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                bl "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                bl "[lbgirl_opinion[2][0]]"    
+
+    elif lbguy_interrogation:
+
+        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        #$ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                lbguy "[mc_opinion[0][0]]"
+
+            if people_bb:
+                lbguy "[bb_opinion[0][0]]"
+
+            if people_dd:
+                lbguy "[dd_opinion[0][0]]"
+
+            if people_gg:
+                lbguy "[gg_opinion[0][0]]"
+
+            if people_cc:
+                lbguy "[cc_opinion[0][0]]"
+
+            if people_pg:
+                lbguy "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                lbguy "[albino_opinion[0][0]]"
+
+            if people_braids:
+                lbguy "[braids_opinion[0][0]]"
+
+            if people_bl:
+                lbguy "[bl_opinion[0][0]]"
+
+            #if people_lbguy:
+            #    bl "[lbguy_opinion[0][0]]"
+            
+            if people_lbgirl:
+                lbguy "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                lbguy "[mc_opinion[1][0]]"
+
+            if people_bb:
+                lbguy "[bb_opinion[1][0]]"
+
+            if people_dd:
+                lbguy "[dd_opinion[1][0]]"
+
+            if people_gg:
+                lbguy "[gg_opinion[1][0]]"
+
+            if people_cc:
+                lbguy "[cc_opinion[1][0]]"
+
+            if people_pg:
+                lbguy "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                lbguy "[albino_opinion[1][0]]"
+
+            if people_braids:
+                lbguy "[braids_opinion[1][0]]"
+
+            if people_bl:
+                lbguy "[bl_opinion[1][0]]"
+
+            #if people_lbguy:
+            #    bl "[lbguy_opinion[1][0]]"
+            
+            if people_lbgirl:
+                lbguy "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                lbguy "[mc_opinion[2][0]]"
+
+            if people_bb:
+                lbguy "[bb_opinion[2][0]]"
+
+            if people_dd:
+                lbguy "[dd_opinion[2][0]]"
+
+            if people_gg:
+                lbguy "[gg_opinion[2][0]]"
+
+            if people_cc:
+                lbguy "[cc_opinion[2][0]]"
+
+            if people_pg:
+                lbguy "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                lbguy "[albino_opinion[2][0]]"
+
+            if people_braids:
+                lbguy "[braids_opinion[2][0]]"
+
+            if people_bl:
+                lbguy "[bl_opinion[2][0]]"
+
+            #if people_lbguy:
+            #    bl "[lbguy_opinion[2][0]]"
+            
+            if people_lbgirl:
+                lbguy "[lbgirl_opinion[2][0]]"   
+
+    elif lbgirl_interrogation:
+
+        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
+        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
+        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
+        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
+        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
+        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
+        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
+        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
+        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
+        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+        #$ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+        if act == 1:
+            if people_mc:
+                lbgirl "[mc_opinion[0][0]]"
+
+            if people_bb:
+                lbgirl "[bb_opinion[0][0]]"
+
+            if people_dd:
+                lbgirl "[dd_opinion[0][0]]"
+
+            if people_gg:
+                lbgirl "[gg_opinion[0][0]]"
+
+            if people_cc:
+                lbgirl "[cc_opinion[0][0]]"
+
+            if people_pg:
+                lbgirl "[pg_opinion[0][0]]"
+            
+            if people_albino:
+                lbgirl "[albino_opinion[0][0]]"
+
+            if people_braids:
+                lbgirl "[braids_opinion[0][0]]"
+
+            if people_bl:
+                lbgirl "[bl_opinion[0][0]]"
+
+            if people_lbguy:
+                lbgirl "[lbguy_opinion[0][0]]"
+            
+            #if people_lbgirl:
+            #    lbguy "[lbgirl_opinion[0][0]]"
+
+        if act == 2:
+            if people_mc:
+                lbgirl "[mc_opinion[1][0]]"
+
+            if people_bb:
+                lbgirl "[bb_opinion[1][0]]"
+
+            if people_dd:
+                lbgirl "[dd_opinion[1][0]]"
+
+            if people_gg:
+                lbgirl "[gg_opinion[1][0]]"
+
+            if people_cc:
+                lbgirl "[cc_opinion[1][0]]"
+
+            if people_pg:
+                lbgirl "[pg_opinion[1][0]]"
+            
+            if people_albino:
+                lbgirl "[albino_opinion[1][0]]"
+
+            if people_braids:
+                lbgirl "[braids_opinion[1][0]]"
+
+            if people_bl:
+                lbgirl "[bl_opinion[1][0]]"
+
+            if people_lbguy:
+                lbgirl "[lbguy_opinion[1][0]]"
+            
+            #if people_lbgirl:
+            #    lbguy "[lbgirl_opinion[1][0]]"
+
+        if act == 3:
+            if people_mc:
+                lbgirl "[mc_opinion[2][0]]"
+
+            if people_bb:
+                lbgirl "[bb_opinion[2][0]]"
+
+            if people_dd:
+                lbgirl "[dd_opinion[2][0]]"
+
+            if people_gg:
+                lbgirl "[gg_opinion[2][0]]"
+
+            if people_cc:
+                lbgirl "[cc_opinion[2][0]]"
+
+            if people_pg:
+                lbgirl "[pg_opinion[2][0]]"
+            
+            if people_albino:
+                lbgirl "[albino_opinion[2][0]]"
+
+            if people_braids:
+                lbgirl "[braids_opinion[2][0]]"
+
+            if people_bl:
+                lbgirl "[bl_opinion[2][0]]"
+
+            if people_lbguy:
+                lbgirl "[lbguy_opinion[2][0]]"
+            
+            #if people_lbgirl:
+            #    lbguy "[lbgirl_opinion[2][0]]" 
+
+
     $ people_mc = False
     $ people_dd = False
+    $ people_bb = False
+    $ people_cc = False
     $ people_gg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
     
     call screen people_interrogation
 
