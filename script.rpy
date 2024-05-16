@@ -2169,7 +2169,7 @@ screen people_interrogation:
         vbox:
             textbutton "return":
                 text_size 39
-                action [Hide("people_interrogation"), Jump ("interrogation_bb_screen")]
+                action [Hide("people_interrogation"), Jump ("interrogation_screen")]
 
 screen objects_interrogation:
     modal True
@@ -2238,7 +2238,7 @@ screen objects_interrogation:
                 yoffset 20
                 textbutton "return":
                     text_size 40
-                    action [Hide("objects_interrogation"), Play ("sound", "audio/notebook_sounds_onepage.wav"), Jump ("interrogation_bb_screen")]
+                    action [Hide("objects_interrogation"), Play ("sound", "audio/notebook_sounds_onepage.wav"), Jump ("interrogation_screen")]
 
 screen cc_interrogation:
     hbox:
@@ -3210,7 +3210,8 @@ label middle1:
 
     label business_dialogue:
 
-        #$ b_dialogue += 1
+        $ albino_attraction_points += 1    
+        $ braids_attraction_points -= 1
 
         hide screen bm_sitting
 
@@ -4536,6 +4537,7 @@ label investigation_middle:
 
     call screen middle2
 
+
 label interrogation_gg:
 
     $ gg_interrogation = True
@@ -4558,24 +4560,7 @@ label interrogation_gg:
 
     $ gg_closed = False
 
-label interrogation_gg_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    #$ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    $ people_braids = False
-    $ people_bl = False
-    $ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    jump interrogation_screen
 
 label interrogation_bb:
 
@@ -4603,134 +4588,8 @@ label interrogation_bb_start:
 
     else:
         bb "{b}What do you want?{/b}"
-    
 
-label interrogation_bb_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    #$ people_bb = False
-    $ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    $ people_braids = False
-    $ people_bl = False
-    $ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
-
-label interrogation_questions:
-
-    if bb_interrogation == True:
-
-        menu:
-
-            "Where were you when the incident happened?" if where_bb:
-                $ where_bb = False
-                $ unusual_bb = True
-                jump where_bb
-
-            "Did you see anything out of the usual?" if unusual_bb:
-                $ unusual_bb = False
-                jump unusual_bb
-                    
-            "What's up your butt?" if butt_bb == True and understanding_bb == False :
-                $ butt_bb = False
-                jump butt_bb
-
-            "I want to get to know you better." if know_bb:
-                $ know_bb = False
-                jump know_bb  
-
-            "Nevermind." if understanding_bb == False:
-                jump interrogation_bb_screen
-
-            "Thank you for your cooperation." if understanding_bb:
-                bb "Well, it was alright."
-                jump interrogation_bb_screen
-
-    #jump interrogation_bb
-
-    label where_bb:
-
-        bb "Didn't you see me?{w} {cps=150}I was sitting right in this booth.{/cps}"
-
-        jump interrogation_questions
-
-    label unusual_bb:
-
-        if bm_meeting_info == True and understanding_bb == False:
-            bb "{cps=120}Aside from you asking everyone for a seat?{/cps}{p}No.{w=0.4} {cps=60}I wasn't really paying attention.{/cps}"
-        elif understanding_bb:
-            bb "Just normal people in a cafe doing normal cafe people things."
-        else:
-            bb "Not really.{w} {cps=150}Wasn't really paying attention.{/cps}"
-
-        jump interrogation_questions
-
-    label butt_bb: 
-
-        $ bb_attraction_points -= 1
-
-        bb "Nothing, what's up yours?"
-
-        smc "It's like talking to a child..."
-
-        smcs "{cps=150}...forget it.{/cps}"
-
-        jump interrogation_questions
-
-    ### use later in the game ###
-    label know_bb:
-
-        bb "For better interrogation?"
-
-        menu:
-                
-            "Of course.":
-
-                $ bb_attraction_points -= 2
-                
-                bb "Get out of my face."
-
-                $ bb_closed = True
-
-                jump investigation_middle
-
-            "To understand you better.":
-
-                $ understanding_bb = True
-
-                $ bb_attraction_points += 2
-
-                bb "{cps=20}Hmmmm...{/cps}" 
-
-                bb "I like music?"
-
-                smcs "What kind?"
-
-                bb "Classical."
-
-                smc "That's unexpected."
-
-                bb "I know what you might be thinking:{p}I'd look out of place in a concert hall,{w} but music doesn't discriminate."
-
-                bb "Many composers were the punks of their time,{w} the same could be said for Shakespeare, Dostoevsky and other authors."
-
-                smcs "So you also like literature?"
- 
-                bb "Yes!{w} Once you read a good book, it stays with you forever." 
-
-                smcs "I agree!"
-
-                $ bb_interests = True
-
-                jump interrogation_questions
+    jump interrogation_screen
 
 label interrogation_cc:
 
@@ -4755,24 +4614,7 @@ label interrogation_cc:
     
     $ cc_closed = False
 
-label interrogation_cc_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    $ people_gg = False
-    #$ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    $ people_braids = False
-    $ people_bl = False
-    $ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    jump interrogation_screen
 
 label interrogation_cc_ask:
 
@@ -4799,24 +4641,7 @@ label interrogation_albino:
     
     $ albino_closed = False
 
-label interrogation_albino_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    $ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    #$ people_albino = False
-    $ people_braids = False
-    $ people_bl = False
-    $ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    jump interrogation_screen
 
 label interrogation_braids:
 
@@ -4840,24 +4665,7 @@ label interrogation_braids:
 
     $ braids_closed = False
 
-label interrogation_braids_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    $ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    #$ people_braids = False
-    $ people_bl = False
-    $ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    jump interrogation_screen
 
 label interrogation_bl:
 
@@ -4882,24 +4690,7 @@ label interrogation_bl:
 
     $ bl_closed = False
 
-label interrogation_bl_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    $ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    $ people_braids = False
-    #$ people_bl = False
-    $ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    jump interrogation_screen
 
 label interrogation_lbguy:
 
@@ -4925,24 +4716,7 @@ label interrogation_lbguy:
     $ lbgirl_closed = False
     $ lbguy_closed = False
 
-label interrogation_lbguy_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    $ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    $ people_braids = False
-    $ people_bl = False
-    #$ people_lbguy = False
-    $ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    jump interrogation_screen
 
 label interrogation_lbgirl:
 
@@ -4967,25 +4741,8 @@ label interrogation_lbgirl:
 
     $ lbgirl_closed = False
     $ lbguy_closed = False
-
-label interrogation_lbgirl_screen:
-
-    $ people_mc = False
-    $ people_dd = False
-    $ people_bb = False
-    $ people_gg = False
-    $ people_cc = False
-    $ people_pg = False
-    $ people_albino = False
-    $ people_braids = False
-    $ people_bl = False
-    $ people_lbguy = False
-    #$ people_lbgirl = False
-
-    $ objects_object1= False
-    $ object1 = True
-
-    call screen interrogation_options
+    
+    jump interrogation_screen
 
 
 ## interrogation stuff ##
@@ -5000,7 +4757,26 @@ label objects_interrogation:
         $ objects_object1 = False
 
     call screen objects_interrogation 
-    
+
+
+label interrogation_screen:
+
+    $ people_mc = False
+    $ people_dd = False
+    $ people_bb = False
+    $ people_gg = False
+    $ people_cc = False
+    $ people_pg = False
+    $ people_albino = False
+    $ people_braids = False
+    $ people_bl = False
+    $ people_lbguy = False
+    $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
+
+    call screen interrogation_options
 
 label people_interrogation:
 
@@ -6065,6 +5841,114 @@ label people_interrogation:
     $ people_lbgirl = False
     
     call screen people_interrogation
+
+label interrogation_questions:
+
+    if bb_interrogation == True:
+
+        menu:
+
+            "Where were you when the incident happened?" if where_bb:
+                $ where_bb = False
+                $ unusual_bb = True
+                jump where_bb
+
+            "Did you see anything out of the usual?" if unusual_bb:
+                $ unusual_bb = False
+                jump unusual_bb
+                    
+            "What's up your butt?" if butt_bb == True and understanding_bb == False :
+                $ butt_bb = False
+                jump butt_bb
+
+            "I want to get to know you better." if know_bb:
+                $ know_bb = False
+                jump know_bb  
+
+            "Nevermind." if understanding_bb == False:
+                jump interrogation_bb_screen
+
+            "Thank you for your cooperation." if understanding_bb:
+                bb "Well, it was alright."
+                jump interrogation_bb_screen
+
+    #jump interrogation_bb
+
+    label where_bb:
+
+        bb "Didn't you see me?{w} {cps=150}I was sitting right in this booth.{/cps}"
+
+        jump interrogation_questions
+
+    label unusual_bb:
+
+        if bm_meeting_info == True and understanding_bb == False:
+            bb "{cps=120}Aside from you asking everyone for a seat?{/cps}{p}No.{w=0.4} {cps=60}I wasn't really paying attention.{/cps}"
+        elif understanding_bb:
+            bb "Just normal people in a cafe doing normal cafe people things."
+        else:
+            bb "Not really.{w} {cps=150}Wasn't really paying attention.{/cps}"
+
+        jump interrogation_questions
+
+    label butt_bb: 
+
+        $ bb_attraction_points -= 1
+
+        bb "Nothing, what's up yours?"
+
+        smc "It's like talking to a child..."
+
+        smcs "{cps=150}...forget it.{/cps}"
+
+        jump interrogation_questions
+
+    ### use later in the game ###
+    label know_bb:
+
+        bb "For better interrogation?"
+
+        menu:
+                
+            "Of course.":
+
+                $ bb_attraction_points -= 2
+                
+                bb "Get out of my face."
+
+                $ bb_closed = True
+
+                jump investigation_middle
+
+            "To understand you better.":
+
+                $ understanding_bb = True
+
+                $ bb_attraction_points += 2
+
+                bb "{cps=20}Hmmmm...{/cps}" 
+
+                bb "I like music?"
+
+                smcs "What kind?"
+
+                bb "Classical."
+
+                smc "That's unexpected."
+
+                bb "I know what you might be thinking:{p}I'd look out of place in a concert hall,{w} but music doesn't discriminate."
+
+                bb "Many composers were the punks of their time,{w} the same could be said for Shakespeare, Dostoevsky and other authors."
+
+                smcs "So you also like literature?"
+ 
+                bb "Yes!{w} Once you read a good book, it stays with you forever." 
+
+                smcs "I agree!"
+
+                $ bb_interests = True
+
+                jump interrogation_questions
 
 #label investigation_restroom
 
