@@ -2182,11 +2182,9 @@ screen objects_interrogation:
             yanchor 0.5
             spacing 50
             box_wrap True
-                vbox:
-                    textbutton "object1":
-                        action [SetVariable ("objects_object1", True), Hide ("objects_interrogation"), Jump ("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
+            vbox:
+                textbutton "object1":
+                    action [SetVariable ("objects_object1", True), Hide ("objects_interrogation"), Jump ("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
             showif businesscard == False:
                 vbox:
                     textbutton "business card":
@@ -2589,6 +2587,485 @@ init python:
         renpy.hide_screen("doctor_sat")
         renpy.hide_screen("gg_sitting")
         renpy.hide_screen("brokenstool")
+
+init python:
+    def peopleInterrogation(act = 0, level = 0, people_mc = False, people_dd = False, people_bb = False, people_gg = False, people_cc = False, people_pg = False, people_albino = False, people_braids = False, people_bl = False, people_lbguy = False, people_lbgirl = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
+        act -= 1
+        level -= 1
+
+        if bb_interrogation:
+
+            mc_opinion = ["You're asking me about yourself?{p}Well, yeah I saw you come into the cafe."], ["act2."], ["act3."]
+            #bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["He arrived a bit earlier than you did,{p}a bit before the rain got worse."], ["act2."], ["act3."]
+            gg_opinion = ["He's been at his seat for a while."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = bb
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif dd_interrogation:
+            
+            mc_opinion = ["act 1. dd"], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            #dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = d
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif cc_interrogation:
+
+            mc_opinion = ["act 1 cc."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            #cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = cc
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif gg_interrogation:
+
+            mc_opinion = ["act 1."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            #gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = gg
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif albino_interrogation:
+
+            mc_opinion = ["act 1."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            #albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = bm2
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif braids_interrogation:
+
+            mc_opinion = ["act 1."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            #braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = bm1
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif bl_interrogation:
+
+            mc_opinion = ["act 1."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            #bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = bl
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif lbguy_interrogation:
+
+            mc_opinion = ["act 1."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            #lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = lbgirl
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+        elif lbgirl_interrogation:
+
+            mc_opinion = ["act 1."], ["act2."], ["act3."]
+            bb_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            gg_opinion = ["act 1."], ["act2."], ["act3."]
+            cc_opinion = ["act 1."],["act 2."],["act 3."]
+            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            albino_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["act 1."],["act 2."],["act 3."]
+            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
+            #lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+
+            p = lbgirl
+
+            if people_mc:
+                renpy.say(p, mc_opinion[act][level])
+
+            elif people_bb:
+                renpy.say(p, bb_opinion[act][level])
+
+            elif people_dd:
+                renpy.say(p, dd_opinion[act][level])
+
+            elif people_gg:
+                renpy.say(p, gg_opinion[act][level])
+
+            elif people_cc:
+                renpy.say(p, cc_opinion[act][level])
+
+            elif people_pg:
+                renpy.say(p, pg_opinion[act][level])
+                
+            elif people_albino:
+                renpy.say(p, albino_opinion[act][level])
+
+            elif people_braids:
+                renpy.say(p, braids_opinion[act][level])
+
+            elif people_bl:
+                renpy.say(p, bl_opinion[act][level])
+
+            elif people_lbguy:
+                renpy.say(p, lbguy_opinion[act][level])
+                
+            elif people_lbgirl:
+                renpy.say(p, lbgirl_opinion[act][level])
+            
+            else:
+                renpy.say(p, "...")
+
+init python: 
+    def pleaseWork():
+        p = 0
+        cars = ["hi", "hello"]
+        renpy.say(smc, cars[p])
 
 ##################################################################3
 
@@ -4780,1054 +5257,7 @@ label interrogation_screen:
 
 label people_interrogation:
 
-    ## bb
-
-    if bb_interrogation:
-
-        $ mc_opinion = ["You're asking me about yourself?{p}Well, yeah I saw you come into the cafe."], ["act2."], ["act3."]
-        #$ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["He arrived a bit earlier than you did,{p}a bit before the rain got worse."], ["act2."], ["act3."]
-        $ gg_opinion = ["He's been at his seat for a while."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                bb "[mc_opinion[0][0]]"
-
-            #if people_bb:
-            #    dd "[bb_opinion[0][0]]"
-
-            if people_dd:
-                bb "[dd_opinion[0][0]]"
-
-            if people_gg:
-                bb "[gg_opinion[0][0]]"
-
-            if people_cc:
-                bb "[cc_opinion[0][0]]"
-
-            if people_pg:
-                bb "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                bb "[albino_opinion[0][0]]"
-
-            if people_braids:
-                bb "[braids_opinion[0][0]]"
-
-            if people_bl:
-                bb "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                bb "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                bb "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                bb "[mc_opinion[1][0]]"
-
-            #if people_bb:
-            #    dd "[bb_opinion[1][0]]"
-
-            if people_dd:
-                bb "[dd_opinion[1][0]]"
-
-            if people_gg:
-                bb "[gg_opinion[1][0]]"
-
-            if people_cc:
-                bb "[cc_opinion[1][0]]"
-
-            if people_pg:
-                bb "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                bb "[albino_opinion[1][0]]"
-
-            if people_braids:
-                bb "[braids_opinion[1][0]]"
-
-            if people_bl:
-                bb "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                bb "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                bb "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                bb "[mc_opinion[2][0]]"
-
-            #if people_bb:
-            #    dd "[bb_opinion[2][0]]"
-
-            if people_dd:
-                bb "[dd_opinion[2][0]]"
-
-            if people_gg:
-                bb "[gg_opinion[2][0]]"
-
-            if people_cc:
-                bb "[cc_opinion[2][0]]"
-
-            if people_pg:
-                bb "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                bb "[albino_opinion[2][0]]"
-
-            if people_braids:
-                bb "[braids_opinion[2][0]]"
-
-            if people_bl:
-                bb "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                bb "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                bb "[lbgirl_opinion[2][0]]"
-
-    ## dd
-
-    elif dd_interrogation:
-        
-        $ mc_opinion = ["act 1. dd"], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        #$ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                dd "[mc_opinion[0][0]]"
-
-            if people_bb:
-                dd "[bb_opinion[0][0]]"
-
-            #if people_dd:
-            #    dd "[dd_opinion[0][0]]"
-
-            if people_gg:
-                dd "[gg_opinion[0][0]]"
-
-            if people_cc:
-                dd "[cc_opinion[0][0]]"
-
-            if people_pg:
-                dd "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                dd "[albino_opinion[0][0]]"
-
-            if people_braids:
-                dd "[braids_opinion[0][0]]"
-
-            if people_bl:
-                dd "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                dd "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                dd "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                dd "[mc_opinion[1][0]]"
-
-            if people_bb:
-                dd "[bb_opinion[1][0]]"
-
-            #if people_dd:
-            #    dd "[dd_opinion[1][0]]"
-
-            if people_gg:
-                dd "[gg_opinion[1][0]]"
-
-            if people_cc:
-                dd "[cc_opinion[1][0]]"
-
-            if people_pg:
-                dd "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                dd "[albino_opinion[1][0]]"
-
-            if people_braids:
-                dd "[braids_opinion[1][0]]"
-
-            if people_bl:
-                dd "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                dd "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                dd "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                dd "[mc_opinion[2][0]]"
-
-            if people_bb:
-                dd "[bb_opinion[2][0]]"
-
-            #if people_dd:
-            #    dd "[dd_opinion[2][0]]"
-
-            if people_gg:
-                dd "[gg_opinion[2][0]]"
-
-            if people_cc:
-                dd "[cc_opinion[2][0]]"
-
-            if people_pg:
-                dd "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                dd "[albino_opinion[2][0]]"
-
-            if people_braids:
-                dd "[braids_opinion[2][0]]"
-
-            if people_bl:
-                dd "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                dd "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                dd "[lbgirl_opinion[2][0]]"
-
-    elif cc_interrogation:
-
-        $ mc_opinion = ["act 1 cc."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        #$ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                cc "[mc_opinion[0][0]]"
-
-            if people_bb:
-                cc "[bb_opinion[0][0]]"
-
-            if people_dd:
-                cc "[dd_opinion[0][0]]"
-
-            if people_gg:
-                cc "[gg_opinion[0][0]]"
-
-            #if people_cc:
-            #    dd "[cc_opinion[0][0]]"
-
-            if people_pg:
-                cc "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                cc "[albino_opinion[0][0]]"
-
-            if people_braids:
-                cc "[braids_opinion[0][0]]"
-
-            if people_bl:
-                cc "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                cc "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                cc "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                cc "[mc_opinion[1][0]]"
-
-            if people_bb:
-                cc "[bb_opinion[1][0]]"
-
-            if people_dd:
-                cc "[dd_opinion[1][0]]"
-
-            if people_gg:
-                cc "[gg_opinion[1][0]]"
-
-            #if people_cc:
-            #    dd "[cc_opinion[0][0]]"
-
-            if people_pg:
-                cc "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                cc "[albino_opinion[1][0]]"
-
-            if people_braids:
-                cc "[braids_opinion[1][0]]"
-
-            if people_bl:
-                cc "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                cc "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                cc "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                cc "[mc_opinion[2][0]]"
-
-            if people_bb:
-                cc "[bb_opinion[2][0]]"
-
-            if people_dd:
-                cc "[dd_opinion[2][0]]"
-
-            if people_gg:
-                cc "[gg_opinion[2][0]]"
-
-            #if people_cc:
-            #    dd "[cc_opinion[0][0]]"
-
-            if people_pg:
-                cc "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                cc "[albino_opinion[2][0]]"
-
-            if people_braids:
-                cc "[braids_opinion[2][0]]"
-
-            if people_bl:
-                cc "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                cc "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                cc "[lbgirl_opinion[2][0]]"   
-
-    elif gg_interrogation:
-
-        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        #$ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                gg "[mc_opinion[0][0]]"
-
-            if people_bb:
-                gg "[bb_opinion[0][0]]"
-
-            if people_dd:
-                gg "[dd_opinion[0][0]]"
-
-            #if people_gg:
-            #    gg "[gg_opinion[0][0]]"
-
-            if people_cc:
-                gg "[cc_opinion[0][0]]"
-
-            if people_pg:
-                gg "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                gg "[albino_opinion[0][0]]"
-
-            if people_braids:
-                gg "[braids_opinion[0][0]]"
-
-            if people_bl:
-                gg "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                gg "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                gg "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                gg "[mc_opinion[1][0]]"
-
-            if people_bb:
-                gg "[bb_opinion[1][0]]"
-
-            if people_dd:
-                gg "[dd_opinion[1][0]]"
-
-            #if people_gg:
-            #    gg "[gg_opinion[1][0]]"
-
-            if people_cc:
-                gg "[cc_opinion[1][0]]"
-
-            if people_pg:
-                gg "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                gg "[albino_opinion[1][0]]"
-
-            if people_braids:
-                gg "[braids_opinion[1][0]]"
-
-            if people_bl:
-                gg "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                gg "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                gg "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                gg "[mc_opinion[2][0]]"
-
-            if people_bb:
-                gg "[bb_opinion[2][0]]"
-
-            if people_dd:
-                gg "[dd_opinion[2][0]]"
-
-            #if people_gg:
-            #    gg "[gg_opinion[2][0]]"
-
-            if people_cc:
-                gg "[cc_opinion[2][0]]"
-
-            if people_pg:
-                gg "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                gg "[albino_opinion[2][0]]"
-
-            if people_braids:
-                gg "[braids_opinion[2][0]]"
-
-            if people_bl:
-                gg "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                gg "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                gg "[lbgirl_opinion[2][0]]"    
-
-    elif albino_interrogation:
-
-        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        #$ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                bm2 "[mc_opinion[0][0]]"
-
-            if people_bb:
-                bm2 "[bb_opinion[0][0]]"
-
-            if people_dd:
-                bm2 "[dd_opinion[0][0]]"
-
-            #if people_gg:
-                bm2 "[gg_opinion[0][0]]"
-
-            if people_cc:
-                bm2 "[cc_opinion[0][0]]"
-
-            if people_pg:
-                bm2 "[pg_opinion[0][0]]"
-            
-            #if people_albino:
-            #    bm2 "[albino_opinion[0][0]]"
-
-            if people_braids:
-                bm2 "[braids_opinion[0][0]]"
-
-            if people_bl:
-                bm2 "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                bm2 "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                bm2 "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                bm2 "[mc_opinion[1][0]]"
-
-            if people_bb:
-                bm2 "[bb_opinion[1][0]]"
-
-            if people_dd:
-                bm2 "[dd_opinion[1][0]]"
-
-            if people_gg:
-                bm2 "[gg_opinion[1][0]]"
-
-            if people_cc:
-                bm2 "[cc_opinion[1][0]]"
-
-            if people_pg:
-                bm2 "[pg_opinion[1][0]]"
-            
-            #if people_albino:
-            #    gg "[albino_opinion[1][0]]"
-
-            if people_braids:
-                bm2 "[braids_opinion[1][0]]"
-
-            if people_bl:
-                bm2 "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                bm2 "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                bm2 "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                bm2 "[mc_opinion[2][0]]"
-
-            if people_bb:
-                bm2 "[bb_opinion[2][0]]"
-
-            if people_dd:
-                bm2 "[dd_opinion[2][0]]"
-
-            if people_gg:
-                bm2 "[gg_opinion[2][0]]"
-
-            if people_cc:
-                bm2 "[cc_opinion[2][0]]"
-
-            if people_pg:
-                bm2 "[pg_opinion[2][0]]"
-            
-            #if people_albino:
-            #    bm2 "[albino_opinion[2][0]]"
-
-            if people_braids:
-                bm2 "[braids_opinion[2][0]]"
-
-            if people_bl:
-                bm2 "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                bm2 "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                bm2 "[lbgirl_opinion[2][0]]"  
-
-    elif braids_interrogation:
-
-        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        #$ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                bm1 "[mc_opinion[0][0]]"
-
-            if people_bb:
-                bm1 "[bb_opinion[0][0]]"
-
-            if people_dd:
-                bm1 "[dd_opinion[0][0]]"
-
-            #if people_gg:
-                bm1 "[gg_opinion[0][0]]"
-
-            if people_cc:
-                bm1 "[cc_opinion[0][0]]"
-
-            if people_pg:
-                bm1 "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                bm1 "[albino_opinion[0][0]]"
-
-            #if people_braids:
-            #    bm2 "[braids_opinion[0][0]]"
-
-            if people_bl:
-                bm1 "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                bm1 "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                bm1 "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                bm1 "[mc_opinion[1][0]]"
-
-            if people_bb:
-                bm1 "[bb_opinion[1][0]]"
-
-            if people_dd:
-                bm1 "[dd_opinion[1][0]]"
-
-            if people_gg:
-                bm1 "[gg_opinion[1][0]]"
-
-            if people_cc:
-                bm1 "[cc_opinion[1][0]]"
-
-            if people_pg:
-                bm1 "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                bm1 "[albino_opinion[1][0]]"
-
-            #if people_braids:
-            #    bm2 "[braids_opinion[1][0]]"
-
-            if people_bl:
-                bm1 "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                bm1 "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                bm1 "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                bm1 "[mc_opinion[2][0]]"
-
-            if people_bb:
-                bm1 "[bb_opinion[2][0]]"
-
-            if people_dd:
-                bm1 "[dd_opinion[2][0]]"
-
-            if people_gg:
-                bm1 "[gg_opinion[2][0]]"
-
-            if people_cc:
-                bm1 "[cc_opinion[2][0]]"
-
-            if people_pg:
-                bm1 "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                bm1 "[albino_opinion[2][0]]"
-
-            #if people_braids:
-            #    bm2 "[braids_opinion[2][0]]"
-
-            if people_bl:
-                bm1 "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                bm1 "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                bm1 "[lbgirl_opinion[2][0]]" 
-
-    elif bl_interrogation:
-
-        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        #$ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                bl "[mc_opinion[0][0]]"
-
-            if people_bb:
-                bl "[bb_opinion[0][0]]"
-
-            if people_dd:
-                bl "[dd_opinion[0][0]]"
-
-            if people_gg:
-                bl "[gg_opinion[0][0]]"
-
-            if people_cc:
-                bl "[cc_opinion[0][0]]"
-
-            if people_pg:
-                bl "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                bl "[albino_opinion[0][0]]"
-
-            if people_braids:
-                bl "[braids_opinion[0][0]]"
-
-            #if people_bl:
-            #    gg "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                bl "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                bl "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                bl "[mc_opinion[1][0]]"
-
-            if people_bb:
-                bl "[bb_opinion[1][0]]"
-
-            if people_dd:
-                bl "[dd_opinion[1][0]]"
-
-            if people_gg:
-                bl "[gg_opinion[1][0]]"
-
-            if people_cc:
-                bl "[cc_opinion[1][0]]"
-
-            if people_pg:
-                bl "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                bl "[albino_opinion[1][0]]"
-
-            if people_braids:
-                bl "[braids_opinion[1][0]]"
-
-            if people_bl:
-                bl "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                bl "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                bl "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                bl "[mc_opinion[2][0]]"
-
-            if people_bb:
-                bl "[bb_opinion[2][0]]"
-
-            if people_dd:
-                bl "[dd_opinion[2][0]]"
-
-            if people_gg:
-                bl "[gg_opinion[2][0]]"
-
-            if people_cc:
-                bl "[cc_opinion[2][0]]"
-
-            if people_pg:
-                bl "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                bl "[albino_opinion[2][0]]"
-
-            if people_braids:
-                bl "[braids_opinion[2][0]]"
-
-            #if people_bl:
-            #    bl "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                bl "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                bl "[lbgirl_opinion[2][0]]"    
-
-    elif lbguy_interrogation:
-
-        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        #$ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                lbguy "[mc_opinion[0][0]]"
-
-            if people_bb:
-                lbguy "[bb_opinion[0][0]]"
-
-            if people_dd:
-                lbguy "[dd_opinion[0][0]]"
-
-            if people_gg:
-                lbguy "[gg_opinion[0][0]]"
-
-            if people_cc:
-                lbguy "[cc_opinion[0][0]]"
-
-            if people_pg:
-                lbguy "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                lbguy "[albino_opinion[0][0]]"
-
-            if people_braids:
-                lbguy "[braids_opinion[0][0]]"
-
-            if people_bl:
-                lbguy "[bl_opinion[0][0]]"
-
-            #if people_lbguy:
-            #    bl "[lbguy_opinion[0][0]]"
-            
-            if people_lbgirl:
-                lbguy "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                lbguy "[mc_opinion[1][0]]"
-
-            if people_bb:
-                lbguy "[bb_opinion[1][0]]"
-
-            if people_dd:
-                lbguy "[dd_opinion[1][0]]"
-
-            if people_gg:
-                lbguy "[gg_opinion[1][0]]"
-
-            if people_cc:
-                lbguy "[cc_opinion[1][0]]"
-
-            if people_pg:
-                lbguy "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                lbguy "[albino_opinion[1][0]]"
-
-            if people_braids:
-                lbguy "[braids_opinion[1][0]]"
-
-            if people_bl:
-                lbguy "[bl_opinion[1][0]]"
-
-            #if people_lbguy:
-            #    bl "[lbguy_opinion[1][0]]"
-            
-            if people_lbgirl:
-                lbguy "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                lbguy "[mc_opinion[2][0]]"
-
-            if people_bb:
-                lbguy "[bb_opinion[2][0]]"
-
-            if people_dd:
-                lbguy "[dd_opinion[2][0]]"
-
-            if people_gg:
-                lbguy "[gg_opinion[2][0]]"
-
-            if people_cc:
-                lbguy "[cc_opinion[2][0]]"
-
-            if people_pg:
-                lbguy "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                lbguy "[albino_opinion[2][0]]"
-
-            if people_braids:
-                lbguy "[braids_opinion[2][0]]"
-
-            if people_bl:
-                lbguy "[bl_opinion[2][0]]"
-
-            #if people_lbguy:
-            #    bl "[lbguy_opinion[2][0]]"
-            
-            if people_lbgirl:
-                lbguy "[lbgirl_opinion[2][0]]"   
-
-    elif lbgirl_interrogation:
-
-        $ mc_opinion = ["act 1."], ["act2."], ["act3."]
-        $ bb_opinion = ["act 1."], ["act2."], ["act3."]
-        $ dd_opinion = ["act 1."], ["act2."], ["act3."]
-        $ gg_opinion = ["act 1."], ["act2."], ["act3."]
-        $ cc_opinion = ["act 1."],["act 2."],["act 3."]
-        $ pg_opinion = ["act 1."],["act 2."],["act 3."]
-        $ albino_opinion = ["act 1."],["act 2."],["act 3."]
-        $ braids_opinion = ["act 1."],["act 2."],["act 3."]
-        $ bl_opinion = ["act 1."],["act 2."],["act 3."]
-        $ lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-        #$ lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
-
-        if act == 1:
-            if people_mc:
-                lbgirl "[mc_opinion[0][0]]"
-
-            if people_bb:
-                lbgirl "[bb_opinion[0][0]]"
-
-            if people_dd:
-                lbgirl "[dd_opinion[0][0]]"
-
-            if people_gg:
-                lbgirl "[gg_opinion[0][0]]"
-
-            if people_cc:
-                lbgirl "[cc_opinion[0][0]]"
-
-            if people_pg:
-                lbgirl "[pg_opinion[0][0]]"
-            
-            if people_albino:
-                lbgirl "[albino_opinion[0][0]]"
-
-            if people_braids:
-                lbgirl "[braids_opinion[0][0]]"
-
-            if people_bl:
-                lbgirl "[bl_opinion[0][0]]"
-
-            if people_lbguy:
-                lbgirl "[lbguy_opinion[0][0]]"
-            
-            #if people_lbgirl:
-            #    lbguy "[lbgirl_opinion[0][0]]"
-
-        if act == 2:
-            if people_mc:
-                lbgirl "[mc_opinion[1][0]]"
-
-            if people_bb:
-                lbgirl "[bb_opinion[1][0]]"
-
-            if people_dd:
-                lbgirl "[dd_opinion[1][0]]"
-
-            if people_gg:
-                lbgirl "[gg_opinion[1][0]]"
-
-            if people_cc:
-                lbgirl "[cc_opinion[1][0]]"
-
-            if people_pg:
-                lbgirl "[pg_opinion[1][0]]"
-            
-            if people_albino:
-                lbgirl "[albino_opinion[1][0]]"
-
-            if people_braids:
-                lbgirl "[braids_opinion[1][0]]"
-
-            if people_bl:
-                lbgirl "[bl_opinion[1][0]]"
-
-            if people_lbguy:
-                lbgirl "[lbguy_opinion[1][0]]"
-            
-            #if people_lbgirl:
-            #    lbguy "[lbgirl_opinion[1][0]]"
-
-        if act == 3:
-            if people_mc:
-                lbgirl "[mc_opinion[2][0]]"
-
-            if people_bb:
-                lbgirl "[bb_opinion[2][0]]"
-
-            if people_dd:
-                lbgirl "[dd_opinion[2][0]]"
-
-            if people_gg:
-                lbgirl "[gg_opinion[2][0]]"
-
-            if people_cc:
-                lbgirl "[cc_opinion[2][0]]"
-
-            if people_pg:
-                lbgirl "[pg_opinion[2][0]]"
-            
-            if people_albino:
-                lbgirl "[albino_opinion[2][0]]"
-
-            if people_braids:
-                lbgirl "[braids_opinion[2][0]]"
-
-            if people_bl:
-                lbgirl "[bl_opinion[2][0]]"
-
-            if people_lbguy:
-                lbgirl "[lbguy_opinion[2][0]]"
-            
-            #if people_lbgirl:
-            #    lbguy "[lbgirl_opinion[2][0]]" 
-
+    $ peopleInterrogation(act, level, people_mc, people_dd, people_bb, people_gg, people_cc, people_pg, people_albino, people_braids, people_bl, people_lbguy, people_lbgirl, dd_interrogation, bb_interrogation, gg_interrogation, cc_interrogation, albino_interrogation, braids_interrogation, bl_interrogation, lbguy_interrogation, lbgirl_interrogation)
 
     $ people_mc = False
     $ people_dd = False
