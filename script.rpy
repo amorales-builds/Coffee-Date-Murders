@@ -2517,78 +2517,9 @@ screen old_lady2:
         unhovered Hide ("l2_description")
         action SetVariable("asked_flag", True), Jump("this_is_it_done") 
 
-screen interrogation_bl:
-    imagebutton:
-        xalign -0.05
-        idle "baristalady.png"
-        action Jump ("interrogation_bl")
-        
-screen interrogation_cc:
-    imagebutton:
-        xalign 0.1
-        idle "cutecook.png"
-        action Jump ("interrogation_cc")
+### python functions
 
-screen interrogation_gg:
-    imagebutton:
-        xalign 0.3
-        idle "gentlegiant.png"
-        action Jump ("interrogation_gg")
-
-screen interrogation_bb:
-    imagebutton:
-        xalign 0.5
-        idle "badboy.png"
-        action Jump ("interrogation_bb")
-
-screen interrogation_albino:
-    imagebutton:
-        xalign 0.65
-        idle "businessman2.png" 
-        action Jump ("interrogation_albino")
-
-screen interrogation_braids:
-    imagebutton:
-        xalign 0.8
-        idle "businessman1.png"
-        action Jump ("interrogation_braids")
-        #action SetVariable("ask_flag",True), Jump("this_is_it")   
-
-screen interrogation_lbguy:
-    imagebutton:
-        xalign 0.95
-        idle "lovebirdguy.png"
-        action Jump ("interrogation_lbguy")
-
-screen interrogation_lbgirl:
-    imagebutton:
-        xalign 1.08
-        idle "lovebirdgirl.png"
-        action Jump ("interrogation_lbgirl")
-
-# ## python functions
-
-init python: 
-    def  hidePeopleInterrogation():                 
-        renpy.hide_screen("interrogation_gg")
-        renpy.hide_screen("interrogation_bb")
-        renpy.hide_screen("interrogation_cc")
-        renpy.hide_screen("interrogation_albino")
-        renpy.hide_screen("interrogation_braids")
-        renpy.hide_screen("interrogation_bl")
-        renpy.hide_screen("interrogation_lbguy")
-        renpy.hide_screen("interrogation_lbgirl")
-        ## add doctor later
-
-init python:
-    def hidePeopleEating():
-        renpy.hide_screen("doctor_sitting")
-        renpy.hide_screen("prettygirl_sitting")
-        renpy.hide_screen("doctor_sat")
-        renpy.hide_screen("gg_sitting")
-        renpy.hide_screen("brokenstool")
-
-init python:
+init python: #peopleInterrogation
     def peopleInterrogation(act = 0, level = 0, people_mc = False, people_dd = False, people_bb = False, people_gg = False, people_cc = False, people_pg = False, people_albino = False, people_braids = False, people_bl = False, people_lbguy = False, people_lbgirl = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
         act -= 1
         level -= 1
@@ -3059,19 +2990,34 @@ init python:
                 renpy.say(p, lbgirl_opinion[act][level])
             
             else:
-                renpy.say(p, "...")
+                renpy.say(mc, "...")
 
 init python: 
-    def pleaseWork():
-        p = 0
-        cars = ["hi", "hello"]
-        renpy.say(smc, cars[p])
+    def  hidePeopleInterrogation():                 
+        renpy.hide_screen("interrogation_gg")
+        renpy.hide_screen("interrogation_bb")
+        renpy.hide_screen("interrogation_cc")
+        renpy.hide_screen("interrogation_albino")
+        renpy.hide_screen("interrogation_braids")
+        renpy.hide_screen("interrogation_bl")
+        renpy.hide_screen("interrogation_lbguy")
+        renpy.hide_screen("interrogation_lbgirl")
+        ## add doctor later
+
+init python:
+    def hidePeopleEating():
+        renpy.hide_screen("doctor_sitting")
+        renpy.hide_screen("prettygirl_sitting")
+        renpy.hide_screen("doctor_sat")
+        renpy.hide_screen("gg_sitting")
+        renpy.hide_screen("brokenstool")
+
 
 ##################################################################3
 
 label start:
 
-    #### flag variables ###
+    ### flag variables ###
     #$ broken_flag = False
     $ interrogation_flag = False 
     $ interrogation_start = False 
@@ -3179,7 +3125,7 @@ label start:
     $ pg_poison = False
     $ pg_inheritance = False
 
-    ## deep info variables ##
+    ### deep info variables ###
     $ d_fear_revealed = False
     $ bb_interests = False
 
@@ -3208,30 +3154,42 @@ label start:
     $ lbguy_age = False
     $ lbgirl_age = False
 
-    #### object variables ###
-    
+    ### object variables ###
     $ object1 = True #### temporary ####
-    $ pamphlet = True
-    $ clover = True
-    $ shovel = False
-    $ pg_phone = False
-    $ cat_object = False
-    $ keys_object = False
-    $ mc_keys = True
     $ businesscard_object = False
     $ businesscard = True
+    $ pamphlet = True
+    $ clover = True
+    $ mc_keys = True
+    $ umbrella = False     # given by bl to check out cars {?}
+    $ shovel = False
+    $ pg_phone = False
+    $ pg_picture = False
+    $ charger = False      # draggable unto phone or wall outlet ?
+    $ old_picture = False
+    $ note = False
+    $ cat_object = False   # idk, dont like this
+    $ keys_object = False
+    $ wirecutters = False
+    $ businesscard_bm2 = False
     $ hunting_knife = False
     $ empty_sheath = False
+    $ poison_bottle = False
     $ dagger = False
     $ sheathed_dagger = False
-    $ sardines = False
-    $ peanutbutter = False
-    $ cat_accessory_1 = False
-    $ cat_accessory_2 = False
-    $ poison_bottle = False
+    $ sardines = False          # draggable onto cat
+    $ peanutbutter = False      # draggable onto cat ?
+    $ cat_accessory_1 = False   # draggable onto cat
+    $ cat_accessory_2 = False   # draggable onto cat
+    
 
     ### ending variables ###
-    $ persistent.rudeending = False
+    define persistent.rudeending = False
+
+
+
+
+    ####################################################### S T A R T ################################################################
     
     
     scene diner_lowangle_bg
