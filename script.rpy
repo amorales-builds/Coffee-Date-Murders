@@ -954,7 +954,7 @@ screen notebook_inside:
             if objects_notebook == True:
                 textbutton "Objects":
                     text_size 50
-                    action Show("notebook_objects"), Play ("sound", "audio/notebook_sounds_button.wav")
+                    action [Hide("notebook_inside"), Show("notebook_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 textbutton "???":
                     text_size 50
@@ -1770,11 +1770,15 @@ screen notebook_info_inheritance:
 
 screen notebook_objects:
     modal True
+    dismiss action [Hide ("notebook_objects"), Show("notebook_inside")]
     frame:
+        background Solid("#0000ff00")
+        image "images/bag_bg.png":
+            xalign 0.5
         grid 3 3:
             xalign 0.5
             yalign 0.5
-            spacing 190
+            spacing 45
             vbox:
                 textbutton "lucky clover":
                     action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
