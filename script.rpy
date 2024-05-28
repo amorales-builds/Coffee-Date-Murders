@@ -2253,73 +2253,138 @@ screen people_interrogation:
 
 screen objects_interrogation:
     modal True
+    dismiss action [Hide("objects_interrogation"), Play ("sound", "audio/notebook_sounds_onepage.wav"), Jump ("interrogation_screen")]
     frame:
-        #background Solid("#0000ff00")
-        align (0.5, 0.2)
+        #background Solid("#7ca397ff")
+        background Solid("#0000ff00") # transparent
+        #background "images/frame2.png"
+        image "images/bag_bg2.png":
+            xalign 0.5
+            yalign 0.5
         hbox:
             xalign 0.5
-            ypos 0.55
-            yanchor 0.5
-            spacing 50
+            yalign 0.5
+            spacing 490 ### temporary
             box_wrap True
+
             vbox:
                 textbutton "object1":
                     action [SetVariable ("objects_object1", True), Hide ("objects_interrogation"), Jump ("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
-            showif businesscard == False:
+
+            showif clover == True:
                 vbox:
-                    textbutton "business card":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+                    textbutton "Lucky Clover":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
+
+            showif businesscard == True:
                 vbox:
-                    textbutton "business card":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+                    textbutton "Business Card":
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
+            showif businesscard_bm2 == True:
                 vbox:
-                    textbutton "business card":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+                    textbutton "Old Business Card":
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
+
+            showif pamphlet == True:
                 vbox:
-                    textbutton "business card":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+                    textbutton "Pamphlet":
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
+
+            showif mc_keys == True:
                 vbox:
-                    textbutton "business card":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+                    textbutton "Keys and Driver's License":
+                        if keys_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), SetVariable("quick_menu", True), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
+
+            showif old_picture == True:
                 vbox:
-                    textbutton "business card":
+                    textbutton "Old Picture":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+
+            showif pg_phone == True:
                 vbox:
-                    textbutton "business card":
+                    textbutton "Victim's Phone":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+            
+            showif note:
                 vbox:
-                    textbutton "business card":
+                    textbutton "Torn Note":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif charger == True:
+                vbox:
+                    textbutton "Phone Charger":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif hunting_knife:
+                vbox:
+                    textbutton "Hunting Blade":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif dagger == True:
+                vbox:
+                    if empty_sheath:
+                        textbutton "Expensive Dagger, Sheated":
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                    else:
+                        textbutton "Expensive Dagger, Unsheated":
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
-                pass
-        hbox:
-                xpos 0.9
-                xoffset -5
-                yoffset 20
-                textbutton "return":
-                    text_size 40
-                    action [Hide("objects_interrogation"), Play ("sound", "audio/notebook_sounds_onepage.wav"), Jump ("interrogation_screen")]
+                if empty_sheath == True:
+                    vbox:
+                        textbutton "Empty Sheath":
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif umbrella == True:
+                vbox:
+                    textbutton "Umbrella":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif wirecutters == True:
+                vbox:
+                    textbutton "Wirecutters":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif poison_bottle == True:
+                vbox:
+                    textbutton "Poison bottle":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif peanutbutter == True:
+                vbox:
+                    textbutton "Peanut Butter":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif sardines == True:
+                vbox:
+                    textbutton "Sardines":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif cat_object == True:
+                vbox:
+                    textbutton "CAT":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif cat_accessory_1 == True:
+                vbox:
+                    textbutton "Tiny Bow":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif cat_accessory_2 == True:
+                vbox:
+                    textbutton "Cat Glasses":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
 screen cc_interrogation:
     hbox:
@@ -2596,6 +2661,56 @@ screen old_lady2:
         hovered Show ("l2_description")
         unhovered Hide ("l2_description")
         action SetVariable("asked_flag", True), Jump("this_is_it_done") 
+
+screen interrogation_bl:
+    imagebutton:
+        xalign -0.05
+        idle "baristalady.png"
+        action Jump ("interrogation_bl")
+        
+screen interrogation_cc:
+    imagebutton:
+        xalign 0.1
+        idle "cutecook.png"
+        action Jump ("interrogation_cc")
+
+screen interrogation_gg:
+    imagebutton:
+        xalign 0.3
+        idle "gentlegiant.png"
+        action Jump ("interrogation_gg")
+
+screen interrogation_bb:
+    imagebutton:
+        xalign 0.5
+        idle "badboy.png"
+        action Jump ("interrogation_bb")
+
+screen interrogation_albino:
+    imagebutton:
+        xalign 0.65
+        idle "businessman2.png" 
+        action Jump ("interrogation_albino")
+
+screen interrogation_braids:
+    imagebutton:
+        xalign 0.8
+        idle "businessman1.png"
+        action Jump ("interrogation_braids")
+        #action SetVariable("ask_flag",True), Jump("this_is_it")   
+
+screen interrogation_lbguy:
+    imagebutton:
+        xalign 0.95
+        idle "lovebirdguy.png"
+        action Jump ("interrogation_lbguy")
+
+screen interrogation_lbgirl:
+    imagebutton:
+        xalign 1.08
+        idle "lovebirdgirl.png"
+        action Jump ("interrogation_lbgirl")
+
 
 #screen hide:
     #action HideInterface()
@@ -5280,6 +5395,8 @@ label objects_interrogation:
 
 
 label interrogation_screen:
+
+    hide screen notebook_button ### temporary
 
     $ people_mc = False
     $ people_dd = False
