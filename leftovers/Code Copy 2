@@ -1,4 +1,4 @@
-﻿# The script of the game goes in this file.
+# SECOND COPY OF SCRIPT 28/MAYO/24
 
 ### animated images
 
@@ -2266,110 +2266,125 @@ screen objects_interrogation:
             yalign 0.5
             spacing 490 ### temporary
             box_wrap True
-            
+
+            vbox:
+                textbutton "object1":
+                    action [SetVariable ("objects_object1", True), Hide ("objects_interrogation"), Jump ("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+
             showif clover == True:
                 vbox:
                     textbutton "Lucky Clover":
-                        action [SetVariable ("clover_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
 
             showif businesscard == True:
                 vbox:
                     textbutton "Business Card":
-                        action [SetVariable ("businesscard_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
-
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
             showif businesscard_bm2 == True:
                 vbox:
                     textbutton "Old Business Card":
-                        action [SetVariable ("businesscard_bm2_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
 
             showif pamphlet == True:
                 vbox:
                     textbutton "Pamphlet":
-                        action [SetVariable ("pamphlet_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
 
             showif mc_keys == True:
                 vbox:
                     textbutton "Keys and Driver's License":
-                        action [SetVariable ("mc_keys_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        if keys_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), SetVariable("quick_menu", True), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
 
             showif old_picture == True:
                 vbox:
                     textbutton "Old Picture":
-                        action [SetVariable ("old_picture_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif pg_phone == True:
                 vbox:
                     textbutton "Victim's Phone":
-                        action [SetVariable ("pg_phone_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             
             showif note:
                 vbox:
                     textbutton "Torn Note":
-                        action [SetVariable ("note_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif charger == True:
                 vbox:
                     textbutton "Phone Charger":
-                        action [SetVariable ("charger_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif hunting_knife:
                 vbox:
                     textbutton "Hunting Blade":
-                        action [SetVariable ("hunting_knife_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif dagger == True:
                 vbox:
                     if empty_sheath:
                         textbutton "Expensive Dagger, Sheated":
-                            action [SetVariable ("sheathed_dagger_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
                     else:
                         textbutton "Expensive Dagger, Unsheated":
-                            action [SetVariable ("dagger_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 if empty_sheath == True:
                     vbox:
                         textbutton "Empty Sheath":
-                            action [SetVariable ("empty_sheath_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif umbrella == True:
                 vbox:
                     textbutton "Umbrella":
-                        action [SetVariable ("umbrella_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif wirecutters == True:
                 vbox:
                     textbutton "Wirecutters":
-                        action [SetVariable ("wirecutters_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif poison_bottle == True:
                 vbox:
                     textbutton "Poison bottle":
-                        action [SetVariable ("poison_bottle_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif peanutbutter == True:
                 vbox:
                     textbutton "Peanut Butter":
-                        action [SetVariable ("peanutbutter_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif sardines == True:
                 vbox:
                     textbutton "Sardines":
-                        action [SetVariable ("sardines_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif cat_object == True:
                 vbox:
                     textbutton "CAT":
-                        action [SetVariable ("cat_object_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif cat_accessory_1 == True:
                 vbox:
                     textbutton "Tiny Bow":
-                        action [SetVariable ("cat_accessory_1_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif cat_accessory_2 == True:
                 vbox:
                     textbutton "Cat Glasses":
-                        action [SetVariable ("cat_accessory_2_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
 screen cc_interrogation:
     hbox:
@@ -2701,947 +2716,6 @@ screen interrogation_lbgirl:
     #action HideInterface()
 
 ### python functions
-
-init python: #objectsInterrogation
-    def objectsInterrogation(act = 0, level = 0, businesscard_i = False, pamphlet_i = False, clover_i = False, umbrella_i = False, mc_keys_i = False, shovel_i = False, pg_phone_i = False, pg_picture_i = False, charger_i = False, old_picture_i = False, note_i = False, cat_object_i = False, keys_object_i = False, wirecutters_i = False, businesscard_bm2_i = False, hunting_knife_i = False, empty_sheath_i = False, poison_bottle_i = False, dagger_i = False, sheathed_dagger_i = False, peanutbutter_i = False, sardines_i = False, cat_accessory_1_i = False, cat_accessory_2_i = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
-        act -= 1
-        level -= 1
-
-        if bb_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = bb
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif dd_interrogation:
-            
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = d
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif cc_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = cc
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif gg_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = gg
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif albino_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = bm2
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif braids_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = bm1
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif bl_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = bl
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif lbguy_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = lbguy
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
-
-        elif lbgirl_interrogation:
-
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            charger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            old_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            poison_bottle = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sheathed_dagger = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            peanutbutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            sardines = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_1 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            cat_accessory_2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-
-            p = lbgirl
-
-            if businesscard_i:
-                renpy.say(p, businesscard[act][level])
-
-            elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
-
-            elif clover_i:
-                renpy.say(p, clover[act][level])
-
-            elif umbrella_i:
-                renpy.say(p, umbrella[act][level])
-
-            elif mc_keys_i:
-                renpy.say(p, mc_keys[act][level])
-                
-            elif shovel_i:
-                renpy.say(p, shovel[act][level])
-
-            elif pg_phone_i:
-                renpy.say(p, pg_phone[act][level])
-
-            elif pg_picture_i:
-                renpy.say(p, pg_picture[act][level])
-
-            elif charger_i:
-                renpy.say(p, charger[act][level])
-                
-            elif old_picture_i:
-                renpy.say(p, old_picture[act][level])
-                
-            elif note_i:
-                renpy.say(p, note[act][level])
-
-            elif cat_object_i:
-                renpy.say(p, cat_object[act][level])
-
-            elif keys_object_i:
-                renpy.say(p, keys_object[act][level])
-
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
-
-            elif businesscard_bm2_i:
-                renpy.say(p, businesscard_bm2[act][level])
-                
-            elif hunting_knife_i:
-                renpy.say(p, hunting_knife[act][level])
-
-            elif empty_sheath_i:
-                renpy.say(p, empty_sheath[act][level])
-
-            elif poison_bottle_i:
-                renpy.say(p, poison_bottle[act][level])
-
-            elif dagger_i:
-                renpy.say(p, dagger[act][level])
-                
-            elif sheathed_dagger_i:
-                renpy.say(p, sheathed_dagger[act][level])
-
-            elif peanutbutter_i:
-                renpy.say(p, peanutbutter[act][level])
-
-            elif sardines_i:
-                renpy.say(p, sardines[act][level])
-
-            elif cat_accessory_1_i:
-                renpy.say(p, cat_accessory_1[act][level])
-                
-            elif cat_accessory_2_i:
-                renpy.say(p, cat_accessory_2[act][level])
-    
-            else:
-                renpy.say(p, "...")
 
 init python: #peopleInterrogation
     def peopleInterrogation(act = 0, level = 0, people_mc = False, people_dd = False, people_bb = False, people_gg = False, people_cc = False, people_pg = False, people_albino = False, people_braids = False, people_bl = False, people_lbguy = False, people_lbgirl = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
@@ -4212,32 +3286,10 @@ label start:
     $ people_lbguy = False
     $ people_lbgirl = False
 
-    ### interrogation variables ###
-    $ businesscard_i = False
-    $ pamphlet_i = False
-    $ clover_i = False
-    $ mc_keys_i = False
-    $ umbrella_i = False     
-    $ shovel_i = False
-    $ pg_phone_i = True
-    $ pg_picture_i = False
-    $ charger_i = False      
-    $ old_picture_i = False
-    $ note_i = False
-    $ cat_object_i = False   
-    $ keys_object_i = False
-    $ wirecutters_i = False
-    $ businesscard_bm2_i = False
-    $ hunting_knife_i = False
-    $ empty_sheath_i = False
-    $ poison_bottle_i = False
-    $ dagger_i = False
-    $ sheathed_dagger_i = False
-    $ peanutbutter_i = False      
-    $ sardines_i = False          
-    $ cat_accessory_1_i = False   
-    $ cat_accessory_2_i = False   
+    $ objects_object1= False
+    $ object1 = True
 
+    ### interrogation variables ###
     $ where_bb = True
     $ unusual_bb = False
     $ butt_bb = True
@@ -4301,6 +3353,7 @@ label start:
     $ lbgirl_age = False
 
     ### object variables ###
+    $ object1 = True #### temporary ####
     $ businesscard_object = False
     $ businesscard = True
     $ pamphlet = True
@@ -6330,35 +5383,13 @@ label interrogation_lbgirl:
 ## interrogation stuff ##
 
 label objects_interrogation: 
-    
-    $ level = 1
 
-    $ objectsInterrogation(act, level, businesscard_i, pamphlet_i, clover_i, umbrella_i, mc_keys, shovel_i, pg_phone_i, pg_picture_i, charger_i, old_picture_i, note_i, cat_object_i, keys_object_i, wirecutters_i, businesscard_bm2_i, hunting_knife_i, empty_sheath_i, poison_bottle_i, dagger_i, sheathed_dagger_i, peanutbutter_i, sardines, cat_accessory_1_i, cat_accessory_2_i, dd_interrogation, bb_interrogation, gg_interrogation, cc_interrogation, albino_interrogation, braids_interrogation, bl_interrogation, lbguy_interrogation, lbgirl_interrogation)
+    if bb_interrogation == True:
 
-    $ businesscard_i = False
-    $ pamphlet_i = False
-    $ clover_i = False
-    $ mc_keys_i = False
-    $ umbrella_i = False    
-    $ shovel_i = False
-    $ pg_phone_i = True
-    $ pg_picture_i = False
-    $ charger_i = False     
-    $ old_picture_i = False
-    $ note_i = False
-    $ cat_object_i = False   
-    $ keys_object_i = False
-    $ wirecutters_i = False
-    $ businesscard_bm2_i = False
-    $ hunting_knife_i = False
-    $ empty_sheath_i = False
-    $ poison_bottle_i = False
-    $ dagger_i = False
-    $ sheathed_dagger_i = False
-    $ peanutbutter_i = False     
-    $ sardines_i = False          
-    $ cat_accessory_1_i = False   
-    $ cat_accessory_2_i = False   
+        if objects_object1:
+            bb "an object"
+
+        $ objects_object1 = False
 
     call screen objects_interrogation 
 
@@ -6378,6 +5409,9 @@ label interrogation_screen:
     $ people_bl = False
     $ people_lbguy = False
     $ people_lbgirl = False
+
+    $ objects_object1= False
+    $ object1 = True
 
     call screen interrogation_options
 
