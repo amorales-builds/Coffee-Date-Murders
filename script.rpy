@@ -947,7 +947,7 @@ screen notebook_button:
         xoffset -35
         yoffset 10
         #action SetVariable("quick_menu", False), Show("notebook_inside"), Play ("sound", "audio/notebook_sounds_onepage.wav")
-        action [Hide("notebook_button"), Hide("say"), Show("notebook_open")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+        action [Hide("notebook_button"), Hide("say"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_inside:
     modal True
@@ -1073,7 +1073,7 @@ screen notebook_people:
             yoffset 20
             textbutton "return":
                 text_size 40
-                action [Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d"), Show("notebook_open")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+                action [Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_people_mc:
     modal True
@@ -1338,7 +1338,7 @@ screen notebook_info:
                 yoffset 20
                 textbutton "return":
                     text_size 40
-                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting"), Show("notebook_open")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_info_hitnovel:
     fixed:
@@ -1780,10 +1780,9 @@ screen notebook_info_inheritance:
                 xmaximum 720
                 text "From a matriarcal lineage, she's about to inherit her whole family fortune."
 
-
 screen notebook_objects:
     modal True
-    dismiss action [Hide("notebook_objects"), Show("notebook_open")]
+    dismiss action [Hide("notebook_objects"), Show("notebook_inside")]
     frame:
         #background Solid("#7ca397ff")
         background Solid("#0000ff00") # transparent
@@ -2151,6 +2150,36 @@ screen leave_interrogation:
                 action Jump("investigation_middle")
 
 screen interrogation_options:
+    modal True
+    imagebutton: 
+        xalign 0.17
+        yalign 0.93
+        idle "images/mbttn.png" 
+        action [Hide("interrogation_options"), Jump("interrogation_questions")], Play("sound", "audio/notebook_sounds_button.wav")
+    
+    imagebutton: 
+        xalign 0.35
+        yalign 0.9
+        idle "images/nbttn.png" 
+        action [Hide("interrogation_options"), Show("people_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+    imagebutton: 
+        xalign 0.635
+        yalign 0.89
+        idle "images/bbttn.png" 
+        action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+    
+    imagebutton: 
+        xalign 0.83
+        yalign 0.93
+        idle "images/babttn.png" 
+        action [Hide("interrogation_options"), Jump("investigation_middle")]   , Play ("sound", "audio/notebook_sounds_button.wav")
+
+    image "images/nb.png":
+        xalign 0.5
+        yalign 1.0      
+
+screen interrogation_options_old:
     hbox:
         xalign 0.5
         #yalign 0.04
@@ -6422,11 +6451,11 @@ label interrogation_questions:
                 jump know_bb  
 
             "Nevermind." if understanding_bb == False:
-                jump interrogation_bb_screen
+                jump interrogation_screen
 
             "Thank you for your cooperation." if understanding_bb:
                 bb "Well, it was alright."
-                jump interrogation_bb_screen
+                jump interrogation_screen
 
     #jump interrogation_bb
 
