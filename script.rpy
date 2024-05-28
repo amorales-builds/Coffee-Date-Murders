@@ -57,25 +57,25 @@ define mc = Character("[name]")
 define smc = Character(image = "mc", what_italic = True, what_kerning = 3) 
 define smcs = Character(image = "mc", window_background = "testbox")
 define bb = Character("Bad Boy")
-define sbb = Character(image = "bb")
+define sbb = Character("Bad Boy", image = "bb")
 define d = Character("Doctor")
-define sd = Character(image = "d")
+define sd = Character("Doctor", image = "d")
 define gg = Character("Gentle Giant")
-define sgg= Character(image = "gg")
+define sgg= Character("Gentle Giant", image = "gg")
 define cc = Character("Cute Cook")
-define scc = Character(image = "cc")
+define scc = Character("Cute Cook", image = "cc")
 define pg = Character("Pretty Girl")
-define spg = Character(image = "pg")
+define spg = Character("Pretty Girl", image = "pg")
 define bl = Character("Barista Lady")
-define sbl = Character(image = "bl")
-define bm1 = Character("Business Man 1")
-define sbm1 = Character(image = "bm1")
-define bm2 = Character("Business Man 2")
-define sbm2 = Character(image = "bm2")
+define sbl = Character("Barista Lady", image = "bl")
+define bm1 = Character("Braids")
+define sbm1 = Character("Braids", image = "bm1")
+define bm2 = Character("Albino")
+define sbm2 = Character("Albino", image = "bm2")
 define lbguy = Character("Love Bird Guy")
-define slbguy = Character(image = "lbguy")
+define slbguy = Character("Love Bird Guy", image = "lbguy")
 define lbgirl = Character("Love Bird Girl")
-define slbgirl = Character(image = "lbgirl")
+define slbgirl = Character("Love Bird Girl", image = "lbgirl")
 define e = Character("Editor", window_background = "testbox")
 
 ### customs
@@ -681,8 +681,9 @@ screen rude_ending_why:
 
 ### Tools
 
-screen mask:
-    image "images/triangles.png"
+#screen mask:
+    #image "images/frame2.png"
+    #image "images/triangles.png"
 
 screen qmenu:
     modal True
@@ -901,30 +902,40 @@ screen notebook_people_intro:
                 action [Hide ("notebook_people_intro"), Play ("sound", "audio/lasershot.wav")]
                 #Show("notebook_button", transition=Dissolve(1.5))
 
+screen notebook_open:
+
+    dismiss action [Hide("notebook_open"), Show("notebook_button")], Return()
+
+    imagebutton: 
+        xalign 0.17
+        yalign 0.93
+        idle "images/mbttn.png" 
+        action [Hide("notebook_open"), Show("notebook_button"), ShowMenu("qmenu")], Play("sound", "audio/bell.wav")
+    
+    imagebutton: 
+        xalign 0.35
+        yalign 0.9
+        idle "images/nbttn.png" 
+        action [Hide("notebook_open"), Show("notebook_people")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+    imagebutton: 
+        xalign 0.635
+        yalign 0.89
+        idle "images/bbttn.png" 
+        action [Hide("notebook_open"), Show("notebook_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
+    
+    imagebutton: 
+        xalign 0.83
+        yalign 0.93
+        idle "images/babttn.png" 
+        action [Hide("notebook_open"), Show("notebook_info")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+    image "images/nb.png":
+        xalign 0.5
+        yalign 1.0
+
 screen notebook_button:
-    #imagebutton:
-    #    xanchor 1.0
-    #    yanchor 0.0
-    #    xpos 1.0
-    #    ypos -0.15
-        #xanchor 0.0
-        #yanchor 0.0
-        #xpos 0.0
-        #ypos -0.15
-        #ypos 0.4
-        ##idle "gui/testbutton_idle.png"
-        ##hover "gui/testbutton_hover.png"
-        #action NullAction()
-    #    action Show("notebook_inside")
-    #frame:
-    #    xalign 1.0
-    #    ypadding -3
-    #    xoffset -35
-    #    yoffset 15
-    #    vbox:
-    #        textbutton "Notebook":
-    #            text_size 30
-    #            action Show("notebook_inside")
+
     imagebutton: 
         auto "buttons/notebook_button_%s.png" 
         #idle "buttons/notebook_button_idle.png" 
@@ -935,7 +946,8 @@ screen notebook_button:
         ypadding -3
         xoffset -35
         yoffset 10
-        action SetVariable("quick_menu", False), Show("notebook_inside"), Play ("sound", "audio/notebook_sounds_onepage.wav")
+        #action SetVariable("quick_menu", False), Show("notebook_inside"), Play ("sound", "audio/notebook_sounds_onepage.wav")
+        action [Hide("notebook_button"), Hide("say"), Show("notebook_open")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_inside:
     modal True
@@ -1061,10 +1073,11 @@ screen notebook_people:
             yoffset 20
             textbutton "return":
                 text_size 40
-                action [Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+                action [Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d"), Show("notebook_open")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_people_mc:
-    #modal True
+    modal True
+    dismiss action Hide ("notebook_people_mc")
     fixed:
         vbox:
             xalign 0.48
@@ -1325,7 +1338,7 @@ screen notebook_info:
                 yoffset 20
                 textbutton "return":
                     text_size 40
-                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting"), Show("notebook_open")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_info_hitnovel:
     fixed:
@@ -1770,27 +1783,48 @@ screen notebook_info_inheritance:
 
 screen notebook_objects:
     modal True
-    dismiss action [Hide ("notebook_objects"), Show("notebook_inside")]
+    dismiss action [Hide("notebook_objects"), Show("notebook_open")]
     frame:
-        background Solid("#0000ff00")
-        image "images/bag_bg.png":
-            xalign 0.5
-        grid 3 3:
+        #background Solid("#7ca397ff")
+        background Solid("#0000ff00") # transparent
+        #background "images/frame2.png"
+        image "images/bag_bg2.png":
             xalign 0.5
             yalign 0.5
-            spacing 45
-            vbox:
-                textbutton "lucky clover":
-                    action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
+        hbox:
+            xalign 0.5
+            yalign 0.5
+            spacing 490 ### temporary
+            box_wrap True
+
+            showif clover == True:
+                vbox:
+                    textbutton "Lucky Clover":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
+
             showif businesscard == True:
                 vbox:
-                    textbutton "business card":
+                    textbutton "Business Card":
                         if businesscard_object:
                             action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
                         else:
                             action NullAction()
-            else:
-                pass
+            showif businesscard_bm2 == True:
+                vbox:
+                    textbutton "Old Business Card":
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
+
+            showif pamphlet == True:
+                vbox:
+                    textbutton "Pamphlet":
+                        if businesscard_object:
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        else:
+                            action NullAction()
+
             showif mc_keys == True:
                 vbox:
                     textbutton "Keys and Driver's License":
@@ -1798,51 +1832,93 @@ screen notebook_objects:
                             action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), SetVariable("quick_menu", True), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
                         else:
                             action NullAction()
-            else:
-                pass
+
+            showif old_picture == True:
+                vbox:
+                    textbutton "Old Picture":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
             showif pg_phone == True:
                 vbox:
                     textbutton "Victim's Phone":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif empty_sheath == True:
+            
+            showif note:
                 vbox:
-                    textbutton "Empty Sheath":
+                    textbutton "Torn Note":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
+
+            showif charger == True:
+                vbox:
+                    textbutton "Phone Charger":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif hunting_knife:
+                vbox:
+                    textbutton "Hunting Blade":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
             showif dagger == True:
                 vbox:
-                    textbutton "Expensive Dagger":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                    if empty_sheath:
+                        textbutton "Expensive Dagger, Sheated":
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                    else:
+                        textbutton "Expensive Dagger, Unsheated":
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
-                pass
+                if empty_sheath == True:
+                    vbox:
+                        textbutton "Empty Sheath":
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif umbrella == True:
+                vbox:
+                    textbutton "Umbrella":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif wirecutters == True:
+                vbox:
+                    textbutton "Wirecutters":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
             showif poison_bottle == True:
                 vbox:
                     textbutton "Poison bottle":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+
+            showif peanutbutter == True:
                 vbox:
-                    textbutton "business card":
+                    textbutton "Peanut Butter":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif businesscard == False:
+
+            showif sardines == True:
                 vbox:
-                    textbutton "business card":
+                    textbutton "Sardines":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-        hbox:
-                xpos 0.9
-                xoffset -5
-                yoffset 20
-                textbutton "return":
-                    text_size 40
-                    action Hide("notebook_objects"), Play ("sound", "audio/notebook_sounds_onepage.wav")
+
+            showif cat_object == True:
+                vbox:
+                    textbutton "CAT":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif cat_accessory_1 == True:
+                vbox:
+                    textbutton "Tiny Bow":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+            showif cat_accessory_2 == True:
+                vbox:
+                    textbutton "Cat Glasses":
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+        #hbox:
+                #xpos 0.9
+                #xoffset -5
+                #yoffset 20
+                #textbutton "return":
+                #    text_size 40
+                #    action Hide("notebook_objects"), Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 
 ## interrogation stuff
@@ -2521,6 +2597,9 @@ screen old_lady2:
         unhovered Hide ("l2_description")
         action SetVariable("asked_flag", True), Jump("this_is_it_done") 
 
+#screen hide:
+    #action HideInterface()
+
 ### python functions
 
 init python: #peopleInterrogation
@@ -3167,7 +3246,7 @@ label start:
     $ mc_keys = True
     $ umbrella = False     # given by bl to check out cars {?}
     $ shovel = False
-    $ pg_phone = False
+    $ pg_phone = True
     $ pg_picture = False
     $ charger = False      # draggable unto phone or wall outlet ?
     $ old_picture = False
@@ -3181,8 +3260,8 @@ label start:
     $ poison_bottle = False
     $ dagger = False
     $ sheathed_dagger = False
+    $ peanutbutter = False      # allergen
     $ sardines = False          # draggable onto cat
-    $ peanutbutter = False      # draggable onto cat ?
     $ cat_accessory_1 = False   # draggable onto cat
     $ cat_accessory_2 = False   # draggable onto cat
     
@@ -3195,9 +3274,11 @@ label start:
 
     ####################################################### S T A R T ################################################################
     
+
+    #show screen mask
     
     scene diner_lowangle_bg
-    show screen mask
+    #show screen mask
     with fade
 
     show screen qmenu_button
@@ -3223,7 +3304,7 @@ label road:
 
     #"screen car_inside"
 
-    hide screen mask
+    #hide screen mask
 
     with fade
     
