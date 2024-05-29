@@ -947,7 +947,7 @@ screen notebook_button:
         xoffset -35
         yoffset 10
         #action SetVariable("quick_menu", False), Show("notebook_inside"), Play ("sound", "audio/notebook_sounds_onepage.wav")
-        action [Hide("notebook_button"), Hide("say"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+        action [Hide("notebook_button"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 screen notebook_inside:
     modal True
@@ -992,7 +992,7 @@ screen notebook_inside:
             yoffset 20
             textbutton "close":
                 text_size 40
-                action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), Hide("notebook_inside")
+                action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Show("notebook_button")]
 
 screen notebook_people:
     modal True
@@ -1793,26 +1793,26 @@ screen notebook_objects:
         hbox:
             xalign 0.5
             yalign 0.5
-            spacing 490 ### temporary
+            spacing 10 ### temporary
             box_wrap True
 
             showif clover == True:
                 vbox:
                     textbutton "Lucky Clover":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")           
 
             showif businesscard == True:
                 vbox:
                     textbutton "Business Card":
                         if businesscard_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
                         else:
                             action NullAction()
             showif businesscard_bm2 == True:
                 vbox:
                     textbutton "Old Business Card":
                         if businesscard_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
                         else:
                             action NullAction()
 
@@ -1820,7 +1820,7 @@ screen notebook_objects:
                 vbox:
                     textbutton "Pamphlet":
                         if businesscard_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
                         else:
                             action NullAction()
 
@@ -1828,88 +1828,88 @@ screen notebook_objects:
                 vbox:
                     textbutton "Keys and Driver's License":
                         if keys_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), SetVariable("quick_menu", True), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
                         else:
                             action NullAction()
 
             showif old_picture == True:
                 vbox:
                     textbutton "Old Picture":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif pg_phone == True:
                 vbox:
                     textbutton "Victim's Phone":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             
             showif note:
                 vbox:
                     textbutton "Torn Note":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif charger == True:
                 vbox:
                     textbutton "Phone Charger":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif hunting_knife:
                 vbox:
                     textbutton "Hunting Blade":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif dagger == True:
                 vbox:
                     if empty_sheath:
                         textbutton "Expensive Dagger, Sheated":
-                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
                     else:
                         textbutton "Expensive Dagger, Unsheated":
-                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             else:
                 if empty_sheath == True:
                     vbox:
                         textbutton "Empty Sheath":
-                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                            action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif umbrella == True:
                 vbox:
                     textbutton "Umbrella":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif wirecutters == True:
                 vbox:
                     textbutton "Wirecutters":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif poison_bottle == True:
                 vbox:
                     textbutton "Poison bottle":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif peanutbutter == True:
                 vbox:
                     textbutton "Peanut Butter":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif sardines == True:
                 vbox:
                     textbutton "Sardines":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif cat_object == True:
                 vbox:
                     textbutton "CAT":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif cat_accessory_1 == True:
                 vbox:
                     textbutton "Tiny Bow":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif cat_accessory_2 == True:
                 vbox:
                     textbutton "Cat Glasses":
-                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), SetVariable("quick_menu", True), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
+                        action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
         #hbox:
                 #xpos 0.9
@@ -1921,233 +1921,6 @@ screen notebook_objects:
 
 
 ## interrogation stuff
-
-screen interrogation_button:
-    #imagebutton:
-    #    xanchor 1.0
-    #    yanchor 0.5
-    #    xpos 1.0
-    #    ypos 0.5
-    #    #ypos 0.4
-    #    idle "gui/testbutton_hover.png"
-    #    hover "gui/testbutton_idle.png"
-    #    action Show("interrogation")
-
-    imagebutton: 
-        auto "buttons/notebook_button_%s.png"
-        xalign 1.0
-        ypadding -3
-        xoffset -35
-        yoffset 10
-        action Show("interrogation"), Play ("sound", "audio/notebook_sounds_button.wav")
-
-screen interrogation:
-    default interrogation_flag = True
-    modal True
-    image "images/colors_dark.png"
-    vbox:
-        xalign 0.15
-        ypos 0.5
-        yanchor 0.5
-        spacing 250
-        imagebutton:
-            auto "gui/button/people_button_%s.png"
-            action Show("people")
-        imagebutton:
-            auto "gui/button/questions_button_%s.png"
-            action Show("questions")
-    vbox:
-        xalign 0.85
-        ypos 0.5
-        yanchor 0.5
-        spacing 250
-        imagebutton:
-            auto "gui/button/objects_button_%s.png"
-            action Show("objects")
-        imagebutton:
-            auto "gui/button/specials_button_%s.png"
-            action Show("specials")
-    hbox:
-        xalign 0.5
-        image "images/doctor.png":
-            xzoom 1.2
-            yzoom 1.2
-    frame:
-        xalign 0.97
-        yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "leave":
-                text_size 39
-                action [Hide("interrogation"), Jump("doctor_after")]         
-
-screen people:
-    modal True
-    image "images/colors_dark.png"
-    grid 5 2:
-            xalign 0.5
-            ypos 0.55
-            yanchor 0.5
-            spacing 30
-            imagebutton:
-                idle "images/side/side mc.png"
-                action [Hide("people"), Hide("interrogation"), Jump("people_mc")]
-            imagebutton:
-                idle "images/side/side bb.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side gg.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side cc.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side pg.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side bl.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side lbgirl.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side lbguy.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side bm1.png"
-                action NullAction()
-            imagebutton:
-                idle "images/side/side bm2.png"
-                action NullAction()
-    frame:
-        xalign 0.97
-        yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "return":
-                text_size 39
-                action Hide("people")
-
-screen questions:
-    modal True
-    image "images/colors_dark.png"
-    hbox:
-        xalign 0.5
-        image "images/doctor.png":
-            xzoom 1.2
-            yzoom 1.2
-    vbox:
-        xalign 0.5
-        yalign 0.67
-        #spacing 50
-        spacing 75
-        image "gui/button/choice_idle_background.png"
-        image "gui/button/choice_idle_background.png"
-    vbox:
-        xalign 0.5
-        yalign 0.67
-        #spacing 50
-        spacing 75
-        #frame:
-            #image "gui/button/choice_idle_background.png"
-            #xmaximum 600
-            #ymaximum 100
-                #xminimum 600
-                #yminimum 100
-        textbutton "Do you like me?":
-            xalign 0.5 
-            text_size 35
-            action [Hide("questions"), Hide("interrogation"), Jump("d_affection")]
-        #frame:
-            #image "gui/button/choice_idle_background.png"
-            #xmaximum 600
-            #ymaximum 100
-                #xminimum 600
-                #yminimum 100
-        textbutton "Do I like you?":
-            xalign 0.5 
-            text_size 35
-            action [Hide("questions"), Hide("interrogation"), Jump("d_interest")]
-    frame:
-        xalign 0.97
-        yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "return":
-                text_size 39
-                action Hide("questions")
-
-screen d_answers:
-    modal True
-    image "images/colors_dark.png"
-    hbox:
-        xalign 0.5
-        image "images/doctor.png":
-            xzoom 1.2
-            yzoom 1.2
-
-screen objects:
-    modal True
-    image "images/colors_dark.png"
-    imagebutton:
-        xalign 0.5
-        ypos 0.5
-        yanchor 0.5
-        auto "brokenstool_%s.png"
-        action [Hide("objects"), Hide("interrogation"), Jump("objects_stool")]
-    frame:
-        xalign 0.97
-        yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "return":
-                text_size 39
-                action Hide("objects")
-
-screen specials:
-    modal True
-    image "images/colors_dark.png"
-    vbox:
-        xalign 0.30
-        ypos 0.5
-        yanchor 0.5
-        spacing 65
-        imagebutton:
-            idle "images/side/side d.png"
-            action NullAction()
-        imagebutton:
-            idle "images/side/side cc.png"
-            action NullAction()
-    vbox:
-        xalign 0.70
-        ypos 0.5
-        yanchor 0.5
-        spacing 65
-        imagebutton:
-            idle "images/side/side bb.png"
-            action NullAction()
-        imagebutton:
-            idle "images/side/side gg.png"
-            action [Hide("specials"), Hide("interrogation"),Jump("gg_special")]
-    frame:
-        xalign 0.97
-        yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "return":
-                text_size 39
-                action Hide("specials")    
-
-screen leave_interrogation:
-    frame:
-        #xalign 0.5
-        xalign 0.97
-        #yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "leave":
-                text_size 39
-                action Jump("investigation_middle")
 
 screen interrogation_options:
     modal True
@@ -2177,33 +1950,7 @@ screen interrogation_options:
 
     image "images/nb.png":
         xalign 0.5
-        yalign 1.0      
-
-screen interrogation_options_old:
-    hbox:
-        xalign 0.5
-        #yalign 0.04
-        yalign 0.88
-        spacing 270
-        frame:
-            textbutton "interrogate":
-                action Jump ("interrogation_questions")
-        frame:
-            textbutton "people":
-                action Show("people_interrogation")
-        frame:
-            textbutton "objects":
-                action Show("objects_interrogation")
-
-    frame:
-        #xalign 0.5
-        xalign 0.97
-        #yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "leave":
-                text_size 39
-                action Jump("investigation_middle")        
+        yalign 1.0            
 
 screen people_interrogation:
     modal True
@@ -4994,8 +4741,6 @@ label doctor_intro:
 
     hide screen d_description
 
-    #show screen interrogation_button
-
     scene doctor_seat
 
     show doctor at sitting
@@ -5017,8 +4762,6 @@ label doctor_intro:
             d "It is, make yourself comfortable."
 
     label doctor_done:
-        
-        #show screen interrogation_button
 
     smcs "Thank you!"
 
@@ -5206,10 +4949,6 @@ label doctor_intro:
 
                     jump storm
 
-
-
-    #call screen interrogation_button
-
 #label novel:
 
 label doctor_after:
@@ -5227,240 +4966,6 @@ label doctor_after:
     smcs "Sure was."
 
     jump storm 
-
-label interrogation:
-
-    hide screen notebook_button  
-    #hide screen test 
-
-    $ interrogation_flag = True
-    $ interrogation_continue += 1
-
-    if interrogation_continue == 1:
-
-        scene colors_dark
-
-        hide screen interrogation_return
-        show screen interrogation_leave
-
-        show doctor at sitting
-
-        #hide screen test
-     
-        with dissolve
-
-        show doctor at center with move:
-            xzoom 1.2
-            yzoom 1.2
-
-        hide screen interrogation_button
-
-        hide screen interrogation_return
-        
-        call screen interrogation
-
-        hide screen interrogation
-
-        scene diner_lowangle_bg
-
-        hide screen doctor_sat
-
-    else:
-
-        scene colors_dark
-
-        hide screen interrogation_return
-        show screen interrogation_leave
-
-        show doctor at center:
-            xzoom 1.2
-            yzoom 1.2
-
-        call screen interrogation
-
-        hide screen interrogation
-
-        scene diner_lowangle_bg
-
-        hide screen doctor_sat
-
-label people:
-    label people_mc:
-
-        scene colors_dark
-
-        hide screen notebook_button  
-        #hide screen test 
-        
-        show doctor at center:
-            xzoom 1.2
-            yzoom 1.2
-        
-
-        if d_attraction_points >= 1:
-
-            d "I think you are pretty."
-
-            smcs "You dont look half bad yourself."
-
-        else:
-
-            d "You seem nice."
-
-            smcs "Thank you!"
-
-        call screen interrogation
-
-label objects:
-
-    label objects_stool:
-
-        scene colors_dark
-
-        hide screen notebook_button  
-        #hide screen test 
-    
-        show doctor at center:
-            xzoom 1.2
-            yzoom 1.2
-
-        #with dissolve
-
-        d "It is broken."
-
-        smc "...right."
-
-        call screen interrogation
-
-label d_questions:
-
-    #hide screen interrogation_leave
-
-    #show screen interrogation_return
-
-    #scene colors_dark
-    
-    #show doctor at center:
-    #    xzoom 1.2
-    #    yzoom 1.2
-
-    #menu: 
-
-    #    "Do you like me?":
-        
-    #        jump d_affection
-
-    #    "Do I like you?":
-        
-    #        jump d_interest
-
-    label d_affection:
-
-        scene colors_dark
-
-        hide screen notebook_button  
-        #hide screen test 
-    
-        show doctor at center:
-            xzoom 1.2
-            yzoom 1.2
-
-        if d_attraction_points >= 1:
-    
-            d "I do."
-
-            smc "Sweet!"
-
-        else:
-
-            d "Sure."
-
-            smcs "Thanks!"
-
-        jump d_done 
-    
-    label d_interest:
-
-        hide screen notebook_button  
-        #hide screen test 
-
-        scene colors_dark
-    
-        show doctor at center:
-            xzoom 1.2
-            yzoom 1.2
-    
-        d "I hope you do."
-
-        if d_attraction_points >= 1:
-
-            smcs "I might..."
-        
-        else:
-
-            smcs "Sure."
-    
-        jump d_done
-
-    label d_done:   
-
-        call screen interrogation
-
-label gg_special:
-
-    #scene colors_dark
-
-    hide screen notebook_button  
-    #hide screen test 
-    
-    #scene entrance_bg
-
-    scene colors_dark
-
-    with hpunch
-    #with flash
-
-    show gentlegiant at center with moveinleft:
-        xzoom 1.6
-        yzoom 1.6
-        ypos 1.4
-
-    #with vpunch
-    #with hpunch
-    #with flash
-    #with vpunch
-
-    with ease 
-
-    #show gentlegiant at quip:
-    #    xzoom 1.6
-    #    yzoom 1.6
-    #    ypos 1.4
-
-    #with ease 
-
-    #g "hmm..."
-
-    hide gentlegiant with moveoutright
-
-    with vpunch
-    #with flash
-
-    show doctor at tremblecenter:
-        xzoom 1.0
-        yzoom 1.0
-
-    d "..."
-
-    #show doctor at center:
-    #    xzoom 1.2
-    #    yzoom 1.2
-
-    d "Intimidation?"
-
-    smcs "Yep."
-
-    call screen interrogation
 
 label storm:
 
