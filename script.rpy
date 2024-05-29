@@ -994,6 +994,7 @@ screen notebook_inside:
                 text_size 40
                 action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Show("notebook_button")]
 
+
 screen notebook_people:
     modal True
     frame:
@@ -1231,7 +1232,8 @@ screen notebook_people_bb:
                     text "Likes classical music and literature."
                 else:
                     pass
-                    
+
+
 screen notebook_info:
     modal True
     frame:
@@ -1780,6 +1782,7 @@ screen notebook_info_inheritance:
                 xmaximum 720
                 text "From a matriarcal lineage, she's about to inherit her whole family fortune."
 
+
 screen notebook_objects:
     modal True
     dismiss action [Hide("notebook_objects"), Show("notebook_inside")]
@@ -1811,18 +1814,12 @@ screen notebook_objects:
             showif businesscard_bm2 == True:
                 vbox:
                     textbutton "Old Business Card":
-                        if businesscard_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-                        else:
-                            action NullAction()
+                        action NullAction()
 
             showif pamphlet == True:
                 vbox:
                     textbutton "Pamphlet":
-                        if businesscard_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-                        else:
-                            action NullAction()
+                        action NullAction()
 
             showif mc_keys == True:
                 vbox:
@@ -2147,31 +2144,6 @@ screen objects_interrogation:
                     textbutton "Cat Glasses":
                         action [SetVariable ("cat_accessory_2_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
 
-screen cc_interrogation:
-    hbox:
-        xalign 0.5
-        #yalign 0.04
-        yalign 0.88
-        spacing 270
-        frame:
-            textbutton "interrogate":
-                action Jump ("interrogation_cc_ask")
-        frame:
-            textbutton "people":
-                action NullAction() #Jump ("interrogation_questions")
-        frame:
-            textbutton "objects":
-                action NullAction() #Jump ("interrogation_questions")
-
-    frame:
-        #xalign 0.5
-        xalign 0.97
-        #yalign 0.0
-        yoffset 30
-        vbox:
-            textbutton "leave":
-                text_size 39
-                action Jump("investigation_middle")    
 
 ### objects screens
 
@@ -5731,10 +5703,6 @@ label interrogation_cc:
     $ cc_closed = False
 
     jump interrogation_screen
-
-label interrogation_cc_ask:
-
-    ""
 
 label interrogation_albino:
 
