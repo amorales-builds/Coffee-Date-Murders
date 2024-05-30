@@ -3125,7 +3125,7 @@ init python: #objectsInterrogation
                 else:
                     renpy.show_screen("notebook_button")
                     renpy.say(p, "Yep, right there, that's our diner!{p}Well... Not quite.")
-                    renpy.say(p, "We're turning it into a Cafe now...{p=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . .")
+                    renpy.say(p, "We're turning it into a Cafe now...{p=0.1}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .")
                     renpy.jump("why")
 
             elif clover_i:
@@ -4467,7 +4467,7 @@ label is_it:
 
                 jump this_is_it_done
 
-            "How so?" if how_old == False:
+            "You don't seem very happy about it." if how_old == False:
 
                 $ how_old = True
                 
@@ -4475,7 +4475,7 @@ label is_it:
                 
                 sbl "{cps=90}{size=+5}But we mom's know what's best for our little ones!{/size}{/cps}"
 
-                sbl "I convinced him to stay here and give this old place a make over!{p}So we're currently under reconstruction."
+                sbl "I convinced him to stay here and give this old place a make over!{p}We're currently under reconstruction."
                 
                 $ cc_dream_info = True
 
@@ -4497,17 +4497,17 @@ label is_it:
 
                 $ lb_affection_points -= 2
 
-                sbl "{cps= 200}{b}Awful rude you are.{/b}{/cps}{p=0.3}{cps= 90}You know nothing about me or my son to be saying such things!{/cps}{w=2.0}{nw}"
+                sbl "{cps= 200}{b}Awful rude you are.{/b}{/cps}{p=1.0}{cps= 90}You know nothing about me or my son to say such things.{/cps}{w=3.5}{nw}"
 
                 sbl "{cps= 50}I don't want you in my diner{/cps}{nw}"
 
-                sbl "{s}I don't want you in my diner{/s}{cps= 90}- {p=0.2}{b}I mean {size=+10}{w=0.5}{space=10}our Cafe{space=10}{/size}{w=0.5} for any longer!{/b}{/cps}{w=1.0}{nw}" 
+                sbl "{s}I don't want you in my diner{/s}{cps= 90}- {p=0.2}{size=-10}I mean, {/size}{b}{size=+10}{w=0.5}{space=10}our Cafe{space=10}{/size}{w=0.5} any longer!{/b}{/cps}{w=1.5}{nw}" 
                 
                 sbl "{size=+5}{k=+10}{b}You know the way out.{/b}{/k}{/size}"
 
                 #sbl "{cps= 90}I mean Cafe,{/cps} you know the way out."
 
-                $ persistent.rudeending = True
+                $ persistent.rudeending = True  
 
                 jump rude_ending
 

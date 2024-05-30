@@ -1091,11 +1091,11 @@ screen neutral_endings:
                 action NullAction()
         else:
             textbutton "????????"
-        textbutton "something":
+        textbutton "????????":
             action NullAction()
-        textbutton "something":
+        textbutton "????????":
             action NullAction()
-        textbutton "something":
+        textbutton "????????":
             action NullAction()
     imagebutton:
         xanchor 0.0
