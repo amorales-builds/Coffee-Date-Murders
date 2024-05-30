@@ -1921,29 +1921,36 @@ screen notebook_objects:
 
 screen interrogation_options:
     modal True
-    imagebutton: 
-        xalign 0.17
-        yalign 0.93
-        idle "images/mbttn.png" 
-        action [Hide("interrogation_options"), Jump("interrogation_questions")], Play("sound", "audio/notebook_sounds_button.wav")
-    
-    imagebutton: 
-        xalign 0.35
-        yalign 0.9
-        idle "images/nbttn.png" 
-        action [Hide("interrogation_options"), Show("people_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+    if act > 0:
+        imagebutton: 
+            xalign 0.17
+            yalign 0.93
+            idle "images/mbttn.png" 
+            action [Hide("interrogation_options"), Jump("interrogation_questions")], Play("sound", "audio/notebook_sounds_button.wav")
 
-    imagebutton: 
-        xalign 0.635
-        yalign 0.89
-        idle "images/bbttn.png" 
-        action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+        imagebutton: 
+            xalign 0.35
+            yalign 0.9
+            idle "images/nbttn.png" 
+            action [Hide("interrogation_options"), Show("people_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+        imagebutton: 
+            xalign 0.635
+            yalign 0.89
+            idle "images/bbttn.png" 
+            action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
     
-    imagebutton: 
-        xalign 0.83
-        yalign 0.93
-        idle "images/babttn.png" 
-        action [Hide("interrogation_options"), Jump("investigation_middle")]   , Play ("sound", "audio/notebook_sounds_button.wav")
+        imagebutton: 
+            xalign 0.83
+            yalign 0.93
+            idle "images/babttn.png" 
+            action [Hide("interrogation_options"), Jump("investigation_middle")], Play ("sound", "audio/notebook_sounds_button.wav")
+    else: 
+        imagebutton: 
+            xalign 0.635
+            yalign 0.89
+            idle "images/bbttn.png" 
+            action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
 
     image "images/nb.png":
         xalign 0.5
@@ -2452,7 +2459,8 @@ screen interrogation_lbgirl:
 
 init python: #objectsInterrogation
     def objectsInterrogation(act = 0, level = 0, businesscard_i = False, pamphlet_i = False, clover_i = False, umbrella_i = False, mc_keys_i = False, shovel_i = False, pg_phone_i = False, pg_picture_i = False, charger_i = False, old_picture_i = False, note_i = False, cat_object_i = False, keys_object_i = False, wirecutters_i = False, businesscard_bm2_i = False, hunting_knife_i = False, empty_sheath_i = False, poison_bottle_i = False, dagger_i = False, sheathed_dagger_i = False, peanutbutter_i = False, sardines_i = False, cat_accessory_1_i = False, cat_accessory_2_i = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
-        act -= 1
+        if act > 0:
+            act -= 1
         level -= 1
 
         if bb_interrogation:
@@ -3081,11 +3089,11 @@ init python: #objectsInterrogation
 
         elif bl_interrogation:
 
-            businesscard = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            pamphlet = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            clover = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            businesscard = ["You're a writer?{p}That's quite something, sweatheart."],["act 2. ob"],["act 3. ob"]
+            pamphlet = ["That's the pamphlet for our Diner."],["act 2. ob"],["act 3. ob"]
+            clover = ["A lucky charm, very pretty!"],["act 2. ob"],["act 3. ob"]
             umbrella = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            mc_keys = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            mc_keys = ["I don't know what you want me to do with this."],["act 2. ob"],["act 3. ob"]
             shovel = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             pg_phone = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             pg_picture = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -3112,7 +3120,13 @@ init python: #objectsInterrogation
                 renpy.say(p, businesscard[act][level])
 
             elif pamphlet_i:
-                renpy.say(p, pamphlet[act][level])
+                if act > 0:
+                    renpy.say(p, pamphlet[act][level])
+                else:
+                    renpy.show_screen("notebook_button")
+                    renpy.say(p, "Yep, right there, that's our diner!{p}Well... Not quite.")
+                    renpy.say(p, "We're turning it into a Cafe now...{p=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . . {w=0.1}. . .")
+                    renpy.jump("why")
 
             elif clover_i:
                 renpy.say(p, clover[act][level])
@@ -3926,7 +3940,9 @@ label start:
     $ lb_affection_points = 0
 
     ### story variables ###    
-    $ act = 1
+    $ act = 0
+
+    $ tutorial_bag = False
 
     $ dd_closed = False
     $ bb_closed = False
@@ -4056,7 +4072,7 @@ label start:
     $ mc_keys = True
     $ umbrella = False     # given by bl to check out cars {?}
     $ shovel = False
-    $ pg_phone = True
+    $ pg_phone = False
     $ pg_picture = False
     $ charger = False      # draggable unto phone or wall outlet ?
     $ old_picture = False
@@ -4408,28 +4424,38 @@ label is_it:
             $ lb_affection_points += 1
 
             jump is_it
-        
-        "Is this the diner from this brochure?" if evening_bl and weather_bl:
+
+        "Is this the diner from the brochure?" if evening_bl and weather_bl:
 
             #call screen diner_picture
 
-            sbl "Oh, yes it is. {w}Well... Not anymore."
+            sbl "Brochure? Show me."
 
-            sbl "We're a Cafe now."
-
-            jump why
+            jump interrogationTutorial
 
         "May I ask if this is the diner from this brochure?" if evening_bl == False or weather_bl == False:
 
             #call screen diner_picture
 
-            sbl "Oh, yes it is. {w}Well... Not anymore."
+            sbl "A brochure? May I see it?"
 
-            sbl "We're a Cafe now."
+            jump interrogationTutorial
 
-            jump why
+    label interrogationTutorial:
+
+        smcs "I should show her the brochure in my bag..."
+
+        hide screen notebook_button
+
+        $ bl_interrogation = True
+
+        call screen interrogation_options
+
+        $ bl_interrogation = False
 
     label why:
+
+        $ pamphlet_i = False
 
         menu:
             
@@ -4940,6 +4966,8 @@ label doctor_after:
     jump storm 
 
 label storm:
+
+    $ act = 1
 
     #music change
 
@@ -5860,7 +5888,7 @@ label objects_interrogation:
     $ peanutbutter_i = False     
     $ sardines_i = False          
     $ cat_accessory_1_i = False   
-    $ cat_accessory_2_i = False   
+    $ cat_accessory_2_i = False 
 
     call screen objects_interrogation 
 
