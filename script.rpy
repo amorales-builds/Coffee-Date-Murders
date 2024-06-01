@@ -29,6 +29,36 @@ image menu_animated_hovered:
     pause 0.2
     repeat
 
+image nbA:
+    "images/aNB_1.png"
+    pause 0.1
+    "images/aNB_1b.png"
+    pause 0.02
+    "images/aNB_1c.png"
+    pause 0.05
+    "images/aNB_2.png"
+    pause 0.05
+    "images/aNB_3.png"
+    pause 0.02
+    "images/nbTutorial.png"
+    pause 0.05
+
+image nbAc:
+    "images/nbTutorial.png"
+    pause 0.03
+    "images/aNB_3.png"
+    pause 0.02
+    "images/aNB_2.png"
+    pause 0.08
+    "images/aNB_1c.png"
+    pause 0.05
+    "images/aNB_1b.png"
+    pause 0.02
+    "images/aNB_1.png"
+    pause 0.02
+
+
+
 image bb_neutral:
     "images/badboy1.png"
     pause 1.0
@@ -47,6 +77,13 @@ image bb_neutral:
     "images/badboy2.png"
     pause 0.4
     repeat
+
+#image nbTutorial:
+#    "images/nbTutorial_1.png"
+#    pause 0.3
+#    "images/nbTutorial_2.png"
+#    pause 0.3
+    
 
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
@@ -96,6 +133,10 @@ transform slightright:
     xalign 0.75
     yalign 1.0
 
+transform nearleft:
+    xalign 0.9
+    yalign 1.0
+
 transform slightleft:
     xalign 0.25
     yalign 1.0
@@ -105,8 +146,16 @@ transform bbcenter:
     xpos 0.5
     xanchor 0.5
 
+transform outleft:
+    xalign -0.5
+    yalign 1.0
+
 transform completeleft:
     xalign 0.0
+    yalign 1.0
+
+transform nearleft:
+    xalign 0.1
     yalign 1.0
 
 transform lurking:
@@ -930,7 +979,7 @@ screen notebook_open:
         idle "images/babttn.png" 
         action [Hide("notebook_open"), Show("notebook_info")], Play ("sound", "audio/notebook_sounds_button.wav")
 
-    image "images/nb.png":
+    image "images/nbOpen_1.png":
         xalign 0.5
         yalign 1.0
 
@@ -1807,10 +1856,7 @@ screen notebook_objects:
             showif businesscard == True:
                 vbox:
                     textbutton "Business Card":
-                        if businesscard_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
-                        else:
-                            action NullAction()
+                        action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
             showif businesscard_bm2 == True:
                 vbox:
                     textbutton "Old Business Card":
@@ -1824,10 +1870,7 @@ screen notebook_objects:
             showif mc_keys == True:
                 vbox:
                     textbutton "Keys and Driver's License":
-                        if keys_object:
-                            action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
-                        else:
-                            action NullAction()
+                        action [Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("mc_keys", False), Jump ("ids")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif old_picture == True:
                 vbox:
@@ -1873,9 +1916,9 @@ screen notebook_objects:
                     textbutton "Umbrella":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
-            showif wirecutters == True:
+            showif wirecutter == True:
                 vbox:
-                    textbutton "Wirecutters":
+                    textbutton "wirecutter":
                         action NullAction() #[Hide ("notebook_objects"), Hide ("notebook_inside"), SetVariable("businesscard", False), Jump ("businesscard")], Play ("sound", "audio/notebook_sounds_button.wav")
 
             showif poison_bottle == True:
@@ -1919,42 +1962,51 @@ screen notebook_objects:
 
 ## interrogation stuff
 
+    # SO I WANT TO ANIMATE STUFF OPENING UP ( to do: create a label for animations where te button goes there and then it shows the screen )
+
 screen interrogation_options:
     modal True
+
     if act > 0:
+
         imagebutton: 
-            xalign 0.17
-            yalign 0.93
-            idle "images/mbttn.png" 
+            xalign 0.3765
+            yalign 0.915
+            auto "images/notesbttn2_%s.png" 
+            action [Hide("interrogation_options"), Show("people_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+        image "images/nbOpen.png":
+            xalign 0.5
+            yalign 1.0  
+
+        imagebutton: 
+            xalign 0.18
+            yalign 1.0
+            auto "images/askbttn_%s.png" 
             action [Hide("interrogation_options"), Jump("interrogation_questions")], Play("sound", "audio/notebook_sounds_button.wav")
 
         imagebutton: 
-            xalign 0.35
-            yalign 0.9
-            idle "images/nbttn.png" 
-            action [Hide("interrogation_options"), Show("people_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
-
-        imagebutton: 
-            xalign 0.635
-            yalign 0.89
-            idle "images/bbttn.png" 
+            xalign 0.623
+            yalign 1.0
+            auto "images/bagbttn_%s.png" 
             action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
     
         imagebutton: 
-            xalign 0.83
-            yalign 0.93
-            idle "images/babttn.png" 
-            action [Hide("interrogation_options"), Jump("investigation_middle")], Play ("sound", "audio/notebook_sounds_button.wav")
+            xalign 0.82
+            yalign 1.0
+            auto "images/closebttn_%s.png" 
+            action [Hide("interrogation_options"), Jump("notebookAnimationClose")], Play ("sound", "audio/notebook_sounds_button.wav")
     else: 
-        imagebutton: 
-            xalign 0.635
-            yalign 0.89
-            idle "images/bbttn.png" 
-            action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
 
-    image "images/nb.png":
-        xalign 0.5
-        yalign 1.0            
+        image "images/nbTutorial.png":
+            xalign 0.5
+            yalign 1.0  
+
+        imagebutton: 
+            xalign 0.623
+            yalign 1.0
+            auto "images/bagbttn_%s.png" 
+            action [Hide("interrogation_options"), Show("objects_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")        
 
 screen people_interrogation:
     modal True
@@ -2116,10 +2168,10 @@ screen objects_interrogation:
                     textbutton "Umbrella":
                         action [SetVariable ("umbrella_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
 
-            showif wirecutters == True:
+            showif wirecutter == True:
                 vbox:
-                    textbutton "Wirecutters":
-                        action [SetVariable ("wirecutters_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
+                    textbutton "wirecutter":
+                        action [SetVariable ("wirecutter_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
 
             showif poison_bottle == True:
                 vbox:
@@ -2452,13 +2504,15 @@ screen interrogation_lbgirl:
         action Jump ("interrogation_lbgirl")
 
 
-#screen hide:
-    #action HideInterface()
+#init python:
+#   def screen hide:
+#       action HideInterface()
+
 
 ### python functions
 
 init python: #objectsInterrogation
-    def objectsInterrogation(act = 0, level = 0, businesscard_i = False, pamphlet_i = False, clover_i = False, umbrella_i = False, mc_keys_i = False, shovel_i = False, pg_phone_i = False, pg_picture_i = False, charger_i = False, old_picture_i = False, note_i = False, cat_object_i = False, keys_object_i = False, wirecutters_i = False, businesscard_bm2_i = False, hunting_knife_i = False, empty_sheath_i = False, poison_bottle_i = False, dagger_i = False, sheathed_dagger_i = False, peanutbutter_i = False, sardines_i = False, cat_accessory_1_i = False, cat_accessory_2_i = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
+    def objectsInterrogation(act = 0, level = 0, businesscard_i = False, pamphlet_i = False, clover_i = False, umbrella_i = False, mc_keys_i = False, shovel_i = False, pg_phone_i = False, pg_picture_i = False, charger_i = False, old_picture_i = False, note_i = False, cat_object_i = False, keys_object_i = False, wirecutter_i = False, businesscard_bm2_i = False, hunting_knife_i = False, empty_sheath_i = False, poison_bottle_i = False, dagger_i = False, sheathed_dagger_i = False, peanutbutter_i = False, sardines_i = False, cat_accessory_1_i = False, cat_accessory_2_i = False, dd_interrogation = False, bb_interrogation = False, gg_interrogation = False, cc_interrogation = False, albino_interrogation = False, braids_interrogation = False, bl_interrogation = False, lbguy_interrogation = False, lbgirl_interrogation = False):
         if act > 0:
             act -= 1
         level -= 1
@@ -2478,7 +2532,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -2531,8 +2585,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -2582,7 +2636,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -2635,8 +2689,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -2686,7 +2740,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -2739,8 +2793,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -2790,7 +2844,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -2843,8 +2897,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -2894,7 +2948,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -2947,8 +3001,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -2998,7 +3052,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -3051,8 +3105,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -3102,7 +3156,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -3125,7 +3179,7 @@ init python: #objectsInterrogation
                 else:
                     renpy.show_screen("notebook_button")
                     renpy.say(p, "Yep, right there, that's our diner!{p}Well... Not quite.")
-                    renpy.say(p, "We're turning it into a Cafe now...{p=0.1}. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .")
+                    renpy.say(p, "We're turning it into a Cafe now...")
                     renpy.jump("why")
 
             elif clover_i:
@@ -3161,8 +3215,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -3212,7 +3266,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -3265,8 +3319,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -3316,7 +3370,7 @@ init python: #objectsInterrogation
             note = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             cat_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             keys_object = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
-            wirecutters = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
+            wirecutter = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             businesscard_bm2 = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             hunting_knife = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
             empty_sheath = ["act 1. ob"],["act 2. ob"],["act 3. ob"]
@@ -3369,8 +3423,8 @@ init python: #objectsInterrogation
             elif keys_object_i:
                 renpy.say(p, keys_object[act][level])
 
-            elif wirecutters_i:
-                renpy.say(p, wirecutters[act][level])
+            elif wirecutter_i:
+                renpy.say(p, wirecutter[act][level])
 
             elif businesscard_bm2_i:
                 renpy.say(p, businesscard_bm2[act][level])
@@ -3622,12 +3676,12 @@ init python: #peopleInterrogation
 
             mc_opinion = ["act 1."], ["act2."], ["act3."]
             bb_opinion = ["act 1."], ["act2."], ["act3."]
-            dd_opinion = ["act 1."], ["act2."], ["act3."]
+            dd_opinion = ["I don't know who died and made him king. {w = 0.2}Well yes, someone did die.{p}But who is he to keep us all in here?"], ["act2."], ["act3."]
             gg_opinion = ["act 1."], ["act2."], ["act3."]
             cc_opinion = ["act 1."],["act 2."],["act 3."]
             pg_opinion = ["act 1."],["act 2."],["act 3."]
             #albino_opinion = ["act 1."],["act 2."],["act 3."]
-            braids_opinion = ["act 1."],["act 2."],["act 3."]
+            braids_opinion = ["He's my business partner"],["act 2."],["act 3."]
             bl_opinion = ["act 1."],["act 2."],["act 3."]
             lbguy_opinion = ["act 1."],["act 2."],["act 3."]
             lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
@@ -3878,7 +3932,11 @@ init python: #peopleInterrogation
             else:
                 renpy.say(mc, "...")
 
-init python: 
+init python: #hideSay
+    def hideSay():
+        renpy.hide_screen("say")
+
+init python:
     def  hidePeopleInterrogation():                 
         renpy.hide_screen("interrogation_gg")
         renpy.hide_screen("interrogation_bb")
@@ -3990,7 +4048,7 @@ label start:
     $ note_i = False
     $ cat_object_i = False   
     $ keys_object_i = False
-    $ wirecutters_i = False
+    $ wirecutter_i = False
     $ businesscard_bm2_i = False
     $ hunting_knife_i = False
     $ empty_sheath_i = False
@@ -4065,7 +4123,6 @@ label start:
     $ lbgirl_age = False
 
     ### object variables ###
-    $ businesscard_object = False
     $ businesscard = True
     $ pamphlet = True
     $ clover = True
@@ -4079,7 +4136,7 @@ label start:
     $ note = False
     $ cat_object = False   # idk, dont like this
     $ keys_object = False
-    $ wirecutters = False
+    $ wirecutter = False
     $ businesscard_bm2 = False
     $ hunting_knife = False
     $ empty_sheath = False
@@ -4449,7 +4506,7 @@ label is_it:
 
         $ bl_interrogation = True
 
-        call screen interrogation_options
+        jump notebookAnimation
 
         $ bl_interrogation = False
 
@@ -4471,7 +4528,7 @@ label is_it:
 
                 $ how_old = True
                 
-                sbl "It was my son's idea, such a darling, {w}he wanted to go to all the way to the city to open up a Cafe."
+                sbl "It was my son's idea, such a darling,\nhe wanted to go to all the way to the city to open up a Cafe."
                 
                 sbl "{cps=90}{size=+5}But we mom's know what's best for our little ones!{/size}{/cps}"
 
@@ -4796,7 +4853,7 @@ label doctor_intro:
                 
                 d "The name's probably an allias too. Written by \"L. Mendez\"."
 
-                smc "{cps=90}\"Lucky\", {w=0.2}it's my middle name.{/cps} {w}[name] Lucky Mendez.{p}{b}I hate it,{/b} but I feel it suits me."
+                smc "{cps=90}\"Lucky\", {w=0.2}it's my middle name.{/cps} {w}[name] Lucky Mendez.{p}{b}I don't love it,{/b} but I feel it suits me."
 
                 jump novel_ask  
 
@@ -5014,7 +5071,7 @@ label murder1:
 
     # it'd be pretty cool if the text got bigger and bigger with each scream
 
-    sd "Everyone stay right where you are!" with hpunch
+    sd "Everyone stay calm!{p}I'm a doctor!" with hpunch
 
     #cooler animation or smtin is in order up here
 
@@ -5041,11 +5098,8 @@ label murder1:
     play music "audio/restingsuspicion.wav" fadein 0.5
 
     $ dd_name = True
-    $ d_fear = False #take out later
 
-    d "I'm doctor Jay Wallace from the FBI.{p}Everyone here is under investigation from this moment on."
-
-    # show cop id
+    d "I'm doctor Jay Wallace, and I need everyone to remain where you are."
     
     d "There's no cell reception here, so I will ask all of you to remain seated, until further notice."
 
@@ -5072,22 +5126,22 @@ label murder1:
     hide baristalady
     show businessman2
 
-    bm2 "Ugh, this is terrifying,{p}I don't want to be anywhere near a corpse." with hpunch
+    bm2 "Ugh, this is terrifying,{p= 0.5}I don't want to be anywhere near a corpse." with hpunch
 
     hide businessman2 
     show businessman1 at newcenter
 
-    bm1 "It's certainly difficult to be so near a murder scene.{p}More so when the murderer is in the room with us." with hpunch
+    bm1 "It's certainly difficult to be so near a murder scene.{p}More so when the culprit is so clearly in the room with us." with hpunch
     ## idk if to change the second part of this dialogue, it sounds odd and unnecessary.
     hide businessman1
     show cutecook
 
-    cc "This is no good for business...{p}Can I at least mop up?" with hpunch  
+    cc "This is no good for business...{p}Can I at least mop up?" with hpunch 
 
     hide cutecook
     show bb_neutral #badboy
 
-    bb "{b}I swear it wasn't me!{/b}{p}What kind of sick person would do something like this???" with hpunch   
+    bb "{b}What kind of sick person would do something like this???{/b}" with hpunch   
 
     hide bb_neutral
     show gentlegiant
@@ -5102,36 +5156,11 @@ label murder1:
 
     with fade
 
-    mc "...{w}{cps=50}I don't know what to say.{/cps}"
+    mc "...{w}{cps=50}there must be something I can do.{/cps}"
 
-    show player at completeleft with ease
-    show doctor 
-
-    d "Everyone place their ids and car keys on the table.{p}No one will leave any time soon."
-
-    #menu:
-
-    #    "Put them on the table.":
-            #animate everyone's ids and cards on table
-    #        pass
-
-    smc "Believe it or not, I think I threw my things in between the pages of the notebook... "
-    
-    $ keys_object = True
-
-    call screen notebook_button
-
-label ids:
-
-    scene entrance_bg with fade
-
-    #animate doctor taking mc's id
-
-    sd "..."
-
-    scene exit_bg
-    show doctor
-    with fade
+    show player 
+    show doctor at outleft 
+    show doctor at nearleft with ease
 
     d "May I talk to you for a moment?"
 
@@ -5155,11 +5184,15 @@ label author:
     
     with fade
 
-    d "So...{p}[name] L. Mendez?"
+    d "Name?"
+
+    smcs "[name] Mendez"
+
+    d "Mendez?"
 
     smcs "{cps=50}...{w}yes.{/cps}"
 
-    d "Any relation to the author?"
+    d "Any relation to L. Mendez, the author?"
 
     smcs "{cps=50}...{w}{/cps}"
 
@@ -5173,16 +5206,11 @@ label author:
         "She is me.":
             pass
 
-    #smcs "Yes,{w} I'm the author of Atonement of th Moon."
-
     d "Anyway to prove it?"
 
     $ objects_notebook = True
-    #$ businesscard = True
 
-    smc "...{w}{cps=150}I'm sure I left my business card between the pages of my journal...{/cps}"
-
-    $ businesscard_object = True
+    smc "...{w}{cps=150}I'm sure I left my business card in my wallet...{/cps}"
 
     hide screen notebook_button
     call screen notebook_button
@@ -5863,7 +5891,7 @@ label objects_interrogation:
     
     $ level = 1
 
-    $ objectsInterrogation(act, level, businesscard_i, pamphlet_i, clover_i, umbrella_i, mc_keys, shovel_i, pg_phone_i, pg_picture_i, charger_i, old_picture_i, note_i, cat_object_i, keys_object_i, wirecutters_i, businesscard_bm2_i, hunting_knife_i, empty_sheath_i, poison_bottle_i, dagger_i, sheathed_dagger_i, peanutbutter_i, sardines, cat_accessory_1_i, cat_accessory_2_i, dd_interrogation, bb_interrogation, gg_interrogation, cc_interrogation, albino_interrogation, braids_interrogation, bl_interrogation, lbguy_interrogation, lbgirl_interrogation)
+    $ objectsInterrogation(act, level, businesscard_i, pamphlet_i, clover_i, umbrella_i, mc_keys, shovel_i, pg_phone_i, pg_picture_i, charger_i, old_picture_i, note_i, cat_object_i, keys_object_i, wirecutter_i, businesscard_bm2_i, hunting_knife_i, empty_sheath_i, poison_bottle_i, dagger_i, sheathed_dagger_i, peanutbutter_i, sardines, cat_accessory_1_i, cat_accessory_2_i, dd_interrogation, bb_interrogation, gg_interrogation, cc_interrogation, albino_interrogation, braids_interrogation, bl_interrogation, lbguy_interrogation, lbgirl_interrogation)
 
     $ businesscard_i = False
     $ pamphlet_i = False
@@ -5878,7 +5906,7 @@ label objects_interrogation:
     $ note_i = False
     $ cat_object_i = False   
     $ keys_object_i = False
-    $ wirecutters_i = False
+    $ wirecutter_i = False
     $ businesscard_bm2_i = False
     $ hunting_knife_i = False
     $ empty_sheath_i = False
@@ -5909,7 +5937,7 @@ label interrogation_screen:
     $ people_lbguy = False
     $ people_lbgirl = False
 
-    call screen interrogation_options
+    jump notebookAnimation
 
 label people_interrogation:
 
@@ -6037,6 +6065,25 @@ label interrogation_questions:
                 jump interrogation_questions
 
 #label investigation_restroom
+
+## animation labels 
+label notebookAnimation:
+
+    window hide
+    show nbA
+    pause 0.29
+    hide nbA
+
+    call screen interrogation_options
+
+label notebookAnimationClose:
+    window hide
+    show nbAc
+    pause 0.24
+    hide nbAc
+
+    jump investigation_middle
+
 
 
 
