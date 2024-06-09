@@ -29,7 +29,7 @@ image menu_animated_hovered:
     pause 0.2
     repeat
 
-image nbA:
+image nbAI:
     "images/aNB_1.png"
     pause 0.1
     "images/aNB_1b.png"
@@ -43,7 +43,7 @@ image nbA:
     "images/nbTutorial.png"
     pause 0.05
 
-image nbAc:
+image nbAcI:
     "images/nbTutorial.png"
     pause 0.03
     "images/aNB_3.png"
@@ -57,7 +57,47 @@ image nbAc:
     "images/aNB_1.png"
     pause 0.02
 
+image nbA:
+    "images/aNB_1.png"
+    pause 0.1
+    "images/aNB_1b.png"
+    pause 0.03
+    "images/aNB_1c.png"
+    pause 0.04
+    "images/aNB_2.png"
+    pause 0.04
+    "images/aNB_3.png"
+    pause 0.03
+    "images/aNB_4.png"
+    pause 0.03
+    "images/aNB_5.png"
+    pause 0.04
+    "images/aNB_6.png"
+    pause 0.04
+    "images/aNB_7.png"
+    pause 0.04
+    #"images/nbTutorial.png"
+    #pause 0.05
 
+image nbAc:
+    "images/aNB_7.png"
+    pause 0.03
+    "images/aNB_6.png"
+    pause 0.03
+    "images/aNB_5.png"
+    pause 0.03
+    "images/aNB_4.png"
+    pause 0.05
+    "images/aNB_3.png"
+    pause 0.02
+    "images/aNB_2.png"
+    pause 0.02
+    "images/aNB_1c.png"
+    pause 0.02
+    "images/aNB_1b.png"
+    pause 0.02
+    "images/aNB_1.png"
+    pause 0.03
 
 image bb_neutral:
     "images/badboy1.png"
@@ -996,134 +1036,190 @@ screen notebook_button:
         xoffset -35
         yoffset 10
         #action SetVariable("quick_menu", False), Show("notebook_inside"), Play ("sound", "audio/notebook_sounds_onepage.wav")
-        action [Hide("notebook_button"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+        action [Hide("notebook_button"), Hide("qmenu_button"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+
+screen notebook_inside_withbuttons:
+    modal True
+    frame:
+        xalign 0.5
+        yalign 0.5
+        background Solid("#24243399")
+        #background Solid("#24243361")
+    image "images/notebookPaper.png":
+        xalign 0.5
+        yalign 0.5
+    vbox:
+        #xalign 0.2
+        #yalign 0.5
+        xalign 0.035
+        yalign 0.175
+        spacing 15
+        #spacing 50
+        imagebutton:
+                auto "images/notesStrip_%s.png"
+                action Show("notebook_people"), Play ("sound", "audio/notebook_sounds_button.wav")
+
+        #if info_notebook == True:
+        imagebutton:
+            auto "images/sketchStrip_%s.png"
+            action Show("notebook_info"), Play ("sound", "audio/notebook_sounds_button.wav")
+            
+        if objects_notebook == True:
+            imagebutton:
+                auto "images/bagStrip_%s.png"
+                action [Hide("notebook_inside"), Show("notebook_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
+
+        if clues_notebook == True:
+            textbutton "Clues":
+                text_size 50
+                action NullAction(), Play ("sound", "audio/notebook_sounds_button.wav")
+
+    imagebutton:
+        auto "images/closeBN_%s.png"                
+        xpos 0.952
+        ypos 0.083
+        action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Show("notebook_button")]
 
 screen notebook_inside:
     modal True
     frame:
-        vbox:
-            #xoffset 200
-            #yoffset 150
-            xalign 0.2
-            yalign 0.5
-            #xoffset -50
-            spacing 50
-            textbutton "People":
+        xalign 0.5
+        yalign 0.5
+        background Solid("#24243399")
+        #background Solid("#24243361")
+    image "images/notebookPaper.png":
+        xalign 0.5
+        yalign 0.5
+    vbox:
+        xoffset 95
+        yoffset 110
+        #xoffset 200
+        #yoffset 150
+        #xalign 0.2
+        #yalign 0.5
+        #xoffset -50
+        spacing 50
+        textbutton "People":
+            text_size 50
+            action Show("notebook_people"), Play ("sound", "audio/notebook_sounds_button.wav")
+        
+        if objects_notebook == True:
+            textbutton "Objects":
                 text_size 50
-                action Show("notebook_people"), Play ("sound", "audio/notebook_sounds_button.wav")
-            
-            if objects_notebook == True:
-                textbutton "Objects":
-                    text_size 50
-                    action [Hide("notebook_inside"), Show("notebook_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                textbutton "???":
-                    text_size 50
-
-            #if info_notebook == True:
-            textbutton "Notes":
+                action [Hide("notebook_inside"), Show("notebook_objects")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            textbutton "???":
                 text_size 50
-                action Show("notebook_info"), Play ("sound", "audio/notebook_sounds_button.wav")
-            #else:
-                #textbutton "???":
-                    #text_size 50
 
-            if clues_notebook == True:
-                textbutton "Clues":
-                    text_size 50
-                    action NullAction(), Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                textbutton "???":
-                    text_size 50
-        hbox:
-            xpos 0.9
-            xoffset -5
-            yoffset 20
-            textbutton "close":
-                text_size 40
-                action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Show("notebook_button")]
+        #if info_notebook == True:
+        textbutton "Notes":
+            text_size 50
+            action Show("notebook_info"), Play ("sound", "audio/notebook_sounds_button.wav")
+        #else:
+            #textbutton "???":
+                #text_size 50
+
+        if clues_notebook == True:
+            textbutton "Clues":
+                text_size 50
+                action NullAction(), Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            textbutton "???":
+                text_size 50
+    imagebutton:
+        auto "images/closeBN_%s.png"                
+        xpos 0.952
+        ypos 0.083
+        action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Show("notebook_button"), Show("qmenu_button")]
 
 
 screen notebook_people:
     modal True
-    frame:
-        vbox:
-            #xoffset 200
-            xoffset 60
-            yoffset 150
-            spacing 25
-            textbutton "Me":
-                action [Show("notebook_people_mc"), Hide ("notebook_people_bb"), Hide ("notebook_people_bl"), Hide ("notebook_people_d")], Play ("sound", "audio/notebook_sounds_button.wav")
+    image "images/notebookPaper.png":
+        xalign 0.5
+        yalign 0.5
+    vbox:
+        #xoffset 200
+        xoffset 95
+        yoffset 110
+        spacing 25
+        textbutton "Me":
+            action [Show("notebook_people_mc"), Hide ("notebook_people_bb"), Hide ("notebook_people_bl"), Hide ("notebook_people_d")], Play ("sound", "audio/notebook_sounds_button.wav")
 
-            showif dd_name == True:
-                textbutton "Doctor":
-                    action [Show("notebook_people_d"), Hide ("notebook_people_bb"), Hide ("notebook_people_bl"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
+        showif dd_name == True:
+            textbutton "Doctor":
+                action [Show("notebook_people_d"), Hide ("notebook_people_bb"), Hide ("notebook_people_bl"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
 
-            showif cc_name == True:
-                textbutton "Cute Cook":
+        showif cc_name == True:
+            textbutton "Cute Cook":
+                action NullAction()
+        else:
+            pass
+
+        showif gg_name == True:
+            textbutton "Gentle Giant":
+                action NullAction()
+        else:
+            pass
+
+        showif bb_name == True:
+            textbutton "Bad Boy":
+                action [Show("notebook_people_bb"), Hide ("notebook_people_d"), Hide ("notebook_people_bl"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+
+        showif bm1_name == True:
+            textbutton "Business Man 1":
+                action NullAction()
+        else:
+            pass
+
+        showif bm2_name == True:
+            textbutton "Business Man 2":
+                action NullAction()
+        else:
+            pass
+
+        showif bl_name == True:
+            textbutton "Barista Lady":
+                action [Show("notebook_people_bl"), Hide ("notebook_people_bb"), Hide ("notebook_people_d"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+
+        showif lbguy_name == True:
+            textbutton "Love Bird Guy":
+                action NullAction()
+        else:
+            pass
+
+        showif lbgirl_name == True:
+            textbutton "Love Bird Girl":
+                action NullAction()
+        else:
+            pass
+
+        showif lbgirl_name == True and pg_name == False:
+            textbutton "???"
+
+        elif pg_name == True:
+                textbutton "Pretty Girl":
                     action NullAction()
-            else:
-                pass
+        else:
+            pass
 
-            showif gg_name == True:
-                textbutton "Gentle Giant":
-                    action NullAction()
-            else:
-                pass
-
-            showif bb_name == True:
-                textbutton "Bad Boy":
-                    action [Show("notebook_people_bb"), Hide ("notebook_people_d"), Hide ("notebook_people_bl"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-
-            showif bm1_name == True:
-                textbutton "Business Man 1":
-                    action NullAction()
-            else:
-                pass
-
-            showif bm2_name == True:
-                textbutton "Business Man 2":
-                    action NullAction()
-            else:
-                pass
-
-            showif bl_name == True:
-                textbutton "Barista Lady":
-                    action [Show("notebook_people_bl"), Hide ("notebook_people_bb"), Hide ("notebook_people_d"), Hide ("notebook_people_mc")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-
-            showif lbguy_name == True:
-                textbutton "Love Bird Guy":
-                    action NullAction()
-            else:
-                pass
-
-            showif lbgirl_name == True:
-                textbutton "Love Bird Girl":
-                    action NullAction()
-            else:
-                pass
-
-            showif lbgirl_name == True and pg_name == False:
-                textbutton "???"
-
-            elif pg_name == True:
-                    textbutton "Pretty Girl":
-                        action NullAction()
-            else:
-                pass
-        hbox:
-            xpos 0.9
-            xoffset -5
-            yoffset 20
-            textbutton "return":
-                text_size 40
-                action [Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+    textbutton "back":
+        xpos 0.9
+        ypos 0.85
+        text_size 40
+        action [Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+    
+    imagebutton:
+        auto "images/closeBN_%s.png"                
+        xpos 0.952
+        ypos 0.083
+        action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Hide("notebook_people"), Hide ("notebook_people_bb"), Hide ("notebook_people_mc"), Hide ("notebook_people_bl"), Hide ("notebook_people_d"), Show("notebook_button"), Show("qmenu_button")]
 
 screen notebook_people_mc:
     modal True
@@ -1285,111 +1381,118 @@ screen notebook_people_bb:
 
 screen notebook_info:
     modal True
-    frame:
-        vbox:
-            xoffset 40
-            yoffset 20
-            spacing 20
-            textbutton "another hit novel":
-                action [Show("notebook_info_hitnovel"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
-            showif cc_dream_info == True:
-                vbox:
-                    textbutton "cafe dream":
-                        action [Show("notebook_info_cafedream"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-                        #action [Show("notebook_info_cafedream")], Play ("sound", "audio/notebook_sounds_button.wav")
-            showif bm_meeting_info == True:
-                vbox:
-                    textbutton "business meeting":
-                        action [Show("notebook_info_businessmeeting"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif pg_dress == True:
-                vbox:
-                    textbutton "an expensive dress":
-                        action [Show("notebook_info_expensivedress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif d_fear == True:
-                vbox:
-                    textbutton "a doctor's trauma":
-                        action [Show("notebook_info_adoctorstrauma"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif pg_restroom == True:
-                vbox:
-                    textbutton "restroom breaks":
-                        action [Show("notebook_info_restroombreaks"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif bb_badbreakup == True:
-                vbox:
-                    textbutton "nice boy, bad breakup":
-                        action [Show("notebook_info_badbreakup"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif albino_undead == True:
-                vbox:
-                    textbutton "fear of the undead":
-                        action [Show("notebook_info_undead"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif braids_goryart == True:
-                vbox:
-                    textbutton "gory art":
-                        action [Show("notebook_info_goryart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif gg_gentlegarden == True:
-                vbox:
-                    textbutton "gentle garden":
-                        action [Show("notebook_info_gentlegarden"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif lbguy_datingsmart == True:
-                vbox:
-                    textbutton "dating the smart girl":
-                        action [Show("notebook_info_datingsmart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif lbgirl_distress == True:
-                vbox:
-                    textbutton "damsel causes distress":
-                        action [Show("notebook_info_distress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif pg_wealthyfamily == True:
-                vbox:
-                    textbutton "wealthy family":
-                        action [Show("notebook_info_wealthyfamily"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif pg_obsessions == True:
-                vbox:
-                    textbutton "obsessions":
-                        action [Show("notebook_info_obsessions"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif pg_poison == True:
-                vbox:
-                    textbutton "powder":
-                        action [Show("notebook_info_poison"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-            showif pg_inheritance == True:
-                vbox:
-                    textbutton "inheritance":
-                        action [Show("notebook_info_inheritance"), Hide ("notebook_info_hitnovel"), Hide("notebook_info_poison"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
-            else:
-                pass
-        hbox:
-                xpos 0.9
-                xoffset -5
-                yoffset 20
-                textbutton "return":
-                    text_size 40
-                    action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+    image "images/notebookPaper.png":
+        xalign 0.5
+        yalign 0.5
+    vbox:
+        xoffset 95
+        yoffset 110
+        spacing 25
+        textbutton "another hit novel":
+            action [Show("notebook_info_hitnovel"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
+        showif cc_dream_info == True:
+            vbox:
+                textbutton "cafe dream":
+                    action [Show("notebook_info_cafedream"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"),  Hide ("notebook_info_expensivedress"), Hide ("notebook_info_businessmeeting"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+                    #action [Show("notebook_info_cafedream")], Play ("sound", "audio/notebook_sounds_button.wav")
+        showif bm_meeting_info == True:
+            vbox:
+                textbutton "business meeting":
+                    action [Show("notebook_info_businessmeeting"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_adoctorstrauma")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif pg_dress == True:
+            vbox:
+                textbutton "an expensive dress":
+                    action [Show("notebook_info_expensivedress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif d_fear == True:
+            vbox:
+                textbutton "a doctor's trauma":
+                    action [Show("notebook_info_adoctorstrauma"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif pg_restroom == True:
+            vbox:
+                textbutton "restroom breaks":
+                    action [Show("notebook_info_restroombreaks"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif bb_badbreakup == True:
+            vbox:
+                textbutton "nice boy, bad breakup":
+                    action [Show("notebook_info_badbreakup"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif albino_undead == True:
+            vbox:
+                textbutton "fear of the undead":
+                    action [Show("notebook_info_undead"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif braids_goryart == True:
+            vbox:
+                textbutton "gory art":
+                    action [Show("notebook_info_goryart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif gg_gentlegarden == True:
+            vbox:
+                textbutton "gentle garden":
+                    action [Show("notebook_info_gentlegarden"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif lbguy_datingsmart == True:
+            vbox:
+                textbutton "dating the smart girl":
+                    action [Show("notebook_info_datingsmart"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif lbgirl_distress == True:
+            vbox:
+                textbutton "damsel causes distress":
+                    action [Show("notebook_info_distress"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif pg_wealthyfamily == True:
+            vbox:
+                textbutton "wealthy family":
+                    action [Show("notebook_info_wealthyfamily"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif pg_obsessions == True:
+            vbox:
+                textbutton "obsessions":
+                    action [Show("notebook_info_obsessions"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif pg_poison == True:
+            vbox:
+                textbutton "powder":
+                    action [Show("notebook_info_poison"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+        showif pg_inheritance == True:
+            vbox:
+                textbutton "inheritance":
+                    action [Show("notebook_info_inheritance"), Hide ("notebook_info_hitnovel"), Hide("notebook_info_poison"), Hide("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_badbreakup"), Hide ("notebook_info_restroombreaks"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting")], Play ("sound", "audio/notebook_sounds_button.wav")
+        else:
+            pass
+    
+    textbutton "back":
+        xpos 0.9
+        ypos 0.85
+        text_size 40
+        action [Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting"), Show("notebook_inside")], Play ("sound", "audio/notebook_sounds_onepage.wav")
+
+    imagebutton:
+        auto "images/closeBN_%s.png"                
+        xpos 0.952
+        ypos 0.083
+        action SetVariable("quick_menu", True), Play ("sound", "audio/notebook_sounds_thump.wav"), [Hide("notebook_inside"), Hide("notebook_info"), Hide ("notebook_info_hitnovel"), Hide ("notebook_info_inheritance"), Hide ("notebook_info_poison"), Hide ("notebook_info_obsessions"), Hide ("notebook_info_wealthyfamily"), Hide ("notebook_info_distress"), Hide ("notebook_info_datingsmart"), Hide ("notebook_info_gentlegarden"), Hide ("notebook_info_goryart"), Hide ("notebook_info_undead"), Hide ("notebook_info_restroombreaks"), Hide("notebook_info_restroombreaks"), Hide ("notebook_info_expensivedress"), Hide ("notebook_info_adoctorstrauma"), Hide ("notebook_info_cafedream"), Hide ("notebook_info_businessmeeting"), Show("notebook_button"), Show("qmenu_button")]
 
 screen notebook_info_hitnovel:
     fixed:
@@ -1960,10 +2063,6 @@ screen notebook_objects:
                 #    action Hide("notebook_objects"), Play ("sound", "audio/notebook_sounds_onepage.wav")
 
 
-## interrogation stuff
-
-    # SO I WANT TO ANIMATE STUFF OPENING UP ( to do: create a label for animations where te button goes there and then it shows the screen )
-
 screen interrogation_options:
     modal True
 
@@ -1972,7 +2071,7 @@ screen interrogation_options:
         imagebutton: 
             xalign 0.3765
             yalign 0.915
-            auto "images/notesbttn2_%s.png" 
+            auto "images/notesbttn_%s.png" 
             action [Hide("interrogation_options"), Show("people_interrogation")], Play ("sound", "audio/notebook_sounds_button.wav")
 
         image "images/nbOpen.png":
@@ -6069,18 +6168,35 @@ label interrogation_questions:
 ## animation labels 
 label notebookAnimation:
 
-    window hide
-    show nbA
-    pause 0.29
-    hide nbA
+    hide screen qmenu_button
+
+    if act > 0:
+        window hide
+        show nbA
+        pause 0.39
+        hide nbA
+    else:
+        window hide
+        show nbAI
+        pause 0.29
+        hide nbAI
 
     call screen interrogation_options
 
 label notebookAnimationClose:
-    window hide
-    show nbAc
-    pause 0.24
-    hide nbAc
+
+    if act > 0:
+        window hide
+        show nbAc
+        pause 0.25
+        hide nbAc
+    else:
+        window hide
+        show nbAcI
+        pause 0.29
+        hide nbAcI
+
+    show screen qmenu_button
 
     jump investigation_middle
 
