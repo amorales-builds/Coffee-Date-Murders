@@ -2269,7 +2269,7 @@ screen objects_interrogation:
 
             showif wirecutter == True:
                 vbox:
-                    textbutton "wirecutter":
+                    textbutton "Wirecutter":
                         action [SetVariable ("wirecutter_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
 
             showif poison_bottle == True:
@@ -2289,7 +2289,7 @@ screen objects_interrogation:
 
             showif cat_object == True:
                 vbox:
-                    textbutton "CAT":
+                    textbutton "CAT!":
                         action [SetVariable ("cat_object_i", True), Hide("objects_interrogation"), Jump("objects_interrogation")]
 
             showif cat_accessory_1 == True:
@@ -3569,13 +3569,13 @@ init python: #peopleInterrogation
             #bb_opinion = ["act 1."], ["act2."], ["act3."]
             dd_opinion = ["He arrived a bit earlier than you did,{p}a bit before the rain got worse."], ["act2."], ["act3."]
             gg_opinion = ["He's been at his seat for a while."], ["act2."], ["act3."]
-            cc_opinion = ["act 1."],["act 2."],["act 3."]
-            pg_opinion = ["act 1."],["act 2."],["act 3."]
+            cc_opinion = ["The cook? He's been at the back all this time.{p = 0.1}I don't really know him."],["act 2."],["act 3."]
+            pg_opinion = ["She was sitting there all tense for a long time, some time before the annoying couple came in."],["act 2."],["act 3."]
             albino_opinion = ["act 1."],["act 2."],["act 3."]
             braids_opinion = ["act 1."],["act 2."],["act 3."]
-            bl_opinion = ["act 1."],["act 2."],["act 3."]
-            lbguy_opinion = ["act 1."],["act 2."],["act 3."]
-            lbgirl_opinion = ["act 1."],["act 2."],["act 3."]
+            bl_opinion = ["She's very nice.{p=0.1}Used to give us{w=0.2}.{w=0.2}.{w=0.2}.{w=0.3} {i}me{/i}{w=0.8}, used to give me a free milkshake every once in a while."],["act 2."],["act 3."]
+            lbguy_opinion = ["Annoying.{p=0.2}Huh? Not you, he and his girl."],["act 2."],["act 3."]
+            lbgirl_opinion = ["Annoying.{p=0.2}Huh? Not you, she and her guy."],["act 2."],["act 3."]
 
             p = bb
 
@@ -4502,7 +4502,6 @@ label entrance:
 
     $ sitting_dialogue = False
 
-
     if entrance_scene == True and entrance_scene_dialogue == False:
         smc "Round and round we go."
         $ entrance_scene_dialogue = True
@@ -4589,11 +4588,11 @@ label is_it:
 
             jump interrogationTutorial
 
-        "May I ask if this is the diner from this brochure?" if evening_bl == False or weather_bl == False:
+        "May I ask if this is the diner from this pamphlet?" if evening_bl == False or weather_bl == False:
 
             #call screen diner_picture
 
-            sbl "A brochure? May I see it?"
+            sbl "A pamphlet? May I see it?"
 
             jump interrogationTutorial
 
